@@ -457,7 +457,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"running",
-"speed": 9.0
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qh8sd"]
@@ -467,12 +467,12 @@ size = Vector2(22, 56)
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-6.5, -12.5)
+position = Vector2(-6.5, -11.5)
 scale = Vector2(3, 3.198)
 sprite_frames = SubResource("SpriteFrames_mgdcd")
-animation = &"idle"
+animation = &"jumping"
 autoplay = "idle"
-frame_progress = 0.894698
+frame_progress = 0.734712
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 10)
