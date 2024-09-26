@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0te4dbamf8wu"
-path="res://.godot/imported/player_disassembling.png-d5d705364c54440ab4973e8b53faf785.ctex"
+uid="uid://d4gcqsu6rjxk4"
+path="res://.godot/imported/player_running.png-f0371422af4b1b5e48f2aa655ebbab24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_disassembling.png"
-dest_files=["res://.godot/imported/player_disassembling.png-d5d705364c54440ab4973e8b53faf785.ctex"]
+source_file="res://sprites/player/player_running.png"
+dest_files=["res://.godot/imported/player_running.png-f0371422af4b1b5e48f2aa655ebbab24.ctex"]
 
 [params]
 

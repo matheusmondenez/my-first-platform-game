@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwql0rhlreugb"
-path="res://.godot/imported/player_assembling.png-4c21db5885858c8e5e37a6e44017dc7e.ctex"
+uid="uid://cksvninrj1xen"
+path="res://.godot/imported/blue_effects.png-3db6f9cf541701d819ab502730419b69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/player_assembling.png"
-dest_files=["res://.godot/imported/player_assembling.png-4c21db5885858c8e5e37a6e44017dc7e.ctex"]
+source_file="res://sprites/tiles/blue_effects.png"
+dest_files=["res://.godot/imported/blue_effects.png-3db6f9cf541701d819ab502730419b69.ctex"]
 
 [params]
 

@@ -36,3 +36,11 @@ func set_face_direction(direction):
 		sprite_2d.flip_h = true
 	elif (direction > 0):
 		sprite_2d.flip_h = false
+		
+func jump():
+	velocity.y = JUMP_VELOCITY
+	
+func jump_side(x):
+	print("jump_side: ", x)
+	velocity.y = -500
+	velocity.x = x

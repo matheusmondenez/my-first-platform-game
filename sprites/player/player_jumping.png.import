@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cksvninrj1xen"
-path="res://.godot/imported/blue_effects.png-db07462bd4e28d473eeaa9c445567ebb.ctex"
+uid="uid://dnbqmqcr3kgi6"
+path="res://.godot/imported/player_jumping.png-99e0c9de1d918f650971e8668c9a6e66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/blue_effects.png"
-dest_files=["res://.godot/imported/blue_effects.png-db07462bd4e28d473eeaa9c445567ebb.ctex"]
+source_file="res://sprites/player/player_jumping.png"
+dest_files=["res://.godot/imported/player_jumping.png-99e0c9de1d918f650971e8668c9a6e66.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgffcme6hykgx"
-path="res://.godot/imported/fire_spark.png-adb35a7440e2196ec6c26184bdddbb48.ctex"
+uid="uid://uiup5nhhqqn8"
+path="res://.godot/imported/enemy.png-a28f4aa0d0279a810343874e0c140b7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fire_spark.png"
-dest_files=["res://.godot/imported/fire_spark.png-adb35a7440e2196ec6c26184bdddbb48.ctex"]
+source_file="res://sprites/enemies/enemy.png"
+dest_files=["res://.godot/imported/enemy.png-a28f4aa0d0279a810343874e0c140b7e.ctex"]
 
 [params]
 
