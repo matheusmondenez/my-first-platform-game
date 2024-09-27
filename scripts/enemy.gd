@@ -14,6 +14,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			game_manager.decrease_life()
 			
 			if (x_delta >= 168 and x_delta < 270):
-				print("vai pra trás", x_delta)
+				body.knockback(-1)
 			elif (x_delta >= 270):
-				print("vai pra frente", x_delta)
+				body.knockback(1)
