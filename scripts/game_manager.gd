@@ -1,5 +1,6 @@
 extends Node
 
+@onready var character_body_2d: CharacterBody2D = %CharacterBody2D
 @onready var label: Label = %Label
 @export var hearts: Array[Node]
 
@@ -20,4 +21,7 @@ func decrease_life():
 			hearts[h].hide()
 	
 	if (lives == 0):
-		get_tree().reload_current_scene()
+		character_body_2d.is_dead = true
+		
+		#if (character_body_2d.sprite_2d.animation_finished):
+			#get_tree().reload_current_scene()

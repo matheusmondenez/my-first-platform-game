@@ -17,3 +17,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				body.knockback(-1)
 			elif (x_delta >= 270):
 				body.knockback(1)
+				
+			if (game_manager.lives == 0):
+				print("Morreu")

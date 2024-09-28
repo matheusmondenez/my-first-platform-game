@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bl1uaynqese0j"]
+[gd_scene load_steps=70 format=3 uid="uid://bl1uaynqese0j"]
 
 [ext_resource type="Texture2D" uid="uid://dwql0rhlreugb" path="res://sprites/player/player_assembling.png" id="1_ot0fu"]
 [ext_resource type="Texture2D" uid="uid://c0te4dbamf8wu" path="res://sprites/player/player_disassembling.png" id="2_5v1f1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dnbqmqcr3kgi6" path="res://sprites/player/player_jumping.png" id="3_r3hi8"]
 [ext_resource type="Texture2D" uid="uid://d4gcqsu6rjxk4" path="res://sprites/player/player_running.png" id="4_ttein"]
 [ext_resource type="Texture2D" uid="uid://d0e05gdfpawft" path="res://sprites/player/player_landing.png" id="5_0j60b"]
+[ext_resource type="Script" path="res://scripts/sprite.gd" id="7_akaq8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2uqb"]
 atlas = ExtResource("1_ot0fu")
@@ -310,7 +311,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u3x6f")
 }],
-"loop": true,
+"loop": false,
 "name": &"assembling",
 "speed": 8.0
 }, {
@@ -360,7 +361,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5mpso")
 }],
-"loop": true,
+"loop": false,
 "name": &"disassembling",
 "speed": 8.0
 }, {
@@ -406,7 +407,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w6mcw")
 }],
-"loop": true,
+"loop": false,
 "name": &"jumping",
 "speed": 8.0
 }, {
@@ -426,7 +427,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ewfc7")
 }],
-"loop": true,
+"loop": false,
 "name": &"landing",
 "speed": 8.0
 }, {
@@ -470,10 +471,12 @@ texture_filter = 1
 position = Vector2(-6.5, -11.5)
 scale = Vector2(3, 3.198)
 sprite_frames = SubResource("SpriteFrames_mgdcd")
-animation = &"jumping"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.401595
+script = ExtResource("7_akaq8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 10)
 shape = SubResource("RectangleShape2D_qh8sd")
+
+[connection signal="animation_finished" from="Sprite2D" to="Sprite2D" method="_on_animation_finished"]
