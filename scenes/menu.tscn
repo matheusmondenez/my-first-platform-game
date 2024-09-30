@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://j4v0aeqvnp2d"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_gj5ee"]
+[ext_resource type="Texture2D" uid="uid://3aq07r2r2akw" path="res://assets/menu-background.jpg" id="1_gsq7n"]
+[ext_resource type="Texture2D" uid="uid://cb85gllmikqpj" path="res://assets/logo.png" id="2_4nk2p"]
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_gj5ee")
+
+[node name="Background" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gsq7n")
+stretch_mode = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.5
+offset_top = -122.0
+offset_right = 302.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4nk2p")
+
+[node name="Start" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -9.5
+offset_right = 62.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
