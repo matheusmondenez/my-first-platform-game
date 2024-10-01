@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvk0n0x0cpwyk"]
+[gd_scene load_steps=15 format=3 uid="uid://bvk0n0x0cpwyk"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_0qwal"]
 [ext_resource type="Script" path="res://scripts/pause.gd" id="2_o2wbq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="8_cxx3y"]
 [ext_resource type="PackedScene" uid="uid://bwdcf16f0d5yo" path="res://scenes/soul.tscn" id="9_vk47c"]
 [ext_resource type="PackedScene" uid="uid://dnrx3jolqyr1e" path="res://scenes/enemy.tscn" id="10_234j2"]
+[ext_resource type="PackedScene" uid="uid://dc5ik0n6bp48w" path="res://scenes/moving_platform.tscn" id="11_uf5ky"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iglry"]
 content_margin_top = 10.0
@@ -382,6 +383,12 @@ position = Vector2(709, -7)
 
 [node name="Enemy4" parent="Objects/Enemies" instance=ExtResource("10_234j2")]
 position = Vector2(1850, -56)
+
+[node name="MovingPlatform" parent="Objects" instance=ExtResource("11_uf5ky")]
+position = Vector2(2181, 468)
+scale = Vector2(3, 3)
+distance = 60
+is_horizontal = false
 
 [connection signal="pressed" from="HUD/Pause/Panel/VBoxContainer/Resume" to="HUD/Pause" method="_on_resume_pressed"]
 [connection signal="pressed" from="HUD/Pause/Panel/VBoxContainer/Menu" to="HUD/Pause" method="_on_menu_pressed"]
