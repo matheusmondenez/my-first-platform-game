@@ -22,6 +22,5 @@ func move() -> void:
 	var duration = direction.length() / float(speed * platform_center)
 	var tween = create_tween().set_loops().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
 	
-	tween.tween_property(self, "follow", direction, duration)
-	tween.tween_property(self, "follow", Vector2.ZERO, duration)
-	
+	tween.tween_property(self, "follow", direction, duration).set_delay(WAIT_DURATION)
+	tween.tween_property(self, "follow", Vector2.ZERO, duration).set_delay(WAIT_DURATION)
