@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmlc1m8eay45"]
+
+[ext_resource type="Script" path="res://wave_shooter/actors/projectile.gd" id="1_r1f7e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1nd5l"]
+size = Vector2(16, 16)
+
+[node name="Projectile" type="Polygon2D"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+script = ExtResource("1_r1f7e")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_1nd5l")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_shoot_screen_exited"]
