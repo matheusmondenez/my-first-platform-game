@@ -7,7 +7,7 @@ var projectile_scene: PackedScene = preload("res://wave_shooter/actors/projectil
 var loaded: bool = true
 
 func _ready() -> void:
-	pass
+	Global.player = self
 
 func _process(delta: float) -> void:
 	move.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -20,3 +20,6 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	loaded = true
+
+func _exit_tree() -> void:
+	Global.player = null
