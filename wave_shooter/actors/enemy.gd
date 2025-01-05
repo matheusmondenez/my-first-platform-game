@@ -5,6 +5,7 @@ var speed: int = 75
 var move: Vector2 = Vector2.ZERO
 var is_stunned: bool = false
 var knockback: int = 6
+var blood_scene: PackedScene = preload("res://wave_shooter/actors/blood.tscn")
 
 func _ready() -> void:
 	pass
@@ -15,7 +16,9 @@ func _process(delta: float) -> void:
 	elif is_stunned:
 		move = lerp(move, Vector2.ZERO, 0.3)
 	global_position += move * speed * delta
-	if hp <= 0:
+	if hp <= 0 and Global.parent_node_creation:
+		var blood = Global.instance_node(blood_scene, global_position, Global.parent_node_creation)
+		blood.rotation = move.angle()
 		queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

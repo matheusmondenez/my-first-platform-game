@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://wave_shooter/actors/blood.gd" id="1_nvt6b"]
 
 [node name="Blood" type="CPUParticles2D"]
+z_index = -1
 amount = 15
 lifetime = 0.2
 explosiveness = 1.0
