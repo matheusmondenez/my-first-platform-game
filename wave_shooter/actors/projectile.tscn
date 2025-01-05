@@ -7,7 +7,6 @@ size = Vector2(16, 16)
 
 [node name="Projectile" type="Polygon2D"]
 z_index = -1
-color = Color(0.877224, 0.646843, 0.167706, 1)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 script = ExtResource("1_r1f7e")
 
