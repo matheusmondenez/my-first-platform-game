@@ -6,10 +6,11 @@
 size = Vector2(16, 16)
 
 [node name="Projectile" type="Polygon2D"]
+color = Color(0.877224, 0.646843, 0.167706, 1)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 script = ExtResource("1_r1f7e")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_1nd5l")

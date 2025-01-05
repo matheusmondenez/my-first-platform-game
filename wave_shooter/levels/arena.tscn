@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=5 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
+[ext_resource type="PackedScene" uid="uid://ebylq8dxub7n" path="res://wave_shooter/actors/enemy.tscn" id="3_5j6ij"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
 background_mode = 3
@@ -17,3 +18,6 @@ environment = SubResource("Environment_sgqdw")
 
 [node name="Player" parent="." instance=ExtResource("1_0xoxs")]
 position = Vector2(576, 342)
+
+[node name="Enemy" parent="." instance=ExtResource("3_5j6ij")]
+position = Vector2(188, 83)
