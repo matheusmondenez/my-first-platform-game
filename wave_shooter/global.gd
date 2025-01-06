@@ -3,6 +3,7 @@ extends Node
 var parent_node_creation = null
 var player = null
 var points = 0
+var high_score = 0
 var camera = null
 
 func instance_node(node, location, parent):

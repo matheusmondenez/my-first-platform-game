@@ -14,3 +14,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y > -45:
 		enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
 	Global.instance_node(enemy_one, enemy_position, self)
+
+func _on_dificulty_timer_timeout() -> void:
+	if $EnemySpawnTimer.wait_time > 0.5:
+		$DificultyTimer.wait_time -= 0.10

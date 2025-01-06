@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=8 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="3_ntwtu"]
 [ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
+[ext_resource type="Script" path="res://wave_shooter/ui/high_score.gd" id="5_60vb7"]
 [ext_resource type="Script" path="res://wave_shooter/ui/camera.gd" id="5_nfxav"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
@@ -22,7 +23,10 @@ environment = SubResource("Environment_sgqdw")
 position = Vector2(576, 342)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
 autostart = true
+
+[node name="DificultyTimer" type="Timer" parent="."]
 
 [node name="UI" type="Node2D" parent="."]
 
@@ -49,6 +53,16 @@ theme_override_font_sizes/font_size = 24
 text = "000"
 script = ExtResource("4_qyixy")
 
+[node name="HighScore" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 65.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("3_ntwtu")
+text = "000"
+script = ExtResource("5_60vb7")
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("5_nfxav")
@@ -56,4 +70,5 @@ script = ExtResource("5_nfxav")
 [node name="Timer" type="Timer" parent="Camera"]
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
 [connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]
