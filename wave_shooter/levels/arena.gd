@@ -4,6 +4,7 @@ var enemy_one: PackedScene = preload("res://wave_shooter/actors/enemy.tscn")
 
 func _ready() -> void:
 	Global.parent_node_creation = self
+	Global.points = 0
 
 func _exit_tree() -> void:
 	Global.parent_node_creation = null

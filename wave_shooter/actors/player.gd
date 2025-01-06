@@ -13,6 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	move.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	move.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+	
 	if not is_dead:
 		global_position += speed * move * delta
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:

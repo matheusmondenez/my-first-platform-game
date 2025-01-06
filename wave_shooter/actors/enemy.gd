@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 		var blood = Global.instance_node(blood_scene, global_position, Global.parent_node_creation)
 		blood.rotation = move.angle()
 		queue_free()
+		Global.points += 10
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
