@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=7 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="3_ntwtu"]
 [ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
+[ext_resource type="Script" path="res://wave_shooter/ui/camera.gd" id="5_nfxav"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
 background_mode = 3
@@ -48,4 +49,11 @@ theme_override_font_sizes/font_size = 24
 text = "000"
 script = ExtResource("4_qyixy")
 
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("5_nfxav")
+
+[node name="Timer" type="Timer" parent="Camera"]
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]

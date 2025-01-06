@@ -17,6 +17,8 @@ func _process(delta: float) -> void:
 		move = lerp(move, Vector2.ZERO, 0.3)
 	global_position += move * speed * delta
 	if hp <= 0 and Global.parent_node_creation:
+		if Global.camera:
+			Global.camera.shake_screen(50, 0.1)
 		var blood = Global.instance_node(blood_scene, global_position, Global.parent_node_creation)
 		blood.rotation = move.angle()
 		queue_free()
