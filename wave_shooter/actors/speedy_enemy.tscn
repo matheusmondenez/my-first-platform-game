@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://de0m0hivxmisn"]
+
+[ext_resource type="PackedScene" uid="uid://ebylq8dxub7n" path="res://wave_shooter/actors/enemy.tscn" id="1_0unj6"]
+
+[node name="SpeedyEnemy" instance=ExtResource("1_0unj6")]
+color = Color(0.629988, 0.3981, 0, 1)
+hp = 1
+speed = 150
