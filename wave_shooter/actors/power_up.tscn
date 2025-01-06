@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3iqw6hnxfili"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tauuy"]
+size = Vector2(22.6274, 22.6274)
+
+[node name="PowerUp" type="Polygon2D"]
+color = Color(3.08037e-06, 0.741164, 0.392184, 1)
+polygon = PackedVector2Array(0, -16, -16, 0, 0, 16, 16, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_tauuy")

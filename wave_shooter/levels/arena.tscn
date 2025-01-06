@@ -28,6 +28,10 @@ autostart = true
 
 [node name="DificultyTimer" type="Timer" parent="."]
 
+[node name="PowerUpSpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="UI" type="Node2D" parent="."]
 
 [node name="Control" type="Control" parent="UI"]
@@ -71,4 +75,5 @@ script = ExtResource("5_nfxav")
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
+[connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
 [connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]
