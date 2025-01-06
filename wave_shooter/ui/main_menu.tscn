@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://capu2mhq7qrbh"]
+
+[ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="1_58d57"]
+[ext_resource type="FontFile" uid="uid://dr51pfiatj1gw" path="res://wave_shooter/assets/fonts/MonomaniacOne-Regular.ttf" id="2_q77oq"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -486.0
+offset_top = 128.0
+offset_right = 486.0
+offset_bottom = 231.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.290196, 0.372549, 0.866667, 1)
+theme_override_fonts/font = ExtResource("1_58d57")
+theme_override_font_sizes/font_size = 80
+text = "Neon Square Shooter"
+
+[node name="KatakanaTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.5
+offset_top = 208.0
+offset_right = 159.5
+offset_bottom = 278.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.788235, 0.180392, 0.403922, 1)
+theme_override_fonts/font = ExtResource("2_q77oq")
+theme_override_font_sizes/font_size = 48
+text = "ネオンスクウェアシューター"

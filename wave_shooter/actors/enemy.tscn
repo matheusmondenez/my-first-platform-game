@@ -13,6 +13,7 @@ script = ExtResource("1_iondi")
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_6savq")
 
 [node name="Timer" type="Timer" parent="."]
