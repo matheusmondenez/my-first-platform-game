@@ -37,14 +37,12 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_kqtjv")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 128
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
