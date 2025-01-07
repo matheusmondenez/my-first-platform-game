@@ -30,11 +30,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
 		hp -= 1
 		is_stunned = true
-		#modulate = Color.WHITE
+		color = Color.WHITE
 		area.get_parent().queue_free()
 		move = -move * knockback
 		$Timer.start()
 
 func _on_timer_timeout() -> void:
 	is_stunned = false
-	#modulate = Color("c92e67")
+	color = Color("c92e67")

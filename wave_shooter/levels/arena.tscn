@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=9 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
+[ext_resource type="PackedScene" uid="uid://bdge81isdmgwf" path="res://wave_shooter/ui/count_down.tscn" id="2_575tc"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="3_ntwtu"]
 [ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
 [ext_resource type="Script" path="res://wave_shooter/ui/high_score.gd" id="5_60vb7"]
@@ -20,7 +21,7 @@ script = ExtResource("1_hn6cv")
 environment = SubResource("Environment_sgqdw")
 
 [node name="Player" parent="." instance=ExtResource("1_0xoxs")]
-position = Vector2(576, 342)
+position = Vector2(576, 325)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -34,7 +35,11 @@ autostart = true
 
 [node name="UI" type="Node2D" parent="."]
 
-[node name="Control" type="Control" parent="UI"]
+[node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HUD" type="Control" parent="UI"]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 0
@@ -42,7 +47,7 @@ offset_right = 1152.0
 offset_bottom = 648.0
 size_flags_horizontal = 4
 
-[node name="Points" type="Label" parent="UI/Control"]
+[node name="Points" type="Label" parent="UI/HUD"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -57,7 +62,7 @@ theme_override_font_sizes/font_size = 24
 text = "000"
 script = ExtResource("4_qyixy")
 
-[node name="HighScore" type="Label" parent="UI/Control"]
+[node name="HighScore" type="Label" parent="UI/HUD"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0

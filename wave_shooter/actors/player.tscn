@@ -12,7 +12,7 @@ script = ExtResource("1_lb8tn")
 metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
 metadata/_edit_vertical_guides_ = [25.0, -25.0]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
