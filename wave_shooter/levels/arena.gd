@@ -7,6 +7,7 @@ var enemies = [
 var power_ups = [preload("res://wave_shooter/actors/power_up.tscn")]
 
 func _ready() -> void:
+	Global.player.life_decreased.connect(update_hud_lifes)
 	Global.parent_node_creation = self
 	Global.points = 0
 
@@ -28,3 +29,6 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up_index = round(randi_range(0, power_ups.size() - 1))
 	Global.instance_node(power_ups[power_up_index], power_up_position, self)
+
+func update_hud_lifes() -> void:
+	$UI/HUD/Life.get_child($UI/HUD/Life.get_child_count() - 1).queue_free()

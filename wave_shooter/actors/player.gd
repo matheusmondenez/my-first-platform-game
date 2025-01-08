@@ -1,6 +1,9 @@
 extends Polygon2D
 
+signal life_decreased
+
 var stats: BaseStats
+var lifes: int = 3
 var speed: int = 500
 var move: Vector2 = Vector2.ZERO
 var projectile_scene: PackedScene = preload("res://wave_shooter/actors/projectile.tscn")
@@ -31,7 +34,17 @@ func _exit_tree() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
-		is_dead = true
-		visible = false
-		await get_tree().create_timer(1.0).timeout
-		get_tree().reload_current_scene()
+		area.get_parent().queue_free()
+		take_damage(1)
+		if lifes <= 0:
+			die()
+		emit_signal("life_decreased")
+
+func take_damage(damage: int) -> void:
+	lifes -= damage
+
+func die() -> void:
+	is_dead = true
+	visible = false
+	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
