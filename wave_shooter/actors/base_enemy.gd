@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 		blood.rotation = move.angle()
 		queue_free()
 		Global.points += 10
+		Global.enemies_count += 1
 
 func chase_player(delta) -> void:
 	if Global.player and not is_stunned:
@@ -32,7 +33,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		is_stunned = true
 		color = Color.WHITE
 		area.get_parent().queue_free()
-		move = -move * knockback
+		if area.name == "Shield":
+			print("ESCUDADA")
+			move = -move * 60000
+		else:
+			move = -move * knockback
 		$Timer.start()
 
 func _on_timer_timeout() -> void:

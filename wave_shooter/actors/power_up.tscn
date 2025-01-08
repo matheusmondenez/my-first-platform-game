@@ -15,7 +15,6 @@ script = ExtResource("1_6pmq7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 rotation = 0.785398
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tauuy")
 
 [node name="Timer" type="Timer" parent="."]

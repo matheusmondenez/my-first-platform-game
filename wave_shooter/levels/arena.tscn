@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=10 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
@@ -13,6 +13,9 @@ background_mode = 3
 glow_enabled = true
 glow_bloom = 0.5
 glow_blend_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqxq1"]
+size = Vector2(47, 16)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_hn6cv")
@@ -62,6 +65,12 @@ theme_override_font_sizes/font_size = 24
 text = "000"
 script = ExtResource("4_qyixy")
 
+[node name="Area2D" type="Area2D" parent="UI/HUD/Points"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Points/Area2D"]
+position = Vector2(33, 15.5)
+shape = SubResource("RectangleShape2D_cqxq1")
+
 [node name="HighScore" type="Label" parent="UI/HUD"]
 layout_mode = 0
 offset_left = 20.0
@@ -72,6 +81,12 @@ theme_override_fonts/font = ExtResource("3_ntwtu")
 text = "000"
 script = ExtResource("5_60vb7")
 
+[node name="Area2D" type="Area2D" parent="UI/HUD/HighScore"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/HighScore/Area2D"]
+position = Vector2(22.5, 10)
+shape = SubResource("RectangleShape2D_cqxq1")
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("5_nfxav")
@@ -81,4 +96,8 @@ script = ExtResource("5_nfxav")
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
 [connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
+[connection signal="area_entered" from="UI/HUD/Points/Area2D" to="UI/HUD/Points" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="UI/HUD/Points/Area2D" to="UI/HUD/Points" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="UI/HUD/HighScore/Area2D" to="UI/HUD/HighScore" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="UI/HUD/HighScore/Area2D" to="UI/HUD/HighScore" method="_on_area_2d_area_exited"]
 [connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]
