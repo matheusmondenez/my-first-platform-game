@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=13 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/actors/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
 [ext_resource type="PackedScene" uid="uid://bdge81isdmgwf" path="res://wave_shooter/ui/count_down.tscn" id="2_575tc"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="3_ntwtu"]
+[ext_resource type="Script" path="res://wave_shooter/ui/hud.gd" id="4_0tsoh"]
 [ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
 [ext_resource type="Script" path="res://wave_shooter/ui/high_score.gd" id="5_60vb7"]
 [ext_resource type="Script" path="res://wave_shooter/ui/camera.gd" id="5_nfxav"]
+[ext_resource type="PackedScene" uid="uid://8v7ksxovmwb5" path="res://wave_shooter/actors/life.tscn" id="8_3r7at"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
 background_mode = 3
@@ -15,7 +17,10 @@ glow_bloom = 0.5
 glow_blend_mode = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqxq1"]
-size = Vector2(47, 16)
+size = Vector2(70, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjnuk"]
+size = Vector2(114, 56)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_hn6cv")
@@ -39,6 +44,7 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
@@ -49,15 +55,29 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 size_flags_horizontal = 4
+script = ExtResource("4_0tsoh")
 
-[node name="Points" type="Label" parent="UI/HUD"]
+[node name="Score" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointsArea" type="Area2D" parent="UI/HUD/Score"]
+visible = false
+position = Vector2(1065, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Score/PointsArea"]
+position = Vector2(33, 24)
+shape = SubResource("RectangleShape2D_cqxq1")
+
+[node name="Points" type="Label" parent="UI/HUD/Score"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -87.0
+offset_left = 1025.0
 offset_top = 20.0
-offset_right = -20.0
+offset_right = 1092.0
 offset_bottom = 51.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_ntwtu")
@@ -65,27 +85,45 @@ theme_override_font_sizes/font_size = 24
 text = "000"
 script = ExtResource("4_qyixy")
 
-[node name="Area2D" type="Area2D" parent="UI/HUD/Points"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Points/Area2D"]
-position = Vector2(33, 15.5)
-shape = SubResource("RectangleShape2D_cqxq1")
-
-[node name="HighScore" type="Label" parent="UI/HUD"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 65.0
-offset_bottom = 43.0
+[node name="HighScore" type="Label" parent="UI/HUD/Score"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1046.0
+offset_top = 45.0
+offset_right = 1091.0
+offset_bottom = 68.0
+grow_horizontal = 0
 theme_override_fonts/font = ExtResource("3_ntwtu")
 text = "000"
 script = ExtResource("5_60vb7")
 
-[node name="Area2D" type="Area2D" parent="UI/HUD/HighScore"]
+[node name="Life" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/HighScore/Area2D"]
-position = Vector2(22.5, 10)
-shape = SubResource("RectangleShape2D_cqxq1")
+[node name="LifeArea" type="Area2D" parent="UI/HUD/Life"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Life/LifeArea"]
+position = Vector2(74, 45)
+shape = SubResource("RectangleShape2D_vjnuk")
+
+[node name="Life" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
+position = Vector2(36, 36)
+
+[node name="Life2" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
+position = Vector2(55, 55)
+
+[node name="Life3" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
+position = Vector2(74, 36)
+
+[node name="Life4" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
+position = Vector2(93, 55)
+
+[node name="Life5" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
+position = Vector2(112, 36)
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
@@ -96,8 +134,8 @@ script = ExtResource("5_nfxav")
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
 [connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
-[connection signal="area_entered" from="UI/HUD/Points/Area2D" to="UI/HUD/Points" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="UI/HUD/Points/Area2D" to="UI/HUD/Points" method="_on_area_2d_area_exited"]
-[connection signal="area_entered" from="UI/HUD/HighScore/Area2D" to="UI/HUD/HighScore" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="UI/HUD/HighScore/Area2D" to="UI/HUD/HighScore" method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="UI/HUD/Score/PointsArea" to="UI/HUD" method="_on_points_area_area_entered"]
+[connection signal="area_exited" from="UI/HUD/Score/PointsArea" to="UI/HUD" method="_on_points_area_area_exited"]
+[connection signal="area_entered" from="UI/HUD/Life/LifeArea" to="UI/HUD" method="_on_life_area_area_entered"]
+[connection signal="area_exited" from="UI/HUD/Life/LifeArea" to="UI/HUD" method="_on_life_area_area_exited"]
 [connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]

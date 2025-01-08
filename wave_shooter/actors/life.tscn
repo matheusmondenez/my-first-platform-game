@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://8v7ksxovmwb5"]
+
+[node name="Life" type="Polygon2D"]
+scale = Vector2(0.0152225, 9.33333)
+color = Color(0.677036, 0, 0.339253, 1)
+polygon = PackedVector2Array(-1051.08, 0, 0, -1.71429, 1051.08, 0, 0, 1.71429)
