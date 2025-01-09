@@ -3,7 +3,7 @@ extends Polygon2D
 signal life_decreased
 
 #var stats: BaseStats
-@export var lifes: int = 1
+@export var lifes: int = 3
 var speed: int = 500
 var move: Vector2 = Vector2.ZERO
 var projectile_scene: PackedScene = preload("res://wave_shooter/actors/projectile.tscn")
@@ -52,7 +52,5 @@ func die() -> void:
 	visible = false
 	var explosion = Global.instance_node(explosion_scene, global_position, Global.parent_node_creation)
 	explosion.modulate = Color("4a5fdd")
-	#Engine.time_scale = 0.2
-	await get_tree().create_timer(2).timeout
-	#Engine.time_scale = 1
+	await Global.slow_time(0.2, 3)
 	get_tree().reload_current_scene()
