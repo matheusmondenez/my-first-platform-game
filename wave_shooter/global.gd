@@ -17,5 +17,5 @@ func instance_node(node, location, parent):
 
 func slow_time(time_scale: float, duration: float) -> void:
 	Engine.time_scale = time_scale
-	await get_tree().create_timer(duration * time_scale).timeout
+	await get_tree().create_timer(duration, true, false, true).timeout # Não precisa mais fazer duration * time_scal pra ignorar o time scale, o quarto parâmetro faz isso
 	Engine.time_scale = 1
