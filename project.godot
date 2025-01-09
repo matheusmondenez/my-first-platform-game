@@ -17,7 +17,6 @@ config/features=PackedStringArray("4.3", "Mobile")
 [autoload]
 
 Global="*res://wave_shooter/global.gd"
-Configs="*res://wave_shooter/configs.gd"
 
 [input]
 
