@@ -8,6 +8,7 @@ var speed: int = 500
 var move: Vector2 = Vector2.ZERO
 var projectile_scene: PackedScene = preload("res://wave_shooter/actors/projectile.tscn")
 var explosion_scene: PackedScene = preload("res://wave_shooter/actors/explosion.tscn")
+var screen_damage_scene: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
 var is_loaded: bool = true
 var is_dead: bool = false
 var powered_up: Array = []
@@ -43,6 +44,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func take_damage(damage: int) -> void:
 	Global.camera.shake_screen(100, 0.2)
+	Global.instance_node(screen_damage_scene, Vector2(576, 324), Global.camera)
 	lifes -= damage
 
 func die() -> void:

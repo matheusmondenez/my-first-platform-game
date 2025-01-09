@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bx5iramiiwnik"]
 
-[ext_resource type="Script" path="res://wave_shooter/ui/sreen_damage.gd" id="1_fyjr5"]
+[ext_resource type="Script" path="res://wave_shooter/ui/screen_damage.gd" id="1_emdfv"]
 
-[node name="SreenDamage" type="CPUParticles2D"]
+[node name="ScreenDamage" type="CPUParticles2D"]
 position = Vector2(576, 324)
 amount = 72
 explosiveness = 1.0
@@ -17,4 +17,4 @@ radial_accel_min = 10.0
 radial_accel_max = 30.0
 scale_amount_min = 10.0
 scale_amount_max = 30.0
-script = ExtResource("1_fyjr5")
+script = ExtResource("1_emdfv")
