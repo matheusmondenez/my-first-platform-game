@@ -1,10 +1,10 @@
 extends Node2D
 
-var enemies = [
-	preload("res://wave_shooter/actors/enemy.tscn"),
-	preload("res://wave_shooter/actors/speedy_enemy.tscn"),
-]
-var power_ups = [preload("res://wave_shooter/actors/power_up.tscn")]
+#var enemies = [
+	#preload("res://wave_shooter/actors/enemy.tscn"),
+	#preload("res://wave_shooter/actors/speedy_enemy.tscn"),
+#]
+#var power_ups = [preload("res://wave_shooter/actors/power_up.tscn")]
 var explosion_scene: PackedScene = preload("res://wave_shooter/actors/explosion.tscn")
 
 func _ready() -> void:
@@ -19,8 +19,8 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y > -45:
 		enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
-	var enemy_index = round(randi_range(0, enemies.size() - 1))
-	Global.instance_node(enemies[enemy_index], enemy_position, self)
+	var enemy_index = round(randi_range(0, Configs.WAVES[1].enemies.size() - 1))
+	Global.instance_node(Configs.WAVES[1].enemies[enemy_index], enemy_position, self)
 
 func _on_dificulty_timer_timeout() -> void:
 	if $EnemySpawnTimer.wait_time > 0.5:
@@ -28,8 +28,8 @@ func _on_dificulty_timer_timeout() -> void:
 
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	var power_up_index = round(randi_range(0, power_ups.size() - 1))
-	var power_up = Global.instance_node(power_ups[power_up_index], power_up_position, self)
+	var power_up_index = round(randi_range(0, Configs.WAVES[1].power_ups.size() - 1))
+	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[power_up_index], power_up_position, self)
 	power_up.powered_up.connect(update_hud_power_ups)
 
 func update_hud_lifes() -> void:
@@ -42,7 +42,5 @@ func update_hud_lifes() -> void:
 	explosion.modulate = Color("c92e67")
 
 func update_hud_power_ups() -> void:
-	print("UPDATE POWER UPS")
-	var power_up = power_ups[0].instantiate()
+	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)
 	power_up.scale = Vector2(0.5, 0.5)
-	$UI/HUD/PowerUps.add_child(power_up)
