@@ -5,6 +5,7 @@ var enemies = [
 	preload("res://wave_shooter/actors/speedy_enemy.tscn"),
 ]
 var power_ups = [preload("res://wave_shooter/actors/power_up.tscn")]
+var explosion_scene: PackedScene = preload("res://wave_shooter/actors/explosion.tscn")
 
 func _ready() -> void:
 	Global.player.life_decreased.connect(update_hud_lifes)
@@ -28,7 +29,20 @@ func _on_dificulty_timer_timeout() -> void:
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up_index = round(randi_range(0, power_ups.size() - 1))
-	Global.instance_node(power_ups[power_up_index], power_up_position, self)
+	var power_up = Global.instance_node(power_ups[power_up_index], power_up_position, self)
+	power_up.powered_up.connect(update_hud_power_ups)
 
 func update_hud_lifes() -> void:
-	$UI/HUD/Life.get_child($UI/HUD/Life.get_child_count() - 1).queue_free()
+	var life = $UI/HUD/Life.get_child($UI/HUD/Life.get_child_count() - 1)
+	var life_position = life.global_position
+	life.queue_free()
+	var explosion = Global.instance_node(explosion_scene, life_position, $UI/HUD/Life)
+	explosion.scale_amount_min = 5
+	explosion.scale_amount_max = 17.5
+	explosion.modulate = Color("c92e67")
+
+func update_hud_power_ups() -> void:
+	print("UPDATE POWER UPS")
+	var power_up = power_ups[0].instantiate()
+	power_up.scale = Vector2(0.5, 0.5)
+	$UI/HUD/PowerUps.add_child(power_up)

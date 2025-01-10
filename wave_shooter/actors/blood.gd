@@ -11,4 +11,4 @@ func _on_emition_timer_timeout() -> void:
 	emitting = false
 	speed_scale = 0
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "color", Color("ab0b55", 0), 3)
+	tween.tween_property(self, "color:a", 0, 3)

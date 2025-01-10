@@ -3,4 +3,4 @@
 [node name="Life" type="Polygon2D"]
 scale = Vector2(0.0152225, 9.33333)
 color = Color(0.677036, 0, 0.339253, 1)
-polygon = PackedVector2Array(-1051.08, 0, 0, -1.71429, 1051.08, 0, 0, 1.71429)
+polygon = PackedVector2Array(-525.538, 0, 0, -0.857143, 525.538, 0, 0, 0.857143)

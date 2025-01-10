@@ -32,12 +32,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		hp -= 1
 		is_stunned = true
 		color = Color.WHITE
-		area.get_parent().queue_free()
 		if area.name == "Shield":
 			print("ESCUDADA")
 			move = -move * 60000
 		else:
 			move = -move * knockback
+		area.get_parent().queue_free()
 		$Timer.start()
 
 func _on_timer_timeout() -> void:

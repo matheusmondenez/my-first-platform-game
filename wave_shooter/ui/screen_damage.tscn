@@ -4,15 +4,16 @@
 
 [node name="ScreenDamage" type="CPUParticles2D"]
 position = Vector2(576, 324)
-amount = 72
-explosiveness = 1.0
-emission_shape = 3
-emission_rect_extents = Vector2(576, 324)
+amount = 128
+emission_shape = 5
+emission_points = PackedVector2Array(576, 324, -576, -324, 576, -324, -576, 324, 576, 0, -576, 0, 288.75, 324, -288.75, 324, 0, 324, 0, -324, -288.75, -324, 288.75, -324)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
 direction = Vector2(0, 0)
-spread = 0.0
+spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 100.0
-initial_velocity_max = 150.0
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
 radial_accel_min = 10.0
 radial_accel_max = 30.0
 scale_amount_min = 10.0

@@ -44,6 +44,7 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
@@ -114,10 +115,17 @@ shape = SubResource("RectangleShape2D_vjnuk")
 position = Vector2(36, 36)
 
 [node name="2" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
-position = Vector2(69, 36)
+position = Vector2(59, 36)
 
 [node name="3" parent="UI/HUD/Life" instance=ExtResource("8_3r7at")]
-position = Vector2(102, 36)
+position = Vector2(82, 36)
+
+[node name="PowerUps" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 50.0
+offset_right = 68.0
+offset_bottom = 90.0
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)

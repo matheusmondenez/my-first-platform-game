@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8tyae6dsy3ac"
-path="res://.godot/imported/1620440.png-7f1da92f61d0e7879892b7ee6cdab195.ctex"
+path="res://.godot/imported/1620440.png-672fa6b43528c04ef52476571aae5daf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/1620440.png"
-dest_files=["res://.godot/imported/1620440.png-7f1da92f61d0e7879892b7ee6cdab195.ctex"]
+source_file="res://wave_shooter/shaders/1620440.png"
+dest_files=["res://.godot/imported/1620440.png-672fa6b43528c04ef52476571aae5daf.ctex"]
 
 [params]
 
