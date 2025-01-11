@@ -11,7 +11,11 @@ const WAVES: Dictionary = {
 		],
 		"power_ups_to_spawn": 1,
 		"power_ups": [
-			preload("res://wave_shooter/actors/power_up.tscn")
+			{
+				"title": "shield",
+				"scene": preload("res://wave_shooter/actors/power_up.tscn"),
+				"icon": preload("res://wave_shooter/ui/cooldown_icon.tscn")
+			}
 		]
 	},
 	2: {},

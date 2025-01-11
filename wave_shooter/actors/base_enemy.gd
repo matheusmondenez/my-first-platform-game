@@ -2,12 +2,19 @@ extends Polygon2D
 
 class_name BaseEnemy
 
+@export_category("Stats")
+@export var stats: BaseStats
+
 @export var hp: int = 3
 @export var speed: int = 75
 @export var knockback: int = 6
 var move: Vector2 = Vector2.ZERO
 var is_stunned: bool = false
 var blood_scene: PackedScene = preload("res://wave_shooter/actors/blood.tscn")
+
+func _ready() -> void:
+	pass
+	#print("STATS: ", stats.life)
 
 func _process(delta: float) -> void:
 	chase_player(delta) # Verificar porque este process pai não é executado quando o filho tem seu próprio process

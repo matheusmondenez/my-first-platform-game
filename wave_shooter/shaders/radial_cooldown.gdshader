@@ -17,6 +17,9 @@ bool in_cooldown(vec2 uv, float progress) {
     // Calculate the angle of the UV coordinate
     float angle = atan(centered_uv.y, centered_uv.x) / (2.0 * 3.14159265359) + 0.5;
 
+    // Shift by 0.125 (45° / 360°)
+	angle = mod(angle - 0.125, 1.0);
+
     // Check if the point is within the cooldown arc
     return (angle <= progress);
 }

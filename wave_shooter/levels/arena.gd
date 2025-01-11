@@ -29,7 +29,7 @@ func _on_dificulty_timer_timeout() -> void:
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up_index = round(randi_range(0, Configs.WAVES[1].power_ups.size() - 1))
-	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[power_up_index], power_up_position, self)
+	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[power_up_index]["scene"], power_up_position, self)
 	power_up.powered_up.connect(update_hud_power_ups)
 
 func update_hud_lifes() -> void:
@@ -42,5 +42,4 @@ func update_hud_lifes() -> void:
 	explosion.modulate = Color("c92e67")
 
 func update_hud_power_ups() -> void:
-	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)
-	power_up.scale = Vector2(0.5, 0.5)
+	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0]["icon"], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)

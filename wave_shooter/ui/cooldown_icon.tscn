@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwcwbtu515v06"]
+
+[ext_resource type="Shader" path="res://wave_shooter/shaders/radial_cooldown.gdshader" id="1_dll1y"]
+[ext_resource type="Script" path="res://wave_shooter/ui/cooldown_icon.gd" id="2_kynmh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2h3h"]
+shader = ExtResource("1_dll1y")
+shader_parameter/cooldown_progress = 0.25
+shader_parameter/transparency_alpha = 0.5
+
+[sub_resource type="Animation" id="Animation_5oglv"]
+resource_name = "cooldown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/cooldown_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_pfwbx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/cooldown_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v4mhc"]
+_data = {
+"RESET": SubResource("Animation_pfwbx"),
+"cooldown": SubResource("Animation_5oglv")
+}
+
+[node name="CooldownIcon" type="ColorRect"]
+material = SubResource("ShaderMaterial_o2h3h")
+offset_top = -7.071
+offset_right = 10.0
+offset_bottom = 2.929
+rotation = 0.785398
+color = Color(0.24744, 0.360749, 1, 1)
+script = ExtResource("2_kynmh")
+cooldown = 60.0
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v4mhc")
+}
+autoplay = "cooldown"
