@@ -46,9 +46,9 @@ _data = {
 
 [node name="CooldownIcon" type="ColorRect"]
 material = SubResource("ShaderMaterial_o2h3h")
-offset_top = -7.071
-offset_right = 10.0
-offset_bottom = 2.929
+offset_top = -8.0
+offset_right = 11.3
+offset_bottom = 3.3
 rotation = 0.785398
 color = Color(0.24744, 0.360749, 1, 1)
 script = ExtResource("2_kynmh")

@@ -1,10 +1,5 @@
 extends Node2D
 
-#var enemies = [
-	#preload("res://wave_shooter/entities/enemies/enemy.tscn"),
-	#preload("res://wave_shooter/entities/enemies/speedy_enemy.tscn"),
-#]
-#var power_ups = [preload("res://wave_shooter/entities/power_up.tscn")]
 var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 
 func _ready() -> void:
@@ -42,4 +37,5 @@ func update_hud_lifes() -> void:
 	explosion.modulate = Color("c92e67")
 
 func update_hud_power_ups() -> void:
-	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0]["icon"], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)
+	pass
+	#var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0]["icon"], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)

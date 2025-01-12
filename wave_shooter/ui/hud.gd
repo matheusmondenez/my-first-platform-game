@@ -1,7 +1,7 @@
 extends Control
 
-@onready var points: Label = $Score/Points
-@onready var high_score: Label = $Score/HighScore
+@onready var points: Label = $Score/PointsContainer/Points
+@onready var high_score: Label = $Score/PointsContainer/HighScore
 
 func _on_points_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
