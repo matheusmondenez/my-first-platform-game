@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BasePowerUp" load_steps=2 format=3 uid="uid://dmx5a06bpmlyk"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/power_ups/base_power_up.gd" id="1_g64l5"]
+
+[resource]
+script = ExtResource("1_g64l5")
+title = "shield"
+tint = Color(0.039001, 0.586245, 0.351214, 1)
+spawn_rate = 0.5
+available_time = 10.0
+life_time = 5.0

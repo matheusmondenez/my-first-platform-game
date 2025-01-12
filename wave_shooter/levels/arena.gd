@@ -1,11 +1,11 @@
 extends Node2D
 
 #var enemies = [
-	#preload("res://wave_shooter/actors/enemy.tscn"),
-	#preload("res://wave_shooter/actors/speedy_enemy.tscn"),
+	#preload("res://wave_shooter/entities/enemies/enemy.tscn"),
+	#preload("res://wave_shooter/entities/enemies/speedy_enemy.tscn"),
 #]
-#var power_ups = [preload("res://wave_shooter/actors/power_up.tscn")]
-var explosion_scene: PackedScene = preload("res://wave_shooter/actors/explosion.tscn")
+#var power_ups = [preload("res://wave_shooter/entities/power_up.tscn")]
+var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 
 func _ready() -> void:
 	Global.player.life_decreased.connect(update_hud_lifes)
