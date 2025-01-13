@@ -233,6 +233,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="1" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
+layout_mode = 0
 offset_left = 27.9903
 offset_top = 40.0
 offset_right = 39.2903
@@ -241,6 +242,7 @@ color = Color(0.713414, 0.000948368, 0.804115, 1)
 cooldown = 0.0
 
 [node name="2" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
+layout_mode = 0
 offset_left = 45.9903
 offset_top = 40.0
 offset_right = 57.2903
@@ -249,6 +251,7 @@ color = Color(0.713726, 0, 0.803922, 1)
 cooldown = 0.0
 
 [node name="3" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
+layout_mode = 0
 offset_left = 63.9903
 offset_top = 40.0
 offset_right = 75.2903
@@ -257,6 +260,7 @@ color = Color(0.713726, 0, 0.803922, 1)
 cooldown = 0.0
 
 [node name="4" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
+layout_mode = 0
 offset_left = 81.9903
 offset_top = 40.0
 offset_right = 93.2903

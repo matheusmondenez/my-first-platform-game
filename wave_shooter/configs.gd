@@ -26,5 +26,5 @@ const WAVES: Dictionary = {
 	7: {},
 	8: {},
 	9: {},
-	"boss": ""
+	10: {}
 }

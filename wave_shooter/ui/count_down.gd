@@ -18,10 +18,11 @@ func _on_timer_timeout() -> void:
 		queue_free()
 
 func tween_label() -> void:
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT).set_parallel()
-	tween.tween_property($Counter, "modulate:a", 0, 0.5)
-	tween.tween_property($Counter, "scale", Vector2.ZERO, 0.5)
-	tween.tween_property($Counter, "position", get_viewport_rect().size / 2, 0.5)
+	pass
+	#var tween: Tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT).set_parallel()
+	#tween.tween_property($Counter, "modulate:a", 0, 0.5)
+	#tween.tween_property($Counter, "scale", Vector2.ZERO, 0.5)
+	#tween.tween_property($Counter, "position", get_viewport_rect().size / 2, 0.5)
 	#tween.tween_property(
 		#$Counter,
 		#"position",
@@ -35,3 +36,4 @@ func tween_label() -> void:
 func reset_tween() -> void:
 	$Counter.modulate.a = 1
 	$Counter.scale = Vector2(1, 1)
+	$Counter.position = Vector2(528, 242)
