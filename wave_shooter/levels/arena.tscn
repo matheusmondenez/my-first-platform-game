@@ -45,7 +45,6 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
-visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 

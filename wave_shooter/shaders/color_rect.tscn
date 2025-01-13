@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://2xyfsrauilsn"]
+
+[ext_resource type="Shader" path="res://wave_shooter/shaders/procedural_circuit.gdshader" id="1_yi2lo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d7bfd"]
+shader = ExtResource("1_yi2lo")
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/line_color = Color(0, 1, 1, 1)
+shader_parameter/line_freq = 9.56
+shader_parameter/height = 0.6
+shader_parameter/speed = 0.8
+shader_parameter/scale = Vector2(2, 16)
+
+[node name="ColorRect" type="ColorRect"]
+material = SubResource("ShaderMaterial_d7bfd")
+offset_left = 460.0
+offset_top = 104.0
+offset_right = 764.0
+offset_bottom = 408.0
