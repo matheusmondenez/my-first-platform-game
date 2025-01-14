@@ -1,8 +1,8 @@
 extends Polygon2D
 
 signal life_decreased
+signal life_inreased
 
-#var stats: BaseStats
 @export var lifes: int = 3
 	#set(value): emit_signal("life_decreased")
 
