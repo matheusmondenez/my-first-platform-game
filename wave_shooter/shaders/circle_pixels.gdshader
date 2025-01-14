@@ -9,11 +9,11 @@ void fragment() {
 	pos = ceil(pos);
 	pos /= vec2(amount_x, amount_y);
 	vec2 cellpos = pos - (0.5 / vec2(amount_x, amount_y));
-	
+
 	pos -= UV;
 	pos *= vec2(amount_x, amount_y);
 	pos = vec2(1.0) - pos;
-	
+
 	float dist = distance(pos, vec2(0.5));
 
 	vec4 c = texture(TEXTURE, cellpos);
