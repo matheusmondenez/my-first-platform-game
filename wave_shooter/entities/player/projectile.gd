@@ -1,7 +1,7 @@
 extends Polygon2D
 
 var move: Vector2 = Vector2(1, 0)
-var speed: int = 250
+var speed: int = 500
 var unique_direction: bool = true
 
 func _ready() -> void:

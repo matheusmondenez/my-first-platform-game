@@ -30,6 +30,9 @@ func _process(delta: float) -> void:
 		Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
 		is_loaded = false
 		$Timer.start()
+	#if Input.is_action_just_pressed("dash"):
+		#print("DASH")
+		#global_position += speed * move * delta * 6
 #endregion
 
 func _on_timer_timeout() -> void:

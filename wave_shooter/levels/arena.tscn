@@ -122,43 +122,43 @@ shape = SubResource("RectangleShape2D_vjnuk")
 
 [node name="Marker1" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(28, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker2" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(46, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker3" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(64, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker4" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(82, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker5" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(100, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker6" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(118, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker7" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(136, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker8" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(154, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker9" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(172, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="Marker10" type="Marker2D" parent="UI/HUD/Life/Markers"]
 position = Vector2(190, 28)
-scale = Vector2(0.0152225, 9.33333)
+rotation = 0.785398
 
 [node name="PowerUps" type="Control" parent="UI/HUD"]
 layout_mode = 1
