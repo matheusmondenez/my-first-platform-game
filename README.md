@@ -13,3 +13,9 @@ A Shooter/Ballet Hell with minimalist geometric 🟦🟪🟨 cyberpunk style.
 - Passive Skills
 - Active Skills
 - Configs (master, music and sfx volume, toggle fullscreen, resolutions, toggle camera shake, epilepsy warning, splash screen logo, languages...)
+- Credits
+- Pick Skill screen
+- Skill Tree screen
+- Pause screen
+- Logo
+- Mais menu effects
