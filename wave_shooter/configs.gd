@@ -2,6 +2,17 @@ extends Node
 
 const VERSION: String = "0.0.2"
 
+enum LANGUAGES {
+	PT,
+	EN,
+}
+
+const GAME_CONFIGS: Dictionary = {
+	"camera_shake": true,
+	"fullscreen": true,
+	"language": LANGUAGES.EN,
+}
+
 const WAVES: Dictionary = {
 	1: {
 		"enemies_to_spawn": 10,

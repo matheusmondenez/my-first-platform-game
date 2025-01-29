@@ -6,7 +6,7 @@ signal life_inreased
 @export var lifes: int = 3
 	#set(value): emit_signal("life_decreased")
 
-var speed: int = 500
+var speed: int = 250
 var move: Vector2 = Vector2.ZERO
 var projectile_scene: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
 var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")

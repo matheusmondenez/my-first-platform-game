@@ -17,9 +17,9 @@ A Shooter/Ballet Hell with minimalist geometric 🟦🟪🟨 cyberpunk style.
   - Toggle fullscreen
   - Resolutions
   - Toggle camera shake
-  - Epilepsy warning
-  - Splash screen logo
   - Languages
+- Splash screen logo
+- Epilepsy warning
 - Credits
 - Pick Skill screen
 - Skill Tree screen

@@ -43,7 +43,7 @@ func init_hud_lifes() -> void:
 
 func add_hud_life() -> void:
 	print("LIFES: ", Global.player.lifes)
-	Global.instance_node(life_scene, $UI/HUD/Life/Markers.get_child(Global.player.lifes - 1).global_position, $UI/HUD/Life)
+	Global.instance_node(life_scene, $UI/HUD/Life/Markers.get_child(Global.player.lifes - 1).global_position, $UI/HUD/Life) # Buga quando chega no limite
 
 func remove_hud_life() -> void:
 	var life = $UI/HUD/Life.get_child($UI/HUD/Life.get_child_count() - 1)
