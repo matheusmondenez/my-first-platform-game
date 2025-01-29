@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BaseShot" load_steps=3 format=3 uid="uid://majqe20epqop"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/shots/base_shot.gd" id="1_wno04"]
+[ext_resource type="PackedScene" uid="uid://bwmlc1m8eay45" path="res://wave_shooter/entities/player/projectile.tscn" id="2_k4ynb"]
+
+[resource]
+script = ExtResource("1_wno04")
+sprite = ExtResource("2_k4ynb")
+tint = Color(1, 1, 1, 1)
+speed = 0
+damage = 3.651
+knockback_force = 1.0
