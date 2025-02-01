@@ -44,10 +44,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func move(delta) -> void:
 	var motion: Vector2 = Vector2.ZERO
-	motion.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
-	motion.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
-	global_position.x = clamp(global_position.x, 24, 1127)
-	global_position.y = clamp(global_position.y, 24, 624)
+	motion = Input.get_vector("left", "right", "up", "down")
+	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
 	global_position += speed * motion * delta
 
 func dash() -> void:
@@ -56,6 +54,11 @@ func dash() -> void:
 
 func shot() -> void:
 	Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+	if power_ups.find("triple_shot") >= 0:
+		var left_shot = Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+		left_shot.angle = 345
+		var right_shot = Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+		right_shot.angle = -345
 	is_loaded = false
 	$Timer.start()
 
