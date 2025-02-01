@@ -7,7 +7,6 @@ signal life_inreased
 	#set(value): emit_signal("life_decreased")
 
 var speed: int = 250
-var move: Vector2 = Vector2.ZERO
 var projectile_scene: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
 var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 var screen_damage_scene: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
@@ -20,19 +19,12 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
-	move.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
-	move.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
-	global_position.x = clamp(global_position.x, 24, 1127)
-	global_position.y = clamp(global_position.y, 24, 624)
 	if not is_dead:
-		global_position += speed * move * delta
+		move(delta)
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
-		Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
-		is_loaded = false
-		$Timer.start()
-	#if Input.is_action_just_pressed("dash"):
-		#print("DASH")
-		#global_position += speed * move * delta * 6
+		shot()
+	if Input.is_action_just_pressed("dash"):
+		dash()
 #endregion
 
 func _on_timer_timeout() -> void:
@@ -49,6 +41,23 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if lifes <= 0:
 			die()
 		emit_signal("life_decreased")
+
+func move(delta) -> void:
+	var motion: Vector2 = Vector2.ZERO
+	motion.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	motion.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
+	global_position.x = clamp(global_position.x, 24, 1127)
+	global_position.y = clamp(global_position.y, 24, 624)
+	global_position += speed * motion * delta
+
+func dash() -> void:
+	print("DASH")
+	#global_position += speed * move * delta * 6
+
+func shot() -> void:
+	Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+	is_loaded = false
+	$Timer.start()
 
 func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
 	Global.camera.shake_screen(100, 0.2)
