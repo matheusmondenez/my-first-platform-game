@@ -1,5 +1,11 @@
 extends Polygon2D
 
+#region preload_scenes
+var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
+var EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
+var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
+#endregion
+
 signal life_decreased
 signal life_inreased
 
@@ -7,13 +13,11 @@ signal life_inreased
 	#set(value): emit_signal("life_decreased")
 
 var speed: int = 250
-var projectile_scene: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
-var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
-var screen_damage_scene: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
 var is_loaded: bool = true
 var is_dead: bool = false
 var power_ups: Array = []
 
+#region life_cicle
 func _ready() -> void:
 	Global.player = self
 
@@ -27,11 +31,12 @@ func _process(delta: float) -> void:
 		dash()
 #endregion
 
-func _on_timer_timeout() -> void:
-	is_loaded = true
-
 func _exit_tree() -> void:
 	Global.player = null
+#endregion
+
+func _on_timer_timeout() -> void:
+	is_loaded = true
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
@@ -53,18 +58,18 @@ func dash() -> void:
 	#global_position += speed * move * delta * 6
 
 func shot() -> void:
-	Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
 	if power_ups.find("triple_shot") >= 0:
-		var left_shot = Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+		var left_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
 		left_shot.angle = 345
-		var right_shot = Global.instance_node(projectile_scene, global_position, Global.parent_node_creation)
+		var right_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
 		right_shot.angle = -345
 	is_loaded = false
 	$Timer.start()
 
 func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
 	Global.camera.shake_screen(100, 0.2)
-	var screen_damage = Global.instance_node(screen_damage_scene, Vector2(576, 324), Global.camera)
+	var screen_damage = Global.instance_node(SCREEN_DAMAGE_TSCN, Vector2(576, 324), Global.camera)
 	screen_damage.modulate = Color("4a5fdd")
 	lifes -= damage
 
@@ -73,7 +78,7 @@ func die() -> void:
 	$Area2D.monitorable = false
 	is_dead = true
 	visible = false
-	var explosion = Global.instance_node(explosion_scene, global_position, Global.parent_node_creation)
+	var explosion = Global.instance_node(EXPLOSION_TSCN, global_position, Global.parent_node_creation)
 	explosion.modulate = Color("4a5fdd")
 	await Global.slow_time(0.2, 3)
 	get_tree().reload_current_scene()
