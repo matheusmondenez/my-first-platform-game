@@ -20,7 +20,8 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
-	chase_player(delta) # Verificar porque este process pai não é executado quando o filho tem seu próprio process
+	print("PARENT PROCESS")
+	chase_player(delta)
 	if hp <= 0 and Global.parent_node_creation:
 		die()
 #endregion
