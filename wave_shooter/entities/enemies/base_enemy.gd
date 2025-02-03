@@ -7,22 +7,23 @@ const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
 @export_category("Stats")
 @export var stats: BaseEnemyStats
 
-@export var hp: int = 3
-@export var speed: int = 75
-@export var knockback: int = 6
+#@export var hp: int = 3
+#@export var speed: int = 75
+#@export var knockback: int = 6
 
 var motion: Vector2 = Vector2.ZERO
 var is_stunned: bool = false
 
 #region lifecicle
 func _ready() -> void:
-	pass
+	stats = stats.duplicate(true)
+	color = stats.tint
 
 #region _process
 func _process(delta: float) -> void:
 	print("PARENT PROCESS")
 	chase_player(delta)
-	if hp <= 0 and Global.parent_node_creation:
+	if stats.life <= 0 and Global.parent_node_creation:
 		die()
 #endregion
 #endregion
@@ -32,7 +33,7 @@ func chase_player(delta) -> void:
 		motion = global_position.direction_to(Global.player.global_position)
 	elif is_stunned:
 		motion = lerp(motion, Vector2.ZERO, 0.3)
-	global_position += motion * speed * delta
+	global_position += motion * stats.speed * delta
 	
 func die() -> void:
 	if Global.camera:
@@ -46,14 +47,14 @@ func die() -> void:
 #region signals
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
-		hp -= 1
+		stats.life -= 1
 		is_stunned = true
 		color = Color.WHITE
 		if area.name == "Shield":
 			print("ESCUDADA")
 			motion = -motion * 60000
 		else:
-			motion = -motion * knockback
+			motion = -motion * stats.knockback_force
 		area.get_parent().queue_free()
 		$Timer.start()
 
