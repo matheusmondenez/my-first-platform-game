@@ -7,7 +7,7 @@ var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_dama
 #endregion
 
 signal life_decreased
-signal life_inreased
+signal life_increased
 
 @export var lifes: int = 3:
 	set(value):
@@ -64,7 +64,7 @@ func dash(delta) -> void:
 
 func shot() -> void:
 	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
-	if power_ups.find("triple_shot") >= 0:
+	if power_ups.has("triple_shot"):
 		var left_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
 		left_shot.angle = 345
 		var right_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)

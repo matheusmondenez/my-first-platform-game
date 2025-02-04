@@ -10,7 +10,7 @@ enum LIFES_UPDATE {
 
 func _ready() -> void:
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIFES_UPDATE.DECREASE))
-	Global.player.life_inreased.connect(update_hud_lifes.bind(LIFES_UPDATE.INCREASE))
+	Global.player.life_increased.connect(update_hud_lifes.bind(LIFES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
 	init_hud_lifes()

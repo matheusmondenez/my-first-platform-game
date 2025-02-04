@@ -19,7 +19,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		if get_meta("spawn_type") == "life":
 			Global.player.lifes += 1
-			Global.player.emit_signal("life_inreased")
+			#Global.player.emit_signal("life_inreased")
 		elif get_meta("spawn_type") == "power_up":
 			Global.player.power_ups.append("green")
 			Global.player.add_child(shield_scene.instantiate())
