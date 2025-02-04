@@ -9,8 +9,14 @@ var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_dama
 signal life_decreased
 signal life_inreased
 
-@export var lifes: int = 3
-	#set(value): emit_signal("life_decreased")
+@export var lifes: int = 3:
+	set(value):
+		var previous_lifes = lifes
+		lifes = value
+		if lifes < previous_lifes:
+			emit_signal("life_decreased")
+		elif lifes > previous_lifes:
+			emit_signal("life_increased")
 
 var speed: int = 250
 var is_loaded: bool = true
@@ -40,16 +46,14 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
-		#var enemy_move = area.get_parent().move
-		area.get_parent().queue_free()
+		var enemy = area.get_parent()
+		enemy.queue_free()
 		take_damage(1)
 		if lifes <= 0:
 			die()
-		emit_signal("life_decreased")
 
 func move(delta) -> void:
-	var motion: Vector2 = Vector2.ZERO
-	motion = Input.get_vector("left", "right", "up", "down")
+	var motion = Input.get_vector("left", "right", "up", "down")
 	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
 	global_position += speed * motion * delta
 

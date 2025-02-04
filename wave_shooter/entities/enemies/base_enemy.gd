@@ -21,7 +21,6 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
-	print("PARENT PROCESS")
 	chase_player(delta)
 	if stats.life <= 0 and Global.parent_node_creation:
 		die()

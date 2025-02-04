@@ -3,9 +3,14 @@ extends Node2D
 var explosion_scene: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 var life_scene: PackedScene = preload("res://wave_shooter/entities/life.tscn")
 
+enum LIFES_UPDATE {
+	INCREASE,
+	DECREASE
+}
+
 func _ready() -> void:
-	Global.player.life_decreased.connect(update_hud_lifes.bind(false))
-	Global.player.life_inreased.connect(update_hud_lifes.bind(true))
+	Global.player.life_decreased.connect(update_hud_lifes.bind(LIFES_UPDATE.DECREASE))
+	Global.player.life_inreased.connect(update_hud_lifes.bind(LIFES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
 	init_hud_lifes()
@@ -42,7 +47,6 @@ func init_hud_lifes() -> void:
 		Global.instance_node(life_scene, $UI/HUD/Life/Markers.get_child(life).global_position, $UI/HUD/Life)
 
 func add_hud_life() -> void:
-	print("LIFES: ", Global.player.lifes)
 	Global.instance_node(life_scene, $UI/HUD/Life/Markers.get_child(Global.player.lifes - 1).global_position, $UI/HUD/Life) # Buga quando chega no limite
 
 func remove_hud_life() -> void:
@@ -54,10 +58,10 @@ func remove_hud_life() -> void:
 	explosion.scale_amount_max = 17.5
 	explosion.modulate = Color("c92e67")
 
-func update_hud_lifes(teste: bool) -> void:
-	if teste:
+func update_hud_lifes(type) -> void:
+	if type == LIFES_UPDATE.INCREASE:
 		add_hud_life()
-	else:
+	elif type == LIFES_UPDATE.DECREASE:
 		remove_hud_life()
 
 func update_hud_power_ups() -> void:
