@@ -2,6 +2,8 @@ extends Polygon2D
 
 signal powered_up
 
+@onready var icon: TextureRect = $Icon
+
 var shield_scene: PackedScene = preload("res://wave_shooter/entities/power_ups/shield.tscn")
 
 func _ready() -> void:
@@ -19,10 +21,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		if get_meta("spawn_type") == "life":
 			Global.player.lifes += 1
-			#Global.player.emit_signal("life_inreased")
 		elif get_meta("spawn_type") == "power_up":
-			Global.player.power_ups.append("green")
-			Global.player.add_child(shield_scene.instantiate())
+			if get_meta("name") == "shield":
+				Global.player.power_ups.append("shield")
+				Global.player.add_child(shield_scene.instantiate())
+			elif get_meta("name") == "triple_shot":
+				Global.player.power_ups.append("triple_shot")
+				var timer_triple_shot = get_tree().create_timer(5)
+				timer_triple_shot.connect("timeout", func(): Global.player.power_ups.erase("triple_shot"))
 			emit_signal("powered_up")
 		queue_free()
 

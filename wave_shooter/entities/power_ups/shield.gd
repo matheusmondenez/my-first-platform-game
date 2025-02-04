@@ -10,5 +10,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print("INIMIGO NO ESCUDO")
 
 func _on_timer_timeout() -> void:
-	Global.player.power_ups.erase("green")
+	Global.player.power_ups.erase("shield")
 	queue_free()

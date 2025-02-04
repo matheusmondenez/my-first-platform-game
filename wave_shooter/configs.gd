@@ -25,7 +25,12 @@ const WAVES: Dictionary = {
 			{
 				"title": "shield",
 				"scene": preload("res://wave_shooter/entities/power_up.tscn"),
-				"icon": preload("res://wave_shooter/ui/cooldown_icon.tscn")
+				"icon": preload("res://wave_shooter/assets/icons/star.png")
+			},
+			{
+				"title": "triple_shot",
+				"scene": preload("res://wave_shooter/entities/power_up.tscn"),
+				"icon": preload("res://wave_shooter/assets/icons/arrow.png")
 			}
 		]
 	},

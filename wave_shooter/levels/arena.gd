@@ -33,8 +33,11 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up_index = round(randi_range(0, Configs.WAVES[1].power_ups.size() - 1))
 	var power_up = Global.instance_node(Configs.WAVES[1].power_ups[power_up_index]["scene"], power_up_position, self)
+	print(Configs.WAVES[1].power_ups[power_up_index]["title"])
+	power_up.icon.texture = Configs.WAVES[1].power_ups[power_up_index]["icon"]
 	power_up.powered_up.connect(update_hud_power_ups)
 	power_up.set_meta("spawn_type", "power_up")
+	power_up.set_meta("name", Configs.WAVES[1].power_ups[power_up_index]["title"])
 
 func _on_life_spawn_timer_timeout() -> void:
 	var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
@@ -65,5 +68,6 @@ func update_hud_lifes(type) -> void:
 		remove_hud_life()
 
 func update_hud_power_ups() -> void:
+	print('Pegou Power Up!')
 	pass
 	#var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0]["icon"], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)
