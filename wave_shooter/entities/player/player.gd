@@ -19,6 +19,7 @@ signal life_inreased
 			emit_signal("life_increased")
 
 var speed: int = 250
+var dash_speed: int = speed * 50
 var is_loaded: bool = true
 var is_dead: bool = false
 var power_ups: Array = []
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
 		shot()
 	if Input.is_action_just_pressed("dash"):
-		dash()
+		dash(delta)
 #endregion
 
 func _exit_tree() -> void:
@@ -57,9 +58,9 @@ func move(delta) -> void:
 	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
 	global_position += speed * motion * delta
 
-func dash() -> void:
-	print("DASH")
-	#global_position += speed * move * delta * 6
+func dash(delta) -> void:
+	var motion = Input.get_vector("left", "right", "up", "down")
+	create_tween().tween_property(self, "global_position", global_position + dash_speed * motion * delta, 0.1)
 
 func shot() -> void:
 	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
