@@ -25,7 +25,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			Global.player.lifes += 1
 		elif props is BasePowerUp:
 			Global.player.power_ups.append(props.title)
-			Global.player.add_child(props.visual.instantiate())
+			if props.visual:
+				Global.player.add_child(props.visual.instantiate())
 			emit_signal("powered_up")
 		queue_free()
 

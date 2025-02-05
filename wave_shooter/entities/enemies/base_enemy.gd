@@ -11,7 +11,7 @@ const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
 #@export var speed: int = 75
 #@export var knockback: int = 6
 
-var motion: Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO
 var is_stunned: bool = false
 
 #region lifecicle
@@ -29,16 +29,16 @@ func _process(delta: float) -> void:
 
 func chase_player(delta) -> void:
 	if Global.player and not is_stunned:
-		motion = global_position.direction_to(Global.player.global_position)
+		direction = global_position.direction_to(Global.player.global_position)
 	elif is_stunned:
-		motion = lerp(motion, Vector2.ZERO, 0.3)
-	global_position += motion * stats.speed * delta
+		direction = lerp(direction, Vector2.ZERO, 0.3)
+	global_position += direction * stats.speed * delta # Verifiar a necessidade de normalizar o vetor de direction
 	
 func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
 	var blood = Global.instance_node(BLOOD_TSCN, global_position, Global.parent_node_creation)
-	blood.rotation = motion.angle()
+	blood.rotation = direction.angle()
 	queue_free()
 	Global.points += 10
 	Global.enemies_count += 1
@@ -51,9 +51,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		color = Color.WHITE
 		if area.name == "Shield":
 			print("ESCUDADA")
-			motion = -motion * 60000
+			direction = -direction * 60000
 		else:
-			motion = -motion * stats.knockback_force
+			direction = -direction * stats.knockback_force
 		area.get_parent().queue_free()
 		$Timer.start()
 

@@ -37,6 +37,8 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up = Global.instance_node(POWER_UP_TSCN, power_up_position, self, Configs.WAVES[1].power_ups[0])
 
 func _on_life_spawn_timer_timeout() -> void:
+	if Global.player.lifes == 10:
+		return
 	var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var life = Global.instance_node(POWER_UP_TSCN, life_position, self)
 	life.color = Color("ad0057")

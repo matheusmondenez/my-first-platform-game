@@ -18,6 +18,7 @@ signal life_increased
 		elif lifes > previous_lifes:
 			emit_signal("life_increased")
 
+var direction: Vector2 = Vector2.ZERO
 var speed: int = 250
 var dash_speed: int = speed * 50
 var is_loaded: bool = true
@@ -30,13 +31,20 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
-	print(power_ups)
 	if not is_dead:
 		move(delta)
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
 		shot()
 	if Input.is_action_just_pressed("dash"):
 		dash(delta)
+	# Inner Light
+	var spotlight: PointLight2D = $PointLight2D
+	var clamp_range = 25
+	var mouse_global: Vector2 = get_global_mouse_position()
+	var mouse_local: Vector2 = to_local(mouse_global)
+	mouse_local.x = clamp(mouse_local.x, -clamp_range, clamp_range)
+	mouse_local.y = clamp(mouse_local.y, -clamp_range, clamp_range)
+	spotlight.position = spotlight.position.lerp(mouse_local, 10 * delta)
 #endregion
 
 func _exit_tree() -> void:
@@ -50,18 +58,19 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		var enemy = area.get_parent()
 		enemy.queue_free()
-		take_damage(1)
+		take_damage(1, enemy.direction)
 		if lifes <= 0:
 			die()
 
 func move(delta) -> void:
-	var motion = Input.get_vector("left", "right", "up", "down")
+	direction = Input.get_vector("left", "right", "up", "down")
 	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
-	global_position += speed * motion * delta
+	global_position += speed * direction * delta
+	$Trail/Line.add_point(global_position)
+	$Trail/Line.remove_point($Trail/Line.points.size() - 20)
 
 func dash(delta) -> void:
-	var motion = Input.get_vector("left", "right", "up", "down")
-	create_tween().tween_property(self, "global_position", global_position + dash_speed * motion * delta, 0.1)
+	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1)
 
 func shot() -> void:
 	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
@@ -74,10 +83,16 @@ func shot() -> void:
 	$Timer.start()
 
 func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
+	knockback(knokback, 5) # Implementar a força de acordo com a speed e/ou peso do inimigo
 	Global.camera.shake_screen(100, 0.2)
 	var screen_damage = Global.instance_node(SCREEN_DAMAGE_TSCN, Vector2(576, 324), Global.camera)
 	screen_damage.modulate = Color("4a5fdd")
 	lifes -= damage
+
+func knockback(direction: Vector2, force: float) -> void:
+	direction = direction.normalized() * force
+	create_tween().tween_property(self, "global_position", global_position + force * direction, 0.3)
+	#global_position += force * direction
 
 func die() -> void:
 	$Area2D.monitoring = false
