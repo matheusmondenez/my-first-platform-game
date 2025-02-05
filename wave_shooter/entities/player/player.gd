@@ -32,19 +32,12 @@ func _ready() -> void:
 #region _process
 func _process(delta: float) -> void:
 	if not is_dead:
+		handle_spotlight(delta)
 		move(delta)
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
 		shot()
 	if Input.is_action_just_pressed("dash"):
 		dash(delta)
-	# Inner Light
-	var spotlight: PointLight2D = $PointLight2D
-	var clamp_range = 25
-	var mouse_global: Vector2 = get_global_mouse_position()
-	var mouse_local: Vector2 = to_local(mouse_global)
-	mouse_local.x = clamp(mouse_local.x, -clamp_range, clamp_range)
-	mouse_local.y = clamp(mouse_local.y, -clamp_range, clamp_range)
-	spotlight.position = spotlight.position.lerp(mouse_local, 10 * delta)
 #endregion
 
 func _exit_tree() -> void:
@@ -93,6 +86,20 @@ func knockback(direction: Vector2, force: float) -> void:
 	direction = direction.normalized() * force
 	create_tween().tween_property(self, "global_position", global_position + force * direction, 0.3)
 	#global_position += force * direction
+
+func handle_spotlight(delta) -> void:
+	var spotlight: PointLight2D = $PointLight2D
+	var clamp_range = 25
+	var mouse_global: Vector2 = get_global_mouse_position()
+	var mouse_local: Vector2 = to_local(mouse_global)
+	var edge_position = Vector2.ZERO
+	if mouse_local == Vector2.ZERO:
+		spotlight.position = Vector2(clamp_range, 0)
+		edge_position = Vector2(clamp_range, 0)
+	else:
+		var max_component = max(abs(mouse_local.x), abs(mouse_local.y))
+		edge_position = mouse_local * (clamp_range / max_component)
+		spotlight.position = spotlight.position.lerp(edge_position, 10 * delta)
 
 func die() -> void:
 	$Area2D.monitoring = false
