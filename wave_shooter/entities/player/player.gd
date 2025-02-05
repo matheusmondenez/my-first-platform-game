@@ -30,6 +30,7 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
+	print(power_ups)
 	if not is_dead:
 		move(delta)
 	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
