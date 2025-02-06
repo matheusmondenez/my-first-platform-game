@@ -59,11 +59,12 @@ func move(delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
 	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
 	global_position += speed * direction * delta
-	$Trail/Line.add_point(global_position)
-	$Trail/Line.remove_point($Trail/Line.points.size() - 20)
 
 func dash(delta) -> void:
+	$Trail.visible = true
 	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1)
+	await get_tree().create_timer(0.5).timeout
+	$Trail.visible = false
 
 func shot() -> void:
 	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
