@@ -10,6 +10,8 @@ enum LIFES_UPDATE {
 	DECREASE
 }
 
+@onready var auto_shot_icon: TextureRect = $UI/HUD/Score/PointsContainer/AutoShotToggle
+
 func _ready() -> void:
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIFES_UPDATE.DECREASE))
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIFES_UPDATE.INCREASE))
@@ -20,6 +22,7 @@ func _ready() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):
 		Configs.game_configs.auto_shot = !Configs.game_configs.auto_shot
+		auto_shot_icon.visible = Configs.game_configs.auto_shot
 
 func _exit_tree() -> void:
 	Global.parent_node_creation = null

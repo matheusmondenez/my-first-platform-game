@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=14 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/entities/player/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
 [ext_resource type="Script" path="res://wave_shooter/ui/high_score.gd" id="5_60vb7"]
 [ext_resource type="Script" path="res://wave_shooter/ui/camera.gd" id="5_nfxav"]
+[ext_resource type="Texture2D" uid="uid://clo8m86lf2b05" path="res://wave_shooter/assets/icons/auto.svg" id="8_bguaw"]
 [ext_resource type="PackedScene" uid="uid://dwcwbtu515v06" path="res://wave_shooter/ui/cooldown_icon.tscn" id="9_k2c0a"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
@@ -48,6 +49,7 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
@@ -102,6 +104,15 @@ theme_override_fonts/font = ExtResource("3_ntwtu")
 text = "000"
 horizontal_alignment = 2
 script = ExtResource("5_60vb7")
+
+[node name="AutoShotToggle" type="TextureRect" parent="UI/HUD/Score/PointsContainer"]
+visible = false
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("8_bguaw")
+stretch_mode = 2
 
 [node name="Life" type="Control" parent="UI/HUD"]
 layout_mode = 1
