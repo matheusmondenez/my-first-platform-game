@@ -1,9 +1,9 @@
 extends Control
 
+enum LIVES_UPDATE { INCREASE, DECREASE }
+
 const EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
-
-enum LIVES_UPDATE {INCREASE, DECREASE}
 
 @onready var points: Label = $Score/PointsContainer/Points
 @onready var high_score: Label = $Score/PointsContainer/HighScore

@@ -7,12 +7,19 @@ const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
 func _ready() -> void:
 	Global.parent_node_creation = self
 
+func _process(delta: float) -> void:
+	if Global.points >= 100:
+		wave_cleared()
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):
 		Configs.game_configs.auto_shot = !Configs.game_configs.auto_shot
 
 func _exit_tree() -> void:
 	Global.parent_node_creation = null
+
+func wave_cleared() -> void:
+	$UI/WaveCleared.show()
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	var enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
