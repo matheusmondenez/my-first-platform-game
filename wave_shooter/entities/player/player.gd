@@ -34,8 +34,11 @@ func _process(delta: float) -> void:
 	if not is_dead:
 		handle_spotlight(delta)
 		move(delta)
-	if Input.is_action_pressed("shoot") and Global.parent_node_creation and is_loaded and not is_dead:
-		shot()
+	if Global.parent_node_creation and is_loaded and not is_dead:
+		if not Configs.game_configs.auto_shot and Input.is_action_pressed("shoot"):
+			shot()
+		elif Configs.game_configs.auto_shot:
+			shot()
 	if Input.is_action_just_pressed("dash"):
 		dash(delta)
 #endregion
@@ -61,8 +64,9 @@ func move(delta) -> void:
 	global_position += speed * direction * delta
 
 func dash(delta) -> void:
+	$Area2D.monitoring = false
 	$Trail.visible = true
-	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1)
+	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1).finished.connect(func(): $Area2D.monitoring = true)
 	await get_tree().create_timer(0.5).timeout
 	$Trail.visible = false
 

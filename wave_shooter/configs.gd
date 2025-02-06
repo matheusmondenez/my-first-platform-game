@@ -7,7 +7,8 @@ enum LANGUAGES {
 	EN,
 }
 
-const GAME_CONFIGS: Dictionary = {
+var game_configs: Dictionary = {
+	"auto_shot": false,
 	"camera_shake": true,
 	"fullscreen": true,
 	"language": LANGUAGES.EN,

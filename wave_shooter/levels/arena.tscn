@@ -223,7 +223,7 @@ offset_top = 576.0
 offset_right = 546.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 0.0
+cooldown = 1.0
 
 [node name="2" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
 layout_mode = 0
@@ -232,7 +232,7 @@ offset_top = 576.0
 offset_right = 581.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 0.0
+cooldown = 2.0
 
 [node name="3" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
 layout_mode = 0
@@ -241,16 +241,16 @@ offset_top = 576.0
 offset_right = 616.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 0.0
+cooldown = 3.0
 
-[node name="5" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
+[node name="4" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
 layout_mode = 0
 offset_left = 629.0
 offset_top = 576.0
 offset_right = 652.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 0.0
+cooldown = 4.0
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)

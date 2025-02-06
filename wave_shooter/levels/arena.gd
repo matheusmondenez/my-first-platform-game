@@ -17,6 +17,10 @@ func _ready() -> void:
 	Global.points = 0
 	init_hud_lifes()
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_auto_shot"):
+		Configs.game_configs.auto_shot = !Configs.game_configs.auto_shot
+
 func _exit_tree() -> void:
 	Global.parent_node_creation = null
 
