@@ -1,28 +1,15 @@
 extends Node2D
 
-const EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
-const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
 const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
-
-# Alterar de lifes para lives depois
-enum LIFES_UPDATE {
-	INCREASE,
-	DECREASE
-}
 
 @onready var auto_shot_icon: TextureRect = $UI/HUD/Score/PointsContainer/AutoShotToggle
 
 func _ready() -> void:
-	Global.player.life_decreased.connect(update_hud_lifes.bind(LIFES_UPDATE.DECREASE))
-	Global.player.life_increased.connect(update_hud_lifes.bind(LIFES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
-	Global.points = 0
-	init_hud_lifes()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):
 		Configs.game_configs.auto_shot = !Configs.game_configs.auto_shot
-		auto_shot_icon.visible = Configs.game_configs.auto_shot
 
 func _exit_tree() -> void:
 	Global.parent_node_creation = null
@@ -50,30 +37,3 @@ func _on_life_spawn_timer_timeout() -> void:
 	var life = Global.instance_node(POWER_UP_TSCN, life_position, self)
 	life.color = Color("ad0057")
 	life.set_meta("spawn_type", "life")
-
-func init_hud_lifes() -> void:
-	for life in Global.player.lifes:
-		Global.instance_node(LIFE_TSCN, $UI/HUD/Life/Markers.get_child(life).global_position, $UI/HUD/Life)
-
-func add_hud_life() -> void:
-	Global.instance_node(LIFE_TSCN, $UI/HUD/Life/Markers.get_child(Global.player.lifes - 1).global_position, $UI/HUD/Life) # Buga quando chega no limite
-
-func remove_hud_life() -> void:
-	var life = $UI/HUD/Life.get_child($UI/HUD/Life.get_child_count() - 1)
-	var life_position = life.global_position
-	life.queue_free()
-	var explosion = Global.instance_node(EXPLOSION_TSCN, life_position, $UI/HUD/Life)
-	explosion.scale_amount_min = 5
-	explosion.scale_amount_max = 17.5
-	explosion.modulate = Color("c92e67")
-
-func update_hud_lifes(type) -> void:
-	if type == LIFES_UPDATE.INCREASE:
-		add_hud_life()
-	elif type == LIFES_UPDATE.DECREASE:
-		remove_hud_life()
-
-func update_hud_power_ups() -> void:
-	print('Pegou Power Up!')
-	pass
-	#var power_up = Global.instance_node(Configs.WAVES[1].power_ups[0]["icon"], $UI/HUD/PowerUps/Marker2D.global_position, $UI/HUD/PowerUps)

@@ -1,27 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgak60m7gvdoh"]
+[gd_scene load_steps=7 format=3 uid="uid://dgak60m7gvdoh"]
 
 [ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/entities/player/player.tscn" id="1_0xoxs"]
 [ext_resource type="Script" path="res://wave_shooter/levels/arena.gd" id="1_hn6cv"]
 [ext_resource type="PackedScene" uid="uid://bdge81isdmgwf" path="res://wave_shooter/ui/count_down.tscn" id="2_575tc"]
-[ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="3_ntwtu"]
-[ext_resource type="Script" path="res://wave_shooter/ui/hud.gd" id="4_0tsoh"]
-[ext_resource type="Script" path="res://wave_shooter/ui/points.gd" id="4_qyixy"]
-[ext_resource type="Script" path="res://wave_shooter/ui/high_score.gd" id="5_60vb7"]
+[ext_resource type="PackedScene" uid="uid://2mg66kgdu6lq" path="res://wave_shooter/ui/hud.tscn" id="4_xjdad"]
 [ext_resource type="Script" path="res://wave_shooter/ui/camera.gd" id="5_nfxav"]
-[ext_resource type="Texture2D" uid="uid://clo8m86lf2b05" path="res://wave_shooter/assets/icons/auto.svg" id="8_bguaw"]
-[ext_resource type="PackedScene" uid="uid://dwcwbtu515v06" path="res://wave_shooter/ui/cooldown_icon.tscn" id="9_k2c0a"]
 
 [sub_resource type="Environment" id="Environment_sgqdw"]
 background_mode = 3
 glow_enabled = true
 glow_bloom = 0.5
 glow_blend_mode = 0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqxq1"]
-size = Vector2(69, 38)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjnuk"]
-size = Vector2(104, 38)
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_hn6cv")
@@ -53,215 +42,7 @@ visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="HUD" type="Control" parent="UI"]
-custom_minimum_size = Vector2(1152, 648)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-size_flags_horizontal = 4
-script = ExtResource("4_0tsoh")
-
-[node name="Score" type="Control" parent="UI/HUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PointsArea" type="Area2D" parent="UI/HUD/Score"]
-visible = false
-position = Vector2(1065, 20)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Score/PointsArea"]
-position = Vector2(32.5, 23)
-shape = SubResource("RectangleShape2D_cqxq1")
-
-[node name="PointsContainer" type="VBoxContainer" parent="UI/HUD/Score"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -87.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 76.0
-grow_horizontal = 0
-theme_override_constants/separation = -8
-
-[node name="Points" type="Label" parent="UI/HUD/Score/PointsContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ntwtu")
-theme_override_font_sizes/font_size = 24
-text = "000"
-horizontal_alignment = 2
-script = ExtResource("4_qyixy")
-
-[node name="HighScore" type="Label" parent="UI/HUD/Score/PointsContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_ntwtu")
-text = "000"
-horizontal_alignment = 2
-script = ExtResource("5_60vb7")
-
-[node name="AutoShotToggle" type="TextureRect" parent="UI/HUD/Score/PointsContainer"]
-visible = false
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-texture = ExtResource("8_bguaw")
-stretch_mode = 2
-
-[node name="Life" type="Control" parent="UI/HUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LifeArea" type="Area2D" parent="UI/HUD/Life"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/HUD/Life/LifeArea"]
-visible = false
-position = Vector2(69, 36)
-shape = SubResource("RectangleShape2D_vjnuk")
-
-[node name="Markers" type="Node2D" parent="UI/HUD/Life"]
-
-[node name="Marker1" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(28, 28)
-rotation = 0.785398
-
-[node name="Marker2" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(46, 28)
-rotation = 0.785398
-
-[node name="Marker3" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(64, 28)
-rotation = 0.785398
-
-[node name="Marker4" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(82, 28)
-rotation = 0.785398
-
-[node name="Marker5" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(100, 28)
-rotation = 0.785398
-
-[node name="Marker6" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(118, 28)
-rotation = 0.785398
-
-[node name="Marker7" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(136, 28)
-rotation = 0.785398
-
-[node name="Marker8" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(154, 28)
-rotation = 0.785398
-
-[node name="Marker9" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(172, 28)
-rotation = 0.785398
-
-[node name="Marker10" type="Marker2D" parent="UI/HUD/Life/Markers"]
-position = Vector2(190, 28)
-rotation = 0.785398
-
-[node name="PowerUps" type="Control" parent="UI/HUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Marker1" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(37, 37)
-rotation = 0.785398
-
-[node name="Marker2" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(55, 37)
-rotation = 0.785398
-
-[node name="Marker3" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(73, 37)
-rotation = 0.785398
-
-[node name="Marker4" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(91, 37)
-rotation = 0.785398
-
-[node name="Marker5" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(109, 37)
-rotation = 0.785398
-
-[node name="Marker6" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(127, 37)
-rotation = 0.785398
-
-[node name="Marker7" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(145, 37)
-rotation = 0.785398
-
-[node name="Marker8" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(163, 37)
-rotation = 0.785398
-
-[node name="Marker9" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(181, 37)
-rotation = 0.785398
-
-[node name="Marker10" type="Marker2D" parent="UI/HUD/PowerUps"]
-position = Vector2(199, 37)
-rotation = 0.785398
-
-[node name="Skills" type="Control" parent="UI/HUD"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="1" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
-layout_mode = 0
-offset_left = 523.0
-offset_top = 576.0
-offset_right = 546.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 1.0
-
-[node name="2" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
-layout_mode = 0
-offset_left = 558.0
-offset_top = 576.0
-offset_right = 581.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 2.0
-
-[node name="3" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
-layout_mode = 0
-offset_left = 593.0
-offset_top = 576.0
-offset_right = 616.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 3.0
-
-[node name="4" parent="UI/HUD/Skills" instance=ExtResource("9_k2c0a")]
-layout_mode = 0
-offset_left = 629.0
-offset_top = 576.0
-offset_right = 652.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 4.0
+[node name="HUD" parent="UI" instance=ExtResource("4_xjdad")]
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)
@@ -273,8 +54,4 @@ script = ExtResource("5_nfxav")
 [connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
 [connection signal="timeout" from="PowerUpSpawnTimer" to="." method="_on_power_up_spawn_timer_timeout"]
 [connection signal="timeout" from="LifeSpawnTimer" to="." method="_on_life_spawn_timer_timeout"]
-[connection signal="area_entered" from="UI/HUD/Score/PointsArea" to="UI/HUD" method="_on_points_area_area_entered"]
-[connection signal="area_exited" from="UI/HUD/Score/PointsArea" to="UI/HUD" method="_on_points_area_area_exited"]
-[connection signal="area_entered" from="UI/HUD/Life/LifeArea" to="UI/HUD" method="_on_life_area_area_entered"]
-[connection signal="area_exited" from="UI/HUD/Life/LifeArea" to="UI/HUD" method="_on_life_area_area_exited"]
 [connection signal="timeout" from="Camera/Timer" to="Camera" method="_on_timer_timeout"]
