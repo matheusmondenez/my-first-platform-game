@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://exjmv67o7cgu"]
+
+[ext_resource type="Texture2D" uid="uid://do6a22l36kxvu" path="res://wave_shooter/assets/ui/card (1).png" id="1_ddf36"]
+[ext_resource type="Script" path="res://wave_shooter/ui/skill_card.gd" id="2_oj0ip"]
+
+[node name="SkillCard" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -120.0
+offset_right = -1032.0
+offset_bottom = -518.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(130, 120)
+texture_normal = ExtResource("1_ddf36")
+stretch_mode = 0
+script = ExtResource("2_oj0ip")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 109.0
+offset_right = 181.0
+offset_bottom = 141.0
+pivot_offset = Vector2(53, 19)
+text = "Skill"
+horizontal_alignment = 1
+vertical_alignment = 1

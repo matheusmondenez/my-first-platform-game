@@ -1,6 +1,4 @@
-extends Polygon2D
-
-class_name BaseEnemy
+class_name BaseEnemy extends Polygon2D
 
 const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
 

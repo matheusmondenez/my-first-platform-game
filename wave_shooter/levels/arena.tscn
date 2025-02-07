@@ -46,10 +46,6 @@ offset_bottom = 648.0
 
 [node name="WaveCleared" parent="UI" instance=ExtResource("5_qc4ec")]
 visible = false
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 576.0
-offset_bottom = 324.0
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(576, 324)

@@ -21,3 +21,6 @@ func slow_time(time_scale: float, duration: float) -> void:
 	Engine.time_scale = time_scale
 	await get_tree().create_timer(duration, true, false, true).timeout # Não precisa mais fazer duration * time_scale pra ignorar o time scale, o quarto parâmetro faz isso
 	Engine.time_scale = 1
+
+func assign_skill(key: int, skill: BaseSkill) -> void:
+	Configs.assigned_skills[key] = skill

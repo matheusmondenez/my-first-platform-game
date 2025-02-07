@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://calii1yb3kqm7"]
+
+[ext_resource type="Texture2D" uid="uid://b4feq0qol6vgu" path="res://wave_shooter/assets/icons/arrow.png" id="1_hfciq"]
+[ext_resource type="Script" path="res://wave_shooter/entities/player/sweep_shot.gd" id="1_ncasr"]
+
+[node name="SweepShot" type="Sprite2D"]
+texture = ExtResource("1_hfciq")
+script = ExtResource("1_ncasr")

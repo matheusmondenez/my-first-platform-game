@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BaseSkill" load_steps=3 format=3 uid="uid://n1xxgnmdrmli"]
+
+[ext_resource type="PackedScene" uid="uid://calii1yb3kqm7" path="res://wave_shooter/entities/player/sweep_shot.tscn" id="1_8er6l"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="1_lop5k"]
+
+[resource]
+script = ExtResource("1_lop5k")
+scene = ExtResource("1_8er6l")
+name = "Sweep Shot"
+damage = 3

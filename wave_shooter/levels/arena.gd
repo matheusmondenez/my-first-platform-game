@@ -8,7 +8,7 @@ func _ready() -> void:
 	Global.parent_node_creation = self
 
 func _process(delta: float) -> void:
-	if Global.points >= 100:
+	if Global.points >= 20:
 		wave_cleared()
 
 func _unhandled_key_input(event: InputEvent) -> void:

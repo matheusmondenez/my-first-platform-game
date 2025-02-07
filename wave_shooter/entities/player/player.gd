@@ -4,6 +4,7 @@ extends Polygon2D
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
 var EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
+var SWEEP_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/sweep_shot.tscn")
 #endregion
 
 signal life_decreased
@@ -31,6 +32,7 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
+	print(Configs.assigned_skills)
 	if not is_dead:
 		handle_spotlight(delta)
 		move(delta)
@@ -115,3 +117,21 @@ func die() -> void:
 	explosion.modulate = Color("4a5fdd")
 	await Global.slow_time(0.2, 3)
 	get_tree().reload_current_scene()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event.is_action_pressed("skill_1"):
+		print("SKILL 1!")
+		skill_test(1)
+	if event.is_action_pressed("skill_2"):
+		print("SKILL 2!")
+		skill_test(2)
+	if event.is_action_pressed("skill_3"):
+		print("SKILL 3!")
+		skill_test(3)
+	if event.is_action_pressed("skill_4"):
+		print("SKILL 4!")
+		skill_test(4)
+
+func skill_test(key: int) -> void:
+	if Configs.assigned_skills[key]:
+		Global.instance_node(Configs.assigned_skills[key].scene, global_position, Global.parent_node_creation)

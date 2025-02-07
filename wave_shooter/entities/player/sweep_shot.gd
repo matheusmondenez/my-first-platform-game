@@ -1,0 +1,15 @@
+extends Sprite2D
+
+var move: Vector2 = Vector2(1, 0)
+var speed: int = 500
+var unique_direction: bool = true
+var angle: int = 0
+
+func _process(delta: float) -> void:
+	if unique_direction:
+		look_at(get_global_mouse_position())
+		unique_direction = false
+	global_position += move.rotated(rotation - angle) * speed * delta
+
+func _on_shoot_screen_exited() -> void:
+	queue_free()
