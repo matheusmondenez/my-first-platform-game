@@ -8,3 +8,4 @@ script = ExtResource("1_lop5k")
 scene = ExtResource("1_8er6l")
 name = "Sweep Shot"
 damage = 3
+cooldown = 10.0
