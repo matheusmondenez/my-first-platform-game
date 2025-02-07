@@ -32,7 +32,6 @@ func _ready() -> void:
 
 #region _process
 func _process(delta: float) -> void:
-	print(Configs.assigned_skills)
 	if not is_dead:
 		handle_spotlight(delta)
 		move(delta)

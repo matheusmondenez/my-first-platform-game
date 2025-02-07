@@ -52,7 +52,6 @@ offset_bottom = 3.3
 rotation = 0.785398
 color = Color(0.24744, 0.360749, 1, 1)
 script = ExtResource("2_kynmh")
-cooldown = 60.0
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 libraries = {

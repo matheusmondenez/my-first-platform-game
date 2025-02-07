@@ -190,7 +190,6 @@ offset_top = 576.0
 offset_right = 546.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 1.0
 
 [node name="2" parent="Skills" instance=ExtResource("6_dphr2")]
 layout_mode = 0
@@ -199,7 +198,6 @@ offset_top = 576.0
 offset_right = 581.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 2.0
 
 [node name="3" parent="Skills" instance=ExtResource("6_dphr2")]
 layout_mode = 0
@@ -208,7 +206,6 @@ offset_top = 576.0
 offset_right = 616.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 3.0
 
 [node name="4" parent="Skills" instance=ExtResource("6_dphr2")]
 layout_mode = 0
@@ -217,7 +214,6 @@ offset_top = 576.0
 offset_right = 652.0
 offset_bottom = 599.0
 color = Color(0.713414, 0.000948368, 0.804115, 1)
-cooldown = 4.0
 
 [connection signal="area_entered" from="Score/PointsArea" to="." method="_on_points_area_area_entered"]
 [connection signal="area_exited" from="Score/PointsArea" to="." method="_on_points_area_area_exited"]

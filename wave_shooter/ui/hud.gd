@@ -9,6 +9,11 @@ const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
 @onready var high_score: Label = $Score/PointsContainer/HighScore
 @onready var auto_shot_icon: TextureRect = $Score/PointsContainer/AutoShotToggle
 
+@onready var skill_1_icon: ColorRect = $"Skills/1"
+@onready var skill_2_icon: ColorRect = $"Skills/2"
+@onready var skill_3_icon: ColorRect = $"Skills/3"
+@onready var skill_4_icon: ColorRect = $"Skills/4"
+
 func _ready() -> void:
 	init_hud_lifes()
 	high_score.text = str("%03d" % Global.high_score)
@@ -16,6 +21,11 @@ func _ready() -> void:
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
+	# TESTE
+	skill_1_icon.cooldown = 1
+	skill_2_icon.cooldown = 5
+	skill_3_icon.cooldown = 10
+	skill_4_icon.cooldown = 15
 
 func _process(delta: float) -> void:
 	points.text = str("%03d" % Global.points)
