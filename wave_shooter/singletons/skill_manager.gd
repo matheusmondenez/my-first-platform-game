@@ -1,14 +1,14 @@
 extends Node
 
-var all_skills: Array[PackedScene]:
+var skills: Array[PackedScene]:
 	get:
 		return [
 			preload("res://wave_shooter/entities/player/sweep_shot.tscn")
 		]
 
-var assigned_skills: Array[PackedScene]:
-	set(skill):
-		available_skills.erase(skill)
-		assigned_skills.append(skill)
+var assigned: Array[PackedScene]
+var available: Array[PackedScene]
 
-var available_skills: Array[PackedScene]
+func assign(skill: PackedScene) -> void:
+	assigned.append(skill)
+	available.erase(skill)

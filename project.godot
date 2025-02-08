@@ -18,6 +18,8 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 Global="*res://wave_shooter/global.gd"
 Configs="*res://wave_shooter/configs.gd"
+Helpers="*res://wave_shooter/singletons/helpers.gd"
+PowerUpManager="*res://wave_shooter/singletons/power_up_manager.gd"
 SkillManager="*res://wave_shooter/singletons/skill_manager.gd"
 
 [input]
