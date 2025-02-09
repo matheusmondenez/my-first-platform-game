@@ -1,6 +1,7 @@
 extends Node2D
 
 const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
+const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/level_cleared.tscn")
 
 @onready var auto_shot_icon: TextureRect = $UI/HUD/Score/PointsContainer/AutoShotToggle
 
@@ -19,7 +20,8 @@ func _exit_tree() -> void:
 	Global.parent_node_creation = null
 
 func wave_cleared() -> void:
-	$UI/WaveCleared.show()
+	var wave_cleared = WAVE_CLEARED_TSCN.instantiate()
+	add_child(wave_cleared)
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	var enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))

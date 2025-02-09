@@ -5,6 +5,8 @@ var speed: int = 500
 var unique_direction: bool = true
 var angle: int = 0
 
+@export var props: BaseSkill
+
 func _process(delta: float) -> void:
 	if unique_direction:
 		look_at(get_global_mouse_position())

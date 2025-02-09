@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbh5mtb05i2e"]
+[gd_scene load_steps=2 format=3 uid="uid://cd2p3p67sw1vs"]
 
-[ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="1_m7xem"]
-[ext_resource type="Script" path="res://wave_shooter/ui/wave_cleared.gd" id="1_msbla"]
+[ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="1_ao005"]
 
-[node name="WaveCleared" type="Control"]
-process_mode = 3
+[node name="LevelCleared" type="Control"]
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -13,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-script = ExtResource("1_msbla")
+size_flags_vertical = 3
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.501961)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -37,6 +35,6 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_m7xem")
+theme_override_fonts/font = ExtResource("1_ao005")
 theme_override_font_sizes/font_size = 72
 text = "Wave Cleared"

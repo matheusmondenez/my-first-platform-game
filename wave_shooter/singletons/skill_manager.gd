@@ -5,9 +5,8 @@ var skills: Array[PackedScene]:
 		return [
 			preload("res://wave_shooter/entities/player/sweep_shot.tscn")
 		]
-
-var assigned: Array[PackedScene]
-var available: Array[PackedScene]
+var available: Array[PackedScene] = skills
+var assigned: Array[PackedScene] = []
 
 func assign(skill: PackedScene) -> void:
 	assigned.append(skill)

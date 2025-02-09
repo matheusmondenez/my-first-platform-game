@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://calii1yb3kqm7"]
+[gd_scene load_steps=5 format=3 uid="uid://calii1yb3kqm7"]
 
 [ext_resource type="Texture2D" uid="uid://b4feq0qol6vgu" path="res://wave_shooter/assets/icons/arrow.png" id="1_hfciq"]
 [ext_resource type="Script" path="res://wave_shooter/entities/player/sweep_shot.gd" id="1_ncasr"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="3_d0t8g"]
+
+[sub_resource type="Resource" id="Resource_etua8"]
+script = ExtResource("3_d0t8g")
+name = "Sweep Shot!"
+damage = 0
+cooldown = 0.0
 
 [node name="SweepShot" type="Sprite2D"]
 texture = ExtResource("1_hfciq")
 script = ExtResource("1_ncasr")
+props = SubResource("Resource_etua8")

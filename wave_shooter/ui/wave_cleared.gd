@@ -1,8 +1,11 @@
 extends Control
 
-@onready var skill_card_1: TextureButton = $CardsContainer/SkillCard1
-@onready var skill_card_2: TextureButton = $CardsContainer/SkillCard2
-@onready var skill_card_3: TextureButton = $CardsContainer/SkillCard3
+const SKILL_CARD_TSCN = preload("res://wave_shooter/ui/skill_card.tscn")
+const SWEEP_SHOT_TSCN = preload("res://wave_shooter/entities/player/sweep_shot.tscn")
+
+@onready var marker_1: Marker2D = $Marker1
+@onready var marker_2: Marker2D = $Marker2
+@onready var marker_3: Marker2D = $Marker3
 
 var temp1: BaseSkill
 var temp2: BaseSkill
@@ -10,27 +13,16 @@ var temp3: BaseSkill
 var sorted_skills: Array
 
 func _ready() -> void:
-	visibility_changed.connect(display_cards)
+	display_cards()
 
 func display_cards() -> void:
-	sorted_skills = sort_skills()
-	skill_card_1.skill = sorted_skills[0]
-	skill_card_2.skill = sorted_skills[1]
-	skill_card_3.skill = sorted_skills[2]
+	#sorted_skills = sort_skills()
+	#var card = SKILL_CARD_TSCN.instantiate()
+	#var skill = SWEEP_SHOT_TSCN.instantiate()
+	#card.skill = skill
+	#add_child(card)
 	await Global.slow_time(0.2, 3)
 	get_tree().paused = true
 
 func sort_skills() -> Array:
-	return Configs.SKILLS
-
-func _on_skill_card_1_pressed() -> void:
-	Global.assign_skill(1, skill_card_1.skill)
-	get_tree().reload_current_scene()
-
-func _on_skill_card_2_pressed() -> void:
-	Global.assign_skill(2, skill_card_2.skill)
-	get_tree().reload_current_scene()
-
-func _on_skill_card_3_pressed() -> void:
-	Global.assign_skill(3, skill_card_3.skill)
-	get_tree().reload_current_scene()
+	return SkillManager.available
