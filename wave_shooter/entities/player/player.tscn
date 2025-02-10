@@ -11,6 +11,7 @@ size = Vector2(50, 50)
 colors = PackedColorArray(0.290196, 0.372549, 0.866667, 0, 0.290196, 0.372549, 0.866667, 0.501961)
 
 [node name="Player" type="Polygon2D"]
+light_mask = 0
 color = Color(0.290256, 0.370965, 0.867435, 1)
 polygon = PackedVector2Array(-25, -25, -25, 25, 25, 25, 25, -25)
 script = ExtResource("1_lb8tn")
@@ -27,17 +28,24 @@ shape = SubResource("RectangleShape2D_8i6sj")
 wait_time = 0.2
 one_shot = true
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -25)
-scale = Vector2(0.0976562, 0.0976562)
-texture = ExtResource("2_sejr8")
-
 [node name="Trail" parent="." instance=ExtResource("3_nie46")]
 visible = false
 width = 50.0
 default_color = Color(0.290196, 0.372549, 0.866667, 1)
 gradient = SubResource("Gradient_bgrt0")
 length = 20
+
+[node name="Border" type="Line2D" parent="."]
+points = PackedVector2Array(-25, -25, -25, 25, 25, 25, 25, -25)
+closed = true
+width = 1.0
+default_color = Color(0.290196, 0.372549, 0.866667, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="Border"]
+position = Vector2(-2.38419e-07, -25)
+scale = Vector2(0.0991211, 0.0991211)
+energy = 1.5
+texture = ExtResource("2_sejr8")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

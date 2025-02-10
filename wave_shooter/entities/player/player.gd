@@ -94,7 +94,7 @@ func knockback(direction: Vector2, force: float) -> void:
 	#global_position += force * direction
 
 func handle_spotlight(delta) -> void:
-	var spotlight: PointLight2D = $PointLight2D
+	var spotlight: PointLight2D = $Border/PointLight2D
 	var clamp_range = 25
 	var mouse_global: Vector2 = get_global_mouse_position()
 	var mouse_local: Vector2 = to_local(mouse_global)

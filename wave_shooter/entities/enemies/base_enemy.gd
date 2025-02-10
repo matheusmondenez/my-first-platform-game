@@ -14,7 +14,7 @@ var is_stunned: bool = false
 
 #region lifecicle
 func _ready() -> void:
-	stats = stats.duplicate(true)
+	stats = stats.duplicate(true) # Não precisa disso se marar o Resource > Local to Scene
 	color = stats.tint
 
 #region _process
