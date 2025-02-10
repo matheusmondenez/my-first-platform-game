@@ -44,7 +44,11 @@ func die() -> void:
 #region signals
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
-		stats.life -= 1
+		var shot = area.get_parent()
+		if shot is Polygon2D: # Projectile is Polygon2D
+			stats.life -= shot.power
+		else: # SweepShot is Sprite2D
+			stats.life -= shot.props.power
 		is_stunned = true
 		color = Color.WHITE
 		if area.name == "Shield":

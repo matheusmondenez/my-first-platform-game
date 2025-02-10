@@ -1,6 +1,6 @@
 class_name BaseSkill extends Resource
 
-@export var scene: PackedScene
 @export var name: String
-@export var damage: int
+@export_enum("Attack", "Defense") var type: String
+@export var power: int
 @export var cooldown: float

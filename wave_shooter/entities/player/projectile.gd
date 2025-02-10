@@ -4,6 +4,7 @@ var move: Vector2 = Vector2(1, 0)
 var speed: int = 500
 var unique_direction: bool = true
 var angle: int = 0
+var power: int = 1
 
 func _ready() -> void:
 	pass
