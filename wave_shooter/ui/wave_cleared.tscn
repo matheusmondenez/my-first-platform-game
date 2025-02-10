@@ -14,6 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_msbla")
+metadata/_edit_use_anchors_ = true
 
 [node name="Overlay" type="ColorRect" parent="."]
 layout_mode = 1
@@ -24,19 +25,42 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="GeneralContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -272.0
+offset_top = -46.5
+offset_right = 272.0
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="GeneralContainer"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_m7xem")
 theme_override_font_sizes/font_size = 72
 text = "Wave Cleared"
+
+[node name="SkillsContainer" type="HBoxContainer" parent="GeneralContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonSkill1" type="Button" parent="GeneralContainer/SkillsContainer"]
+layout_mode = 2
+text = "Skill 1"
+
+[node name="ButtonSkill2" type="Button" parent="GeneralContainer/SkillsContainer"]
+layout_mode = 2
+text = "Skill 2"
+
+[node name="ButtonSkill3" type="Button" parent="GeneralContainer/SkillsContainer"]
+layout_mode = 2
+text = "Skill 3"
+
+[connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill1" to="." method="_on_button_skill_1_pressed"]
+[connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill2" to="." method="_on_button_skill_2_pressed"]
+[connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill3" to="." method="_on_button_skill_3_pressed"]

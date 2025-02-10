@@ -120,17 +120,21 @@ func die() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_1"):
 		print("SKILL 1!")
-		skill_test(1)
+		print(SkillManager.assigned)
+		skill_test(0)
 	if event.is_action_pressed("skill_2"):
 		print("SKILL 2!")
-		skill_test(2)
+		print(SkillManager.assigned)
+		skill_test(1)
 	if event.is_action_pressed("skill_3"):
 		print("SKILL 3!")
-		skill_test(3)
+		print(SkillManager.assigned)
+		skill_test(2)
 	if event.is_action_pressed("skill_4"):
 		print("SKILL 4!")
-		skill_test(4)
+		print(SkillManager.assigned)
+		skill_test(3)
 
 func skill_test(key: int) -> void:
-	if Configs.assigned_skills[key]:
-		Global.instance_node(Configs.assigned_skills[key].scene, global_position, Global.parent_node_creation)
+	if not SkillManager.assigned.is_empty() && SkillManager.assigned[key]:
+		Global.instance_node(SkillManager.assigned[key], global_position, Global.parent_node_creation)
