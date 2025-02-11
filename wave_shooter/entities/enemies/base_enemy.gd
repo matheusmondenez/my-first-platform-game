@@ -56,7 +56,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			direction = -direction * 60000
 		else:
 			direction = -direction * stats.knockback_force
-		if not shot.pierce:
+		if shot is Polygon2D && not shot.pierce:
 			area.get_parent().queue_free()
 		$Timer.start()
 
