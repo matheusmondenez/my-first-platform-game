@@ -5,7 +5,7 @@ var speed: int = 500
 var unique_direction: bool = true
 var angle: int = 0
 var power: int = 1
-var piercec: bool = false
+var pierce: bool = true
 
 func _ready() -> void:
 	pass
@@ -16,5 +16,5 @@ func _process(delta: float) -> void:
 		unique_direction = false
 	global_position += move.rotated(rotation - angle) * speed * delta
 
-func _on_shoot_screen_exited() -> void:
+func _on_pierce_shot_screen_exited() -> void:
 	queue_free()

@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://wave_shooter/fx/trail.gd" id="1_cvfuv"]
 
 [node name="Trail" type="Line2D"]
+light_mask = 0
 script = ExtResource("1_cvfuv")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://kml4hbn3rf86"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/player/pierce_shot.gd" id="1_327p5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofbaq"]
+size = Vector2(16, 16)
+
+[node name="PierceShot" type="Polygon2D"]
+show_behind_parent = true
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 0)
+script = ExtResource("1_327p5")
+
+[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ofbaq")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_pierce_shot_screen_exited"]
