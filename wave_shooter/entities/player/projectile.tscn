@@ -3,9 +3,10 @@
 [ext_resource type="Script" path="res://wave_shooter/entities/player/projectile.gd" id="1_r1f7e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1nd5l"]
-size = Vector2(16, 16)
+size = Vector2(24, 16)
 
 [node name="Projectile" type="Polygon2D"]
+show_behind_parent = true
 z_index = -1
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 script = ExtResource("1_r1f7e")

@@ -2,6 +2,7 @@ extends Polygon2D
 
 #region preload_scenes
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
+var PIERCE_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/pierce_shot.tscn")
 var EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
 var SWEEP_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/sweep_shot.tscn")
@@ -72,11 +73,12 @@ func dash(delta) -> void:
 	$Trail.visible = false
 
 func shot() -> void:
-	Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
+	var shot = PIERCE_SHOT_TSCN # PROJECTILE_TSCN
+	Global.instance_node(shot, global_position, Global.parent_node_creation)
 	if power_ups.has("triple_shot"):
-		var left_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
+		var left_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
 		left_shot.angle = 345
-		var right_shot = Global.instance_node(PROJECTILE_TSCN, global_position, Global.parent_node_creation)
+		var right_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
 		right_shot.angle = -345
 	is_loaded = false
 	$Timer.start()
