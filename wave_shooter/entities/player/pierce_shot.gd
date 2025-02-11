@@ -17,5 +17,4 @@ func _process(delta: float) -> void:
 	global_position += move.rotated(rotation - angle) * speed * delta
 
 func _on_pierce_shot_screen_exited() -> void:
-	print("SAIU DA TELA")
 	queue_free()
