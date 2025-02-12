@@ -25,7 +25,7 @@ var speed: int = 250
 var dash_speed: int = speed * 50
 var is_loaded: bool = true
 var is_dead: bool = false
-var power_ups: Array = []
+#var power_ups: Array = []
 
 #region life_cicle
 func _ready() -> void:
@@ -73,13 +73,13 @@ func dash(delta) -> void:
 	$Trail.visible = false
 
 func shot() -> void:
-	var shot = PIERCE_SHOT_TSCN # PROJECTILE_TSCN
+	var shot = PROJECTILE_TSCN # PROJECTILE_TSCN # PIERCE_SHOT_TSCN
 	Global.instance_node(shot, global_position, Global.parent_node_creation)
-	if power_ups.has("triple_shot"):
-		var left_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
-		left_shot.angle = 345
-		var right_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
-		right_shot.angle = -345
+	#if power_ups.has("triple_shot"):
+		#var left_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
+		#left_shot.angle = 345
+		#var right_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
+		#right_shot.angle = -345
 	is_loaded = false
 	$Timer.start()
 

@@ -1,6 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl6tn4sqn3284"]
+[gd_scene load_steps=6 format=3 uid="uid://cl6tn4sqn3284"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/power_ups/shield.gd" id="1_xwkvu"]
+[ext_resource type="Texture2D" uid="uid://da1lqkkhfqw66" path="res://wave_shooter/assets/icons/star.png" id="2_2f7do"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/power_ups/base_power_up.gd" id="3_ugers"]
+
+[sub_resource type="Resource" id="Resource_sartq"]
+resource_local_to_scene = true
+script = ExtResource("3_ugers")
+name = "shield"
+tint = Color(0, 0, 0, 1)
+icon = ExtResource("2_2f7do")
+duration = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khrhh"]
 size = Vector2(64, 64)
@@ -9,6 +19,7 @@ size = Vector2(64, 64)
 color = Color(1, 1, 1, 0.25098)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 script = ExtResource("1_xwkvu")
+props = SubResource("Resource_sartq")
 
 [node name="Area2D" type="Area2D" parent="." groups=["damage"]]
 

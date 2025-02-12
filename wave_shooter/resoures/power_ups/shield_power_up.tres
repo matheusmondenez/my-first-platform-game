@@ -1,13 +1,11 @@
-[gd_resource type="Resource" script_class="BasePowerUp" load_steps=4 format=3 uid="uid://daopmoxhwhpyv"]
+[gd_resource type="Resource" script_class="BasePowerUp" load_steps=3 format=3 uid="uid://daopmoxhwhpyv"]
 
 [ext_resource type="Script" path="res://wave_shooter/resoures/power_ups/base_power_up.gd" id="1_g64l5"]
 [ext_resource type="Texture2D" uid="uid://da1lqkkhfqw66" path="res://wave_shooter/assets/icons/star.png" id="1_rx1wx"]
-[ext_resource type="PackedScene" uid="uid://cl6tn4sqn3284" path="res://wave_shooter/entities/power_ups/shield.tscn" id="3_gcjhj"]
 
 [resource]
 script = ExtResource("1_g64l5")
-title = "shield"
-tint = Color(0.375553, 0.512641, 0.996167, 1)
+name = "shield"
+tint = Color(0, 0, 0, 1)
 icon = ExtResource("1_rx1wx")
-visual = ExtResource("3_gcjhj")
-duration = 5.0
+duration = 2.0

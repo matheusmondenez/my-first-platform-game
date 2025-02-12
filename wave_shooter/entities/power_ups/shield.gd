@@ -1,5 +1,7 @@
 extends Polygon2D
 
+@export var props: BasePowerUp
+
 func _ready() -> void:
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.07).from(Vector2(0.5, 0.5))
@@ -13,5 +15,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print("INIMIGO NO ESCUDO")
 
 func _on_timer_timeout() -> void:
-	Global.player.power_ups.erase("shield")
-	queue_free()
+	pass
+	#Global.player.power_ups.erase("shield")
+	#queue_free()

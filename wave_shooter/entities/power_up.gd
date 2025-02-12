@@ -1,14 +1,10 @@
 extends Polygon2D
 
-const SHIELD_TSCN: PackedScene = preload("res://wave_shooter/entities/power_ups/shield.tscn")
-
-signal powered_up
-
-var props: BasePowerUp
+var power
 
 func _ready() -> void:
-	if props:
-		$Icon.texture = props.icon
+	if power && power.props:
+		$Icon.texture = power.props.icon
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	#tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.07).from(Vector2(0.5, 0.5))
 	#tween.tween_property(self, "scale", Vector2(1, 1), 0.04)
@@ -23,11 +19,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		if get_meta("spawn_type") == "life":
 			Global.player.lifes += 1
-		elif props is BasePowerUp:
-			Global.player.power_ups.append(props.title)
-			if props.visual:
-				Global.player.add_child(props.visual.instantiate())
-			emit_signal("powered_up")
+		elif power.props is BasePowerUp:
+			PowerUpManager.activate(power, 2)
+			#Global.player.add_child(power)
 		queue_free()
 
 func _on_timer_timeout() -> void:

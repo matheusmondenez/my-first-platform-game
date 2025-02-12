@@ -9,8 +9,9 @@ func _ready() -> void:
 	Global.parent_node_creation = self
 
 func _process(delta: float) -> void:
-	if Global.points >= 20:
-		wave_cleared()
+	pass
+	#if Global.points >= 20:
+		#wave_cleared()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):
@@ -37,8 +38,12 @@ func _on_dificulty_timer_timeout() -> void:
 
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	#var power_up_index = round(randi_range(0, Configs.WAVES[1].power_ups.size() - 1))
-	var power_up = Global.instance_node(POWER_UP_TSCN, power_up_position, self, Configs.WAVES[1].power_ups[0])
+	var power_up = PowerUpManager.get_random()
+	#print("TESTE:: ", load("res://wave_shooter/resoures/power_ups/shield_power_up.tres").name)
+	var power_up_spawn = POWER_UP_TSCN.instantiate()
+	power_up_spawn.power = power_up.instantiate()
+	power_up_spawn.global_position = power_up_position
+	add_child(power_up_spawn)
 
 func _on_life_spawn_timer_timeout() -> void:
 	if Global.player.lifes == 10:
