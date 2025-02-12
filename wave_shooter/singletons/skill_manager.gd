@@ -1,5 +1,7 @@
 extends Node
 
+signal skill_assigned(key: int, skill: PackedScene)
+
 var skills: Array[PackedScene] = [
 	preload("res://wave_shooter/entities/player/sweep_shot.tscn"),
 	preload("res://wave_shooter/entities/player/sweep_shot.tscn"),
@@ -11,6 +13,7 @@ var available: Array[PackedScene] = skills
 var assigned: Array[PackedScene] = []
 
 func assign(skill: PackedScene, key: int) -> void:
+	emit_signal("skill_assigned", key, skill)
 	assigned.insert(key, skill)
 	available.erase(skill)
 

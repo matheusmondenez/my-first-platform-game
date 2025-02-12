@@ -9,9 +9,9 @@ func _ready() -> void:
 	Global.parent_node_creation = self
 
 func _process(delta: float) -> void:
-	pass
-	#if Global.points >= 20:
-		#wave_cleared()
+	#pass
+	if Global.points >= 20:
+		wave_cleared()
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):

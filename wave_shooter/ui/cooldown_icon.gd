@@ -1,6 +1,11 @@
 extends ColorRect
 
 @onready var animation: AnimationPlayer = $Animation
+var label: String:
+	set(value):
+		print("SETOU LABEL")
+		label = value
+		$Teste.text = label
 
 var cooldown: float = 0.0:
 	set(value):
@@ -8,6 +13,7 @@ var cooldown: float = 0.0:
 		update_animation()
 
 func _ready() -> void:
+	$Teste.text = label
 	material = material.duplicate()
 	update_animation()
 

@@ -4,6 +4,7 @@ enum LIVES_UPDATE { INCREASE, DECREASE }
 
 const EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
+const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tscn")
 
 @onready var points: Label = $Score/PointsContainer/Points
 @onready var high_score: Label = $Score/PointsContainer/HighScore
@@ -14,18 +15,51 @@ const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
 @onready var skill_3_icon: ColorRect = $"Skills/3"
 @onready var skill_4_icon: ColorRect = $"Skills/4"
 
+@onready var skill_marker_1: Marker2D = $Skills/SkillMarker1
+@onready var skill_marker_2: Marker2D = $Skills/SkillMarker2
+@onready var skill_marker_3: Marker2D = $Skills/SkillMarker3
+@onready var skill_marker_4: Marker2D = $Skills/SkillMarker4
+
+var icon_1 = SKILL_ICON.instantiate()
+var icon_2 = SKILL_ICON.instantiate()
+var icon_3 = SKILL_ICON.instantiate()
+var icon_4 = SKILL_ICON.instantiate()
+
 func _ready() -> void:
 	init_hud_lifes()
+	SkillManager.skill_assigned.connect(update_skill_icon)
 	high_score.text = str("%03d" % Global.high_score)
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIVES_UPDATE.DECREASE))
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
 	# TESTE
-	skill_1_icon.cooldown = 1
-	skill_2_icon.cooldown = 5
-	skill_3_icon.cooldown = 10
-	skill_4_icon.cooldown = 15
+	#skill_1_icon.cooldown = 1
+	#skill_2_icon.cooldown = 5
+	#skill_3_icon.cooldown = 10
+	#skill_4_icon.cooldown = 15
+
+	# NOVO TESTE
+	icon_1.label = "1" if SkillManager.assigned.size() >= 1 else "0"
+	icon_1.position = skill_marker_1.position
+	icon_1.scale = Vector2(2, 2)
+	add_child(icon_1)
+
+	icon_2.label = "2" if SkillManager.assigned.size() >= 2 else "0"
+	icon_2.position = skill_marker_2.position
+	icon_2.scale = Vector2(2, 2)
+	add_child(icon_2)
+
+	icon_3.label = "3" if SkillManager.assigned.size() >= 3 else "0"
+	icon_3.position = skill_marker_3.position
+	icon_3.scale = Vector2(2, 2)
+	add_child(icon_3)
+
+	icon_4.label = "4" if SkillManager.assigned.size() >= 4 else "0"
+	icon_4.position = skill_marker_4.position
+	icon_4.scale = Vector2(2, 2)
+	add_child(icon_4)
+	
 
 func _process(delta: float) -> void:
 	points.text = str("%03d" % Global.points)
@@ -87,3 +121,14 @@ func remove_hud_life() -> void:
 	explosion.scale_amount_min = 5
 	explosion.scale_amount_max = 17.5
 	explosion.modulate = Color("c92e67")
+
+func update_skill_icon(key: int, skill: PackedScene) -> void:
+	print("ICON SKILL: ", key, skill)
+	if key == 0:
+		icon_1.label = "!"
+	if key == 1:
+		icon_2.label = "!"
+	if key == 2:
+		icon_3.label = "!"
+	if key == 3:
+		icon_4.label = "!"
