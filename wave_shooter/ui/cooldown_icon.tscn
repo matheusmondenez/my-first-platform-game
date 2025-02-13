@@ -67,4 +67,3 @@ theme_override_constants/outline_size = 8
 libraries = {
 "": SubResource("AnimationLibrary_v4mhc")
 }
-autoplay = "cooldown"

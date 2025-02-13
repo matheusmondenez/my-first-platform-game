@@ -10,44 +10,15 @@ const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tsc
 @onready var high_score: Label = $Score/PointsContainer/HighScore
 @onready var auto_shot_icon: TextureRect = $Score/PointsContainer/AutoShotToggle
 
-@onready var skill_marker_1: Marker2D = $Skills/SkillMarker1
-@onready var skill_marker_2: Marker2D = $Skills/SkillMarker2
-@onready var skill_marker_3: Marker2D = $Skills/SkillMarker3
-@onready var skill_marker_4: Marker2D = $Skills/SkillMarker4
-
-var icon_1 = SKILL_ICON.instantiate()
-var icon_2 = SKILL_ICON.instantiate()
-var icon_3 = SKILL_ICON.instantiate()
-var icon_4 = SKILL_ICON.instantiate()
-
 func _ready() -> void:
 	init_hud_lifes()
-	SkillManager.skill_assigned.connect(update_skill_icon)
+	init_hud_skills()
+	#SkillManager.skill_assigned.connect(update_skill_icon)
 	high_score.text = str("%03d" % Global.high_score)
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIVES_UPDATE.DECREASE))
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
-	# NOVO TESTE
-	icon_1.label = "1" if SkillManager.assigned[0] else "0"
-	icon_1.position = skill_marker_1.position
-	icon_1.scale = Vector2(2, 2)
-	add_child(icon_1)
-
-	icon_2.label = "2" if SkillManager.assigned[1] else "0"
-	icon_2.position = skill_marker_2.position
-	icon_2.scale = Vector2(2, 2)
-	add_child(icon_2)
-
-	icon_3.label = "3" if SkillManager.assigned[2] else "0"
-	icon_3.position = skill_marker_3.position
-	icon_3.scale = Vector2(2, 2)
-	add_child(icon_3)
-
-	icon_4.label = "4" if SkillManager.assigned[3] else "0"
-	icon_4.position = skill_marker_4.position
-	icon_4.scale = Vector2(2, 2)
-	add_child(icon_4)
 
 func _process(delta: float) -> void:
 	points.text = str("%03d" % Global.points)
@@ -88,6 +59,15 @@ func init_hud_lifes() -> void:
 	for life in Global.player.lifes:
 		Global.instance_node(LIFE_TSCN, $Life/Markers.get_child(life).global_position, $Life)
 
+func init_hud_skills() -> void:
+	for marker in $Skills.get_children():
+		var icon = SKILL_ICON.instantiate()
+		icon.label = "1" if SkillManager.assigned[0] else "0"
+		icon.position = marker.position
+		icon.cooldown = 60
+		icon.scale = Vector2(2, 2)
+		add_child(icon)
+
 func update_hud_lifes(type) -> void:
 	if type == LIVES_UPDATE.INCREASE:
 		add_hud_life()
@@ -110,13 +90,13 @@ func remove_hud_life() -> void:
 	explosion.scale_amount_max = 17.5
 	explosion.modulate = Color("c92e67")
 
-func update_skill_icon(key: int, skill: PackedScene) -> void:
-	print("ICON SKILL: ", key, skill)
-	if key == 0:
-		icon_1.label = "!"
-	if key == 1:
-		icon_2.label = "!"
-	if key == 2:
-		icon_3.label = "!"
-	if key == 3:
-		icon_4.label = "!"
+#func update_skill_icon(key: int, skill: PackedScene) -> void:
+	#print("ICON SKILL: ", key, skill)
+	#if key == 0:
+		#icon_1.label = "!"
+	#if key == 1:
+		#icon_2.label = "!"
+	#if key == 2:
+		#icon_3.label = "!"
+	#if key == 3:
+		#icon_4.label = "!"

@@ -1,25 +1,11 @@
 extends ColorRect
 
-@onready var animation: AnimationPlayer = $Animation
-var label: String:
-	set(value):
-		label = value
-		$Teste.text = label
-
-var cooldown: float = 0.0:
-	set(value):
-		cooldown = value
-		update_animation()
+var cooldown: float
+var label: String
 
 func _ready() -> void:
-	$Teste.text = label
+	print("CD: ", cooldown)
 	material = material.duplicate()
-	update_animation()
-
-func update_animation():
-	if cooldown <= 0:
-		animation.stop()
-		material.set_shader_parameter("cooldown_progress", 1.0)
-		return
-	animation.speed_scale = animation.get_animation("cooldown").length / cooldown
-	animation.play("cooldown")
+	$Teste.text = label
+	$Animation.speed_scale = $Animation.get_animation("cooldown").length / cooldown
+	$Animation.play("cooldown")
