@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://2mg66kgdu6lq"]
+[gd_scene load_steps=6 format=3 uid="uid://2mg66kgdu6lq"]
 
 [ext_resource type="Script" path="res://wave_shooter/ui/hud.gd" id="1_1ajeg"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="2_fj867"]
 [ext_resource type="Texture2D" uid="uid://clo8m86lf2b05" path="res://wave_shooter/assets/icons/auto.svg" id="5_xekvb"]
-[ext_resource type="PackedScene" uid="uid://dwcwbtu515v06" path="res://wave_shooter/ui/cooldown_icon.tscn" id="6_dphr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqxq1"]
 size = Vector2(69, 38)
@@ -182,42 +181,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="1" parent="Skills" instance=ExtResource("6_dphr2")]
-visible = false
-layout_mode = 0
-offset_left = 523.0
-offset_top = 576.0
-offset_right = 546.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-
-[node name="2" parent="Skills" instance=ExtResource("6_dphr2")]
-visible = false
-layout_mode = 0
-offset_left = 558.0
-offset_top = 576.0
-offset_right = 581.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-
-[node name="3" parent="Skills" instance=ExtResource("6_dphr2")]
-visible = false
-layout_mode = 0
-offset_left = 593.0
-offset_top = 576.0
-offset_right = 616.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
-
-[node name="4" parent="Skills" instance=ExtResource("6_dphr2")]
-visible = false
-layout_mode = 0
-offset_left = 629.0
-offset_top = 576.0
-offset_right = 652.0
-offset_bottom = 599.0
-color = Color(0.713414, 0.000948368, 0.804115, 1)
 
 [node name="SkillMarker1" type="Marker2D" parent="Skills"]
 position = Vector2(523, 592)

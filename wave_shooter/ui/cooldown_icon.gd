@@ -3,7 +3,6 @@ extends ColorRect
 @onready var animation: AnimationPlayer = $Animation
 var label: String:
 	set(value):
-		print("SETOU LABEL")
 		label = value
 		$Teste.text = label
 

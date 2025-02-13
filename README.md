@@ -1,12 +1,12 @@
-# Soul Catcher
-
-A simple platform game made with Godot Engine 4.3 🤖 for study purpose.
-
 # Neon Square Shooter
 
-A Shooter/Ballet Hell with minimalist geometric 🟦🟪🟨 cyberpunk style.
+A fast-paced top-down shooter with roguelike and survivor elements, inspired by Vampire Survivors, Enter the Gungeon, and Brotato. Get ready for a cyber-neon world of chaos, upgrades, and relentless action!
 
-## To Do
+Development is in its early stages and the title is provisional—stay tuned to our devlogs and follow the game's development!
+
+[https://www.instagram.com/lazullstudios/](https://www.instagram.com/lazullstudios/)
+
+## Next Steps
 - Enemies Variety
 - Bosses
 - Power Ups (defense, attack, speed, etc...)

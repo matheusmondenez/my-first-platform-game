@@ -10,11 +10,6 @@ const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tsc
 @onready var high_score: Label = $Score/PointsContainer/HighScore
 @onready var auto_shot_icon: TextureRect = $Score/PointsContainer/AutoShotToggle
 
-@onready var skill_1_icon: ColorRect = $"Skills/1"
-@onready var skill_2_icon: ColorRect = $"Skills/2"
-@onready var skill_3_icon: ColorRect = $"Skills/3"
-@onready var skill_4_icon: ColorRect = $"Skills/4"
-
 @onready var skill_marker_1: Marker2D = $Skills/SkillMarker1
 @onready var skill_marker_2: Marker2D = $Skills/SkillMarker2
 @onready var skill_marker_3: Marker2D = $Skills/SkillMarker3
@@ -33,33 +28,26 @@ func _ready() -> void:
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
 	Global.parent_node_creation = self
 	Global.points = 0
-	# TESTE
-	#skill_1_icon.cooldown = 1
-	#skill_2_icon.cooldown = 5
-	#skill_3_icon.cooldown = 10
-	#skill_4_icon.cooldown = 15
-
 	# NOVO TESTE
-	icon_1.label = "1" if SkillManager.assigned.size() >= 1 else "0"
+	icon_1.label = "1" if SkillManager.assigned[0] else "0"
 	icon_1.position = skill_marker_1.position
 	icon_1.scale = Vector2(2, 2)
 	add_child(icon_1)
 
-	icon_2.label = "2" if SkillManager.assigned.size() >= 2 else "0"
+	icon_2.label = "2" if SkillManager.assigned[1] else "0"
 	icon_2.position = skill_marker_2.position
 	icon_2.scale = Vector2(2, 2)
 	add_child(icon_2)
 
-	icon_3.label = "3" if SkillManager.assigned.size() >= 3 else "0"
+	icon_3.label = "3" if SkillManager.assigned[2] else "0"
 	icon_3.position = skill_marker_3.position
 	icon_3.scale = Vector2(2, 2)
 	add_child(icon_3)
 
-	icon_4.label = "4" if SkillManager.assigned.size() >= 4 else "0"
+	icon_4.label = "4" if SkillManager.assigned[3] else "0"
 	icon_4.position = skill_marker_4.position
 	icon_4.scale = Vector2(2, 2)
 	add_child(icon_4)
-	
 
 func _process(delta: float) -> void:
 	points.text = str("%03d" % Global.points)
