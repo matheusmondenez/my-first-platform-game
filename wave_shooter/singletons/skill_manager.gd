@@ -14,8 +14,10 @@ var assigned: Array[PackedScene] = [null, null, null, null]
 
 func assign(skill: PackedScene, key: int) -> void:
 	emit_signal("skill_assigned", key, skill)
-	assigned.insert(key, skill)
-	available.erase(skill)
+	if assigned.has(null):
+		assigned.erase(null)
+		assigned.insert(key, skill)
+		available.erase(skill)
 
 func get_random(quantity: int = 3) -> Array:
 	var randoms: Array = []
