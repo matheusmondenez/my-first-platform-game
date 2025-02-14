@@ -60,13 +60,15 @@ func init_hud_lifes() -> void:
 		Global.instance_node(LIFE_TSCN, $Life/Markers.get_child(life).global_position, $Life)
 
 func init_hud_skills() -> void:
+	var i: int = 0
 	for marker in $Skills.get_children():
 		var icon = SKILL_ICON.instantiate()
-		icon.label = "1" if SkillManager.assigned[0] else "0"
+		if SkillManager.assigned[i]:
+			icon.skill = SkillManager.assigned[i]
 		icon.position = marker.position
-		icon.cooldown = 60
 		icon.scale = Vector2(2, 2)
 		add_child(icon)
+		i += 1
 
 func update_hud_lifes(type) -> void:
 	if type == LIVES_UPDATE.INCREASE:
