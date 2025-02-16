@@ -26,3 +26,5 @@ Development is in its early stages and the title is provisional—stay tuned to 
 - Pause screen
 - Logo
 - Main menu effects
+- Alcance no tiro
+- Implementar queue_free quando as skills saírem da tela

@@ -1,5 +1,8 @@
 extends Node2D
 
+signal cleared # Melhorar essa lógica
+var emmited := false
+
 const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
 const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
@@ -7,11 +10,14 @@ const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
 func _ready() -> void:
 	Global.parent_node_creation = self
+	SkillManager.clear_all_cooldowns()
+	cleared.connect(wave_cleared)
 
 func _process(delta: float) -> void:
 	#pass
-	if Global.points >= 20:
-		wave_cleared()
+	if Global.points >= 20 and not emmited:
+		emit_signal("cleared")
+		emmited = true
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):

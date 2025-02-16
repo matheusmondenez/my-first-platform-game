@@ -63,8 +63,8 @@ func init_hud_skills() -> void:
 	var i: int = 0
 	for marker in $Skills.get_children():
 		var icon = SKILL_ICON.instantiate()
-		if SkillManager.assigned[i]:
-			icon.skill = SkillManager.assigned[i]
+		if not SkillManager.assigned.is_empty() && SkillManager.assigned[i]:
+			icon.skill = SkillManager.assigned[i]["resource"]
 		icon.position = marker.position
 		icon.scale = Vector2(2, 2)
 		add_child(icon)

@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_lop5k")
 name = "Sweep Shot"
-type = ""
+type = "Attack"
 power = 3
-cooldown = 10.0
+cooldown = 3.0
+is_cooling = false

@@ -1,5 +1,7 @@
 extends Polygon2D
 
+var resource = preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres")
+
 #region preload_scenes
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
 var PIERCE_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/pierce_shot.tscn")
@@ -121,22 +123,21 @@ func die() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_1"):
-		print("SKILL 1!")
-		print(SkillManager.assigned)
-		skill_test(0)
+		use_skill(0)
 	if event.is_action_pressed("skill_2"):
-		print("SKILL 2!")
-		print(SkillManager.assigned)
-		skill_test(1)
+		use_skill(1)
 	if event.is_action_pressed("skill_3"):
-		print("SKILL 3!")
-		print(SkillManager.assigned)
-		skill_test(2)
+		use_skill(2)
 	if event.is_action_pressed("skill_4"):
-		print("SKILL 4!")
-		print(SkillManager.assigned)
-		skill_test(3)
+		use_skill(3)
 
-func skill_test(key: int) -> void:
+func use_skill(key: int) -> void:
 	if not SkillManager.assigned.is_empty() && SkillManager.assigned[key]:
-		Global.instance_node(SkillManager.assigned[key], global_position, Global.parent_node_creation)
+		var skill_props = SkillManager.assigned[key]["resource"]
+		if not skill_props.is_cooling:
+			skill_props.is_cooling = true
+			var skill = SkillManager.assigned[key]["scene"].instantiate()
+			skill.global_position = global_position
+			Global.parent_node_creation.add_child(skill)
+			await get_tree().create_timer(skill_props.cooldown).timeout
+			skill_props.is_cooling = false

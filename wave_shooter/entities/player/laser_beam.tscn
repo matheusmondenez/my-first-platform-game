@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://n4i0i5l814gn"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/player/laser_beam.gd" id="1_6dfcc"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="2_b0q48"]
+
+[sub_resource type="Resource" id="Resource_5nogx"]
+script = ExtResource("2_b0q48")
+name = "Laser Beam"
+type = "Attack"
+power = 20
+cooldown = 5.0
+is_cooling = false
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ayjid"]
+b = Vector2(1664, 0)
+
+[node name="LaserBeam" type="RayCast2D"]
+show_behind_parent = true
+target_position = Vector2(1664, 0)
+script = ExtResource("1_6dfcc")
+props = SubResource("Resource_5nogx")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 1664, 0)
+default_color = Color(1.73271e-06, 0.552337, 0.718667, 1)
+
+[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("SegmentShape2D_ayjid")

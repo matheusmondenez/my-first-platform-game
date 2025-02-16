@@ -1,13 +1,15 @@
 extends ColorRect
 
-var skill: PackedScene = null
+@onready var teste: Label = $Teste
+@onready var animation: AnimationPlayer = $Animation
+
+var skill: BaseSkill = null
 
 func _ready() -> void:
 	if not skill:
-		$".".material.set_shader_parameter("cooldown_progress", 0)
+		material.set_shader_parameter("cooldown_progress", 0)
 	else:
-		var props = Helpers.get_scene_resource_props(skill)
 		material = material.duplicate()
-		$Teste.text = props.name
-		$Animation.speed_scale = $Animation.get_animation("cooldown").length / props.cooldown
-		$Animation.play("cooldown")
+		teste.text = skill.name
+		animation.speed_scale = animation.get_animation("cooldown").length / skill.cooldown
+		animation.play("cooldown")

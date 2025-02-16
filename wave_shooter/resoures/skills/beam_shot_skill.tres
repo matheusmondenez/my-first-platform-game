@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseSkill" load_steps=2 format=3 uid="uid://bw16jlcxo0bl6"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="1_rl44b"]
+
+[resource]
+script = ExtResource("1_rl44b")
+name = "Beam Shot"
+type = "Attack"
+power = 5
+cooldown = 10.0
+is_cooling = false

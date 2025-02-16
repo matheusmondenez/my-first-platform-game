@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseSkill" load_steps=2 format=3 uid="uid://dvdfunc5c4vg1"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="1_6kafw"]
+
+[resource]
+script = ExtResource("1_6kafw")
+name = "Laser Beam"
+type = "Attack"
+power = 10
+cooldown = 5.0
+is_cooling = false
