@@ -10,6 +10,10 @@ func _ready() -> void:
 		material.set_shader_parameter("cooldown_progress", 0)
 	else:
 		material = material.duplicate()
+		material.set_shader_parameter("cooldown_progress", 1)
 		teste.text = skill.name
+
+func _process(delta: float) -> void:
+	if skill && skill.is_cooling:
 		animation.speed_scale = animation.get_animation("cooldown").length / skill.cooldown
 		animation.play("cooldown")
