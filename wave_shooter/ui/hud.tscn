@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://2mg66kgdu6lq"]
+[gd_scene load_steps=7 format=3 uid="uid://2mg66kgdu6lq"]
 
 [ext_resource type="Script" path="res://wave_shooter/ui/hud.gd" id="1_1ajeg"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="2_fj867"]
@@ -9,6 +9,9 @@ size = Vector2(69, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjnuk"]
 size = Vector2(104, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tll2s"]
+size = Vector2(144, 32)
 
 [node name="HUD" type="Control"]
 custom_minimum_size = Vector2(1152, 648)
@@ -27,11 +30,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PointsArea" type="Area2D" parent="Score"]
+[node name="Area" type="Area2D" parent="Score"]
 visible = false
 position = Vector2(1065, 20)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Score/PointsArea"]
+[node name="Shape" type="CollisionShape2D" parent="Score/Area"]
 position = Vector2(32.5, 23)
 shape = SubResource("RectangleShape2D_cqxq1")
 
@@ -77,9 +80,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LifeArea" type="Area2D" parent="Life"]
+[node name="Area" type="Area2D" parent="Life"]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Life/LifeArea"]
+[node name="Shape" type="CollisionShape2D" parent="Life/Area"]
 visible = false
 position = Vector2(69, 36)
 shape = SubResource("RectangleShape2D_vjnuk")
@@ -182,19 +186,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SkillMarker1" type="Marker2D" parent="Skills"]
+[node name="Area" type="Area2D" parent="Skills"]
+visible = false
+position = Vector2(455, 298)
+
+[node name="Shape" type="CollisionShape2D" parent="Skills/Area"]
+position = Vector2(121, 294)
+shape = SubResource("RectangleShape2D_tll2s")
+
+[node name="Markers" type="Node2D" parent="Skills"]
+
+[node name="SkillMarker1" type="Marker2D" parent="Skills/Markers"]
 position = Vector2(523, 592)
 
-[node name="SkillMarker2" type="Marker2D" parent="Skills"]
+[node name="SkillMarker2" type="Marker2D" parent="Skills/Markers"]
 position = Vector2(558, 592)
 
-[node name="SkillMarker3" type="Marker2D" parent="Skills"]
+[node name="SkillMarker3" type="Marker2D" parent="Skills/Markers"]
 position = Vector2(593, 592)
 
-[node name="SkillMarker4" type="Marker2D" parent="Skills"]
+[node name="SkillMarker4" type="Marker2D" parent="Skills/Markers"]
 position = Vector2(629, 592)
 
-[connection signal="area_entered" from="Score/PointsArea" to="." method="_on_points_area_area_entered"]
-[connection signal="area_exited" from="Score/PointsArea" to="." method="_on_points_area_area_exited"]
-[connection signal="area_entered" from="Life/LifeArea" to="." method="_on_life_area_area_entered"]
-[connection signal="area_exited" from="Life/LifeArea" to="." method="_on_life_area_area_exited"]
+[connection signal="area_entered" from="Score/Area" to="." method="_on_points_area_entered"]
+[connection signal="area_exited" from="Score/Area" to="." method="_on_points_area_exited"]
+[connection signal="area_entered" from="Life/Area" to="." method="_on_life_area_entered"]
+[connection signal="area_exited" from="Life/Area" to="." method="_on_life_area_exited"]
+[connection signal="area_entered" from="Skills/Area" to="." method="_on_skills_area_entered"]
+[connection signal="area_exited" from="Skills/Area" to="." method="_on_skills_area_exited"]

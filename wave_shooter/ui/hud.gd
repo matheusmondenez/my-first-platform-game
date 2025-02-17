@@ -26,21 +26,29 @@ func _process(delta: float) -> void:
 		Global.high_score = Global.points
 	auto_shot_icon.visible = Configs.game_configs.auto_shot
 
-func _on_points_area_area_entered(area: Area2D) -> void:
+func _on_points_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
 		change_points_area_opacity(0.5)
 
-func _on_points_area_area_exited(area: Area2D) -> void:
+func _on_points_area_exited(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
 		change_points_area_opacity(1)
 	
-func _on_life_area_area_entered(area: Area2D) -> void:
+func _on_life_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
 		change_life_area_opacity(0.5)
 
-func _on_life_area_area_exited(area: Area2D) -> void:
+func _on_life_area_exited(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
 		change_life_area_opacity(1)
+
+#func _on_skills_area_entered(area: Area2D) -> void:
+	#if area.is_in_group("enemy") or area.is_in_group("player"):
+		#change_skills_area_opacity(0.5)
+
+#func _on_skills_area_exited(area: Area2D) -> void:
+	#if area.is_in_group("enemy") or area.is_in_group("player"):
+		#change_skills_area_opacity(1)
 
 func change_points_area_opacity(value: float) -> void:
 	points.add_theme_color_override("font_color", Color(Color.WHITE, value))
@@ -55,19 +63,22 @@ func change_life_area_opacity(value: float) -> void:
 				if life is Polygon2D:
 					life.color.a = value
 
+func change_skills_area_opacity(value: float) -> void:
+	pass
+
 func init_hud_lifes() -> void:
 	for life in Global.player.lifes:
 		Global.instance_node(LIFE_TSCN, $Life/Markers.get_child(life).global_position, $Life)
 
 func init_hud_skills() -> void:
 	var i: int = 0
-	for marker in $Skills.get_children():
+	for marker in $Skills/Markers.get_children():
 		var icon = SKILL_ICON.instantiate()
 		if not SkillManager.assigned.is_empty() && SkillManager.assigned[i]:
 			icon.skill = SkillManager.assigned[i]["resource"]
 		icon.position = marker.position
 		icon.scale = Vector2(2, 2)
-		add_child(icon)
+		$Skills/Markers.add_child(icon)
 		i += 1
 
 func update_hud_lifes(type) -> void:
