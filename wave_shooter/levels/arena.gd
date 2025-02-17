@@ -3,6 +3,7 @@ extends Node2D
 signal cleared # Melhorar essa lógica
 var emmited := false
 
+const IMPLOSION_TSCN = preload("res://wave_shooter/fx/implosion.tscn")
 const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
 const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
@@ -36,6 +37,13 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.y < 360 and enemy_position.y > -45:
 		enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
 	var enemy_index = round(randi_range(0, Configs.WAVES[1].enemies.size() - 1))
+	# spawn effect
+	var implosion = IMPLOSION_TSCN.instantiate()
+	implosion.global_position = enemy_position
+	add_child(implosion)
+	await get_tree().create_timer(1).timeout
+	implosion.queue_free()
+	# spawn effect
 	Global.instance_node(Configs.WAVES[1].enemies[enemy_index], enemy_position, self)
 
 func _on_dificulty_timer_timeout() -> void:
