@@ -99,4 +99,5 @@ theme_override_font_sizes/font_size = 32
 text = "QUIT"
 
 [connection signal="pressed" from="ButtonsContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ButtonsContainer/ConfigsButton" to="." method="_on_configs_button_pressed"]
 [connection signal="pressed" from="ButtonsContainer/QuitButton" to="." method="_on_quit_button_pressed"]
