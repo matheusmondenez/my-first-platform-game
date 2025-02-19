@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjdg35cmqwkjj"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/player/muzzle.gd" id="1_8o7wr"]
+
+[node name="Muzzle" type="Polygon2D"]
+polygon = PackedVector2Array(40, -16, 40, 16, 56, 0)
+script = ExtResource("1_8o7wr")
