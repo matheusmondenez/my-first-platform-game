@@ -22,6 +22,11 @@ Helpers="*res://wave_shooter/singletons/helpers.gd"
 PowerUpManager="*res://wave_shooter/singletons/power_up_manager.gd"
 SkillManager="*res://wave_shooter/singletons/skill_manager.gd"
 
+[display]
+
+mouse_cursor/custom_image="res://wave_shooter/assets/ui/aim.png"
+mouse_cursor/custom_image_hotspot=Vector2(24, 24)
+
 [input]
 
 left={

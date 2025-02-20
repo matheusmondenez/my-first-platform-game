@@ -15,10 +15,10 @@ func _ready() -> void:
 	cleared.connect(wave_cleared)
 
 func _process(delta: float) -> void:
-	#pass
-	if Global.points >= 20 and not emmited:
-		emit_signal("cleared")
-		emmited = true
+	pass
+	#if Global.points >= 20 and not emmited:
+		#emit_signal("cleared")
+		#emmited = true
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):
@@ -53,10 +53,10 @@ func _on_dificulty_timer_timeout() -> void:
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up = PowerUpManager.get_random()
-	#print("TESTE:: ", load("res://wave_shooter/resoures/power_ups/shield_power_up.tres").name)
 	var power_up_spawn = POWER_UP_TSCN.instantiate()
 	power_up_spawn.power = power_up.instantiate()
 	power_up_spawn.global_position = power_up_position
+	power_up_spawn.scale = Vector2(2, 2)
 	add_child(power_up_spawn)
 
 func _on_life_spawn_timer_timeout() -> void:

@@ -4,6 +4,7 @@ enum LIVES_UPDATE { INCREASE, DECREASE }
 
 const EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 const LIFE_TSCN: PackedScene = preload("res://wave_shooter/entities/life.tscn")
+const POWER_UP_TSCN: PackedScene = preload("res://wave_shooter/entities/power_up.tscn")
 const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tscn")
 
 @onready var points: Label = $Score/PointsContainer/Points
@@ -17,6 +18,7 @@ func _ready() -> void:
 	high_score.text = str("%03d" % Global.high_score)
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIVES_UPDATE.DECREASE))
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
+	PowerUpManager.powered_up.connect(update_hud_power_ups)
 	Global.parent_node_creation = self
 	Global.points = 0
 
@@ -87,9 +89,10 @@ func update_hud_lifes(type) -> void:
 	elif type == LIVES_UPDATE.DECREASE:
 		remove_hud_life()
 
-#func update_hud_power_ups() -> void:
-	#print('Pegou Power Up!')
-	#pass
+func update_hud_power_ups() -> void:
+	for power_up in PowerUpManager.active:
+		var marker = $PowerUps.get_child(PowerUpManager.active.size() - 1)
+		Global.instance_node(POWER_UP_TSCN, marker.global_position, $PowerUps)
 
 func add_hud_life() -> void:
 	Global.instance_node(LIFE_TSCN, $Life/Markers.get_child(Global.player.lifes - 1).global_position, $Life)

@@ -44,7 +44,7 @@ _data = {
 
 [node name="PowerUp" type="Polygon2D"]
 color = Color(3.08037e-06, 0.741164, 0.392184, 1)
-polygon = PackedVector2Array(0, -16, -16, 0, 0, 16, 16, 0)
+polygon = PackedVector2Array(0, -8, -8, 0, 0, 8, 8, 0)
 script = ExtResource("1_6pmq7")
 
 [node name="Area2D" type="Area2D" parent="."]

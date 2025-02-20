@@ -8,7 +8,7 @@
 size = Vector2(69, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjnuk"]
-size = Vector2(104, 38)
+size = Vector2(104, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tll2s"]
 size = Vector2(144, 32)
@@ -84,8 +84,7 @@ grow_vertical = 2
 visible = false
 
 [node name="Shape" type="CollisionShape2D" parent="Life/Area"]
-visible = false
-position = Vector2(69, 36)
+position = Vector2(69, 32.5)
 shape = SubResource("RectangleShape2D_vjnuk")
 
 [node name="Markers" type="Node2D" parent="Life"]
