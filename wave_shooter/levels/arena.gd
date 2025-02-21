@@ -4,6 +4,7 @@ signal cleared # Melhorar essa lógica
 var emmited := false
 
 const IMPLOSION_TSCN = preload("res://wave_shooter/fx/implosion.tscn")
+const LIFE_TSCN = preload("res://wave_shooter/entities/life.tscn")
 const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
 const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
@@ -63,6 +64,10 @@ func _on_life_spawn_timer_timeout() -> void:
 	if Global.player.lifes == 10:
 		return
 	var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	var life = Global.instance_node(POWER_UP_TSCN, life_position, self)
+	#var life = Global.instance_node(POWER_UP_TSCN, life_position, self)
+	var life = POWER_UP_TSCN.instantiate()
+	life.global_position = life_position
+	life.scale = Vector2(2, 2)
 	life.color = Color("ad0057")
 	life.set_meta("spawn_type", "life")
+	add_child(life)

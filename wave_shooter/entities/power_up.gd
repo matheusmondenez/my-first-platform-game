@@ -3,8 +3,8 @@ extends Polygon2D
 var power
 
 func _ready() -> void:
-	if power && power.props:
-		$Icon.texture = power.props.icon
+	#if power && power.props:
+		#$Icon.texture = power.props.icon
 	var tween = create_tween().set_ease(Tween.EASE_IN_OUT)
 	#tween.tween_property(self, "scale", Vector2(1.3, 1.3), 0.07).from(Vector2(0.5, 0.5))
 	#tween.tween_property(self, "scale", Vector2(1, 1), 0.04)
