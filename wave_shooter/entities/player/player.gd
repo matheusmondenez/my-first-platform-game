@@ -3,11 +3,10 @@ extends Polygon2D
 var resource = preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres")
 
 #region preload_scenes
-var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/player/projectile.tscn")
+var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
 var PIERCE_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/pierce_shot.tscn")
 var EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn")
 var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
-var SWEEP_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/sweep_shot.tscn")
 #endregion
 
 signal life_decreased

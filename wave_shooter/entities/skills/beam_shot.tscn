@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b7cwuc2671faq"]
 
-[ext_resource type="Script" path="res://wave_shooter/entities/player/beam_shot.gd" id="1_jvi6k"]
+[ext_resource type="Script" path="res://wave_shooter/entities/skills/beam_shot.gd" id="1_jvi6k"]
 [ext_resource type="Texture2D" uid="uid://da1lqkkhfqw66" path="res://wave_shooter/assets/icons/star.png" id="1_kmipt"]
 [ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="2_jl0el"]
 

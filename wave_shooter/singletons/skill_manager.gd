@@ -4,15 +4,15 @@ extends Node
 
 var skills: Array[Dictionary] = [
 	{
-		"scene": preload("res://wave_shooter/entities/player/sweep_shot.tscn"),
+		"scene": preload("res://wave_shooter/entities/skills/sweep_shot.tscn"),
 		"resource": preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres"),
 	},
 	{
-		"scene": preload("res://wave_shooter/entities/player/beam_shot.tscn"),
+		"scene": preload("res://wave_shooter/entities/skills/beam_shot.tscn"),
 		"resource": preload("res://wave_shooter/resoures/skills/beam_shot_skill.tres"),
 	},
 	{
-		"scene": preload("res://wave_shooter/entities/player/laser_beam.tscn"),
+		"scene": preload("res://wave_shooter/entities/skills/laser_beam.tscn"),
 		"resource": preload("res://wave_shooter/resoures/skills/laser_beam_skill.tres"),
 	},
 ]

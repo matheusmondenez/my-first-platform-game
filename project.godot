@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.3", "Mobile")
 
 [autoload]
 
-Global="*res://wave_shooter/global.gd"
-Configs="*res://wave_shooter/configs.gd"
+Global="*res://wave_shooter/singletons/global.gd"
+Configs="*res://wave_shooter/singletons/configs.gd"
 Helpers="*res://wave_shooter/singletons/helpers.gd"
 PowerUpManager="*res://wave_shooter/singletons/power_up_manager.gd"
 SkillManager="*res://wave_shooter/singletons/skill_manager.gd"
@@ -26,6 +26,20 @@ SkillManager="*res://wave_shooter/singletons/skill_manager.gd"
 
 mouse_cursor/custom_image="res://wave_shooter/assets/ui/aim.png"
 mouse_cursor/custom_image_hotspot=Vector2(24, 24)
+
+[file_customization]
+
+folder_colors={
+"res://wave_shooter/assets/": "orange",
+"res://wave_shooter/build/": "green",
+"res://wave_shooter/entities/": "blue",
+"res://wave_shooter/fx/": "pink",
+"res://wave_shooter/levels/": "yellow",
+"res://wave_shooter/resoures/": "purple",
+"res://wave_shooter/shaders/": "teal",
+"res://wave_shooter/singletons/": "gray",
+"res://wave_shooter/ui/": "green"
+}
 
 [input]
 
