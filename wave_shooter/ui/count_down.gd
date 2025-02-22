@@ -26,4 +26,4 @@ func tween_label() -> void:
 func reset_tween() -> void:
 	$Counter.modulate.a = 1
 	$Counter.scale = Vector2(1, 1)
-	$Counter.position = Vector2(528, 242)
+	$Counter.position = Vector2(1920/2, 1080/2)

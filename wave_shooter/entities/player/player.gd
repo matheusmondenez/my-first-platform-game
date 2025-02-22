@@ -63,7 +63,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func move(delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
-	global_position = Vector2(clamp(global_position.x, 24, 1127), clamp(global_position.y, 24, 624))
+	global_position = Vector2(clamp(global_position.x, 25, 1895), clamp(global_position.y, 25, 1055))
 	global_position += speed * direction * delta
 
 func dash(delta) -> void:

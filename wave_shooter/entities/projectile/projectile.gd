@@ -5,6 +5,8 @@ var speed: int = 500
 var unique_direction: bool = true
 var angle: int = 0
 var power: int = 1
+var origin: String = "Player"
+var target: Vector2 = Vector2.ZERO
 var pierce: bool = false
 
 func _ready() -> void:
@@ -12,7 +14,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if unique_direction:
-		look_at(get_global_mouse_position())
+		if origin == "Player":
+			look_at(get_global_mouse_position())
+		else:
+			look_at(target)
 		unique_direction = false
 	global_position += move.rotated(rotation - angle) * speed * delta
 

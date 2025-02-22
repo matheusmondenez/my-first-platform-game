@@ -30,7 +30,7 @@ func _exit_tree() -> void:
 
 func wave_cleared() -> void:
 	var wave_cleared = WAVE_CLEARED_TSCN.instantiate()
-	wave_cleared.position = Vector2(1152/2, 648/2)
+	wave_cleared.position = Vector2(1920/2, 1080/2) # Rever solução
 	add_child(wave_cleared)
 
 func _on_enemy_spawn_timer_timeout() -> void:

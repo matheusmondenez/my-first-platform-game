@@ -16,3 +16,6 @@ func pause() -> void:
 func resume() -> void:
 	visible = false
 	get_tree().paused = false
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

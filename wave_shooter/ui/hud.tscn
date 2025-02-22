@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://clo8m86lf2b05" path="res://wave_shooter/assets/icons/auto.svg" id="5_xekvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqxq1"]
-size = Vector2(69, 38)
+size = Vector2(72, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjnuk"]
 size = Vector2(104, 31)
@@ -14,17 +14,18 @@ size = Vector2(104, 31)
 size = Vector2(144, 32)
 
 [node name="HUD" type="Control"]
-custom_minimum_size = Vector2(1152, 648)
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_1ajeg")
 
 [node name="Score" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -32,10 +33,10 @@ grow_vertical = 2
 
 [node name="Area" type="Area2D" parent="Score"]
 visible = false
-position = Vector2(1065, 20)
+position = Vector2(1834, 20)
 
 [node name="Shape" type="CollisionShape2D" parent="Score/Area"]
-position = Vector2(32.5, 23)
+position = Vector2(34, 24)
 shape = SubResource("RectangleShape2D_cqxq1")
 
 [node name="PointsContainer" type="VBoxContainer" parent="Score"]
@@ -196,16 +197,16 @@ shape = SubResource("RectangleShape2D_tll2s")
 [node name="Markers" type="Node2D" parent="Skills"]
 
 [node name="SkillMarker1" type="Marker2D" parent="Skills/Markers"]
-position = Vector2(523, 592)
+position = Vector2(906, 1018)
 
 [node name="SkillMarker2" type="Marker2D" parent="Skills/Markers"]
-position = Vector2(558, 592)
+position = Vector2(941, 1018)
 
 [node name="SkillMarker3" type="Marker2D" parent="Skills/Markers"]
-position = Vector2(593, 592)
+position = Vector2(976, 1018)
 
 [node name="SkillMarker4" type="Marker2D" parent="Skills/Markers"]
-position = Vector2(629, 592)
+position = Vector2(1012, 1018)
 
 [connection signal="area_entered" from="Score/Area" to="." method="_on_points_area_entered"]
 [connection signal="area_exited" from="Score/Area" to="." method="_on_points_area_exited"]

@@ -1,6 +1,7 @@
 class_name BaseEnemy extends Polygon2D
 
 const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
+const PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
 
 @export_category("Stats")
 @export var stats: BaseEnemyStats
@@ -11,6 +12,7 @@ const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
 
 var direction: Vector2 = Vector2.ZERO
 var is_stunned: bool = false
+var can_shoot: bool = true
 
 #region lifecicle
 func _ready() -> void:
@@ -20,6 +22,11 @@ func _ready() -> void:
 #region _process
 func _process(delta: float) -> void:
 	chase_player(delta)
+	if can_shoot:
+		can_shoot = false
+		await get_tree().create_timer(2).timeout
+		shoot()
+		can_shoot = true
 	if stats.life <= 0 and Global.parent_node_creation:
 		die()
 #endregion
@@ -31,6 +38,12 @@ func chase_player(delta) -> void:
 	elif is_stunned:
 		direction = lerp(direction, Vector2.ZERO, 0.3)
 	global_position += direction * stats.speed * delta # Verifiar a necessidade de normalizar o vetor de direction
+
+func shoot() -> void:
+	var projectile = PROJECTILE_TSCN.instantiate()
+	projectile.target = Global.player.global_position
+	projectile.origin = "Enemy"
+	add_child(projectile)
 	
 func die() -> void:
 	if Global.camera:
@@ -45,10 +58,10 @@ func die() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
 		var shot = area.get_parent()
-		if shot is Polygon2D and shot.name != "Shield": # Projectile is Polygon2D
+		if shot.origin == "Player" and shot is Polygon2D and shot.name != "Shield": # Projectile is Polygon2D
 			stats.life -= shot.power # Bug porque o shield tá entrando aqui
 		else: # SweepShot is Sprite2D
-			if shot.name != "Shield":
+			if shot.name != "Shield" and shot.origin == "Player":
 				stats.life -= shot.props.power
 		is_stunned = true
 		color = Color.WHITE
@@ -57,7 +70,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			direction = -direction * 60000
 		else:
 			direction = -direction * stats.knockback_force
-		if shot is Polygon2D and shot.name != "Shield" && not shot.pierce:
+		if shot is Polygon2D and shot.name != "Shield" && not shot.pierce && shot.origin == "Player":
 			area.get_parent().queue_free()
 		$Timer.start()
 

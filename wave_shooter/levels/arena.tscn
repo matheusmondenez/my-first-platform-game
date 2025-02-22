@@ -20,7 +20,7 @@ script = ExtResource("1_hn6cv")
 environment = SubResource("Environment_sgqdw")
 
 [node name="Player" parent="." instance=ExtResource("1_0xoxs")]
-position = Vector2(576, 325)
+position = Vector2(960, 540)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -39,19 +39,27 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="HUD" parent="UI" instance=ExtResource("4_xjdad")]
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="Pause" parent="UI" instance=ExtResource("5_abl1j")]
-offset_left = 576.0
-offset_top = 324.0
-offset_right = 576.0
-offset_bottom = 324.0
+visible = false
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(960, 540)
 script = ExtResource("5_nfxav")
 
 [node name="Timer" type="Timer" parent="Camera"]
