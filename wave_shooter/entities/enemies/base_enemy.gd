@@ -43,6 +43,7 @@ func shoot() -> void:
 	var projectile = PROJECTILE_TSCN.instantiate()
 	projectile.target = Global.player.global_position
 	projectile.origin = "Enemy"
+	projectile.direction = global_position.direction_to(Global.player.global_position)
 	add_child(projectile)
 	
 func die() -> void:

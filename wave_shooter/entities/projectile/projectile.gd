@@ -7,6 +7,7 @@ var angle: int = 0
 var power: int = 1
 var origin: String = "Player"
 var target: Vector2 = Vector2.ZERO
+var direction: Vector2 = Vector2.ZERO
 var pierce: bool = false
 
 func _ready() -> void:
