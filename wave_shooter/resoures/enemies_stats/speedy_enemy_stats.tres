@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://75q5caep8jwx"]
+[gd_resource type="Resource" script_class="BaseEnemyStats" load_steps=2 format=3 uid="uid://75q5caep8jwx"]
 
-[ext_resource type="Script" path="res://wave_shooter/resoures/enemies_stats/base_enemy_stats.gd" id="1_p4sn4"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/enemies_stats/base_enemy_stats.gd" id="1_osk8s"]
 
 [resource]
-script = ExtResource("1_p4sn4")
+resource_local_to_scene = true
+script = ExtResource("1_osk8s")
 tint = Color(0.631373, 0.4, 0, 1)
 life = 1
 speed = 150

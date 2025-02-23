@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://y5emvb7hv3ji"]
+
+[ext_resource type="PackedScene" uid="uid://ebylq8dxub7n" path="res://wave_shooter/entities/enemies/default/default_enemy.tscn" id="1_ulw2a"]
+[ext_resource type="Resource" uid="uid://dxmwx432fx4jx" path="res://wave_shooter/resoures/enemies_stats/tank_enemy_stats.tres" id="2_q22um"]
+
+[node name="TankEnemy" instance=ExtResource("1_ulw2a")]
+color = Color(0.45098, 0.32549, 1, 1)
+stats = ExtResource("2_q22um")

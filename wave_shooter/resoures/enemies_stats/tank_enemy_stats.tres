@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseEnemyStats" load_steps=2 format=3 uid="uid://dxmwx432fx4jx"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/enemies_stats/base_enemy_stats.gd" id="1_mit3t"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_mit3t")
+tint = Color(0.449449, 0.323838, 1, 1)
+life = 10
+speed = 50
+knockback_force = 6

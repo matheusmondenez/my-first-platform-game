@@ -62,7 +62,7 @@ func die() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
 		var shot = area.get_parent()
-		if shot.origin == "Player" and shot is Polygon2D and shot.name != "Shield": # Projectile is Polygon2D
+		if shot.name != "Shield" and shot.origin == "Player" and shot is Polygon2D: # Projectile is Polygon2D
 			stats.life -= shot.power # Bug porque o shield tá entrando aqui
 		else: # SweepShot is Sprite2D
 			if shot.name != "Shield" and shot.origin == "Player":
