@@ -19,9 +19,9 @@ script = ExtResource("1_lb8tn")
 metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
 metadata/_edit_vertical_guides_ = [25.0, -25.0]
 
-[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+[node name="Area" type="Area2D" parent="." groups=["player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Shape" type="CollisionShape2D" parent="Area"]
 visible = false
 shape = SubResource("RectangleShape2D_8i6sj")
 
@@ -42,7 +42,7 @@ closed = true
 width = 1.0
 default_color = Color(0.290196, 0.372549, 0.866667, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="Border"]
+[node name="Spotlight" type="PointLight2D" parent="Border"]
 position = Vector2(-2.38419e-07, -25)
 scale = Vector2(0.0991211, 0.0991211)
 energy = 1.5
@@ -51,5 +51,5 @@ texture = ExtResource("2_sejr8")
 [node name="Muzzle" parent="." instance=ExtResource("4_atk27")]
 rotation = -1.57066
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

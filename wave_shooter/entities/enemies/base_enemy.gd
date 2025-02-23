@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 		can_shoot = false
 		await get_tree().create_timer(2).timeout
 		shoot()
+		shoot()
+		shoot()
 		can_shoot = true
 	if stats.life <= 0 and Global.parent_node_creation:
 		die()
@@ -50,6 +52,7 @@ func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
 	var blood = Global.instance_node(BLOOD_TSCN, global_position, Global.parent_node_creation)
+	blood.color = stats.tint
 	blood.rotation = direction.angle()
 	queue_free()
 	Global.points += 10
@@ -77,5 +80,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_timer_timeout() -> void:
 	is_stunned = false
-	color = Color("c92e67")
+	color = stats.tint
 #endregion

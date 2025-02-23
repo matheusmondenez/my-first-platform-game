@@ -1,7 +1,5 @@
 extends Polygon2D
 
-var resource = preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres")
-
 #region preload_scenes
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
 var PIERCE_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/pierce_shot.tscn")
@@ -39,9 +37,9 @@ func _process(delta: float) -> void:
 		move(delta)
 	if Global.parent_node_creation and is_loaded and not is_dead:
 		if not Configs.game_configs.auto_shot and Input.is_action_pressed("shoot"):
-			shot()
+			shoot()
 		elif Configs.game_configs.auto_shot:
-			shot()
+			shoot()
 	if Input.is_action_just_pressed("dash"):
 		dash(delta)
 #endregion
@@ -54,7 +52,7 @@ func _on_timer_timeout() -> void:
 	is_loaded = true
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") or area.get_parent().origin == "Enemy": # Inimigo ou projétil com origem no inimigo
+	if area.is_in_group("enemy"):
 		var enemy = area.get_parent()
 		enemy.queue_free()
 		take_damage(1, enemy.direction)
@@ -67,15 +65,15 @@ func move(delta) -> void:
 	global_position += speed * direction * delta
 
 func dash(delta) -> void:
-	$Area2D.monitoring = false
+	$Area.monitoring = false
 	$Trail.visible = true
-	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1).finished.connect(func(): $Area2D.monitoring = true)
+	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1).finished.connect(func(): $Area.monitoring = true)
 	await get_tree().create_timer(0.5).timeout
 	$Trail.visible = false
 
-func shot() -> void:
-	var shot = PROJECTILE_TSCN # PROJECTILE_TSCN # PIERCE_SHOT_TSCN
-	Global.instance_node(shot, global_position, Global.parent_node_creation)
+func shoot() -> void:
+	var projectile = PROJECTILE_TSCN # PROJECTILE_TSCN # PIERCE_SHOT_TSCN
+	Global.instance_node(projectile, global_position, Global.parent_node_creation)
 	#if power_ups.has("triple_shot"):
 		#var left_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
 		#left_shot.angle = 345
@@ -97,7 +95,7 @@ func knockback(direction: Vector2, force: float) -> void:
 	#global_position += force * direction
 
 func handle_spotlight(delta) -> void:
-	var spotlight: PointLight2D = $Border/PointLight2D
+	var spotlight: PointLight2D = $Border/Spotlight
 	var clamp_range = 25
 	var mouse_global: Vector2 = get_global_mouse_position()
 	var mouse_local: Vector2 = to_local(mouse_global)
@@ -111,8 +109,8 @@ func handle_spotlight(delta) -> void:
 		spotlight.position = spotlight.position.lerp(edge_position, 10 * delta)
 
 func die() -> void:
-	$Area2D.monitoring = false
-	$Area2D.monitorable = false
+	$Area.monitoring = false
+	$Area.monitorable = false
 	is_dead = true
 	visible = false
 	var explosion = Global.instance_node(EXPLOSION_TSCN, global_position, Global.parent_node_creation)
