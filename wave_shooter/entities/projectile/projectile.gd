@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if unique_direction:
-		if origin == "Player":
+		if get_parent().name == "Arena":
 			look_at(get_global_mouse_position())
 		else:
 			look_at(target)

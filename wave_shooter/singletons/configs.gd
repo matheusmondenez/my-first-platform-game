@@ -26,22 +26,10 @@ const WAVES: Dictionary = {
 	9: {},
 	10: {},
 }
-const SKILLS: Array = [
-	preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres"),
-	preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres"),
-	preload("res://wave_shooter/resoures/skills/sweep_shot_skill.tres"),
-]
 
 var game_configs: Dictionary = {
 	"auto_shot": false,
 	"camera_shake": true,
 	"fullscreen": true,
 	"language": LANGUAGES.EN,
-}
-
-var assigned_skills: Dictionary = {
-	1: null,
-	2: null,
-	3: null,
-	4: null,
 }

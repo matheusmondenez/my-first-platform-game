@@ -62,10 +62,10 @@ func die() -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage") and not is_stunned:
 		var shot = area.get_parent()
-		if shot.name != "Shield" and shot.origin == "Player" and shot is Polygon2D: # Projectile is Polygon2D
+		if shot.name != "Shield" and shot.get_parent().name == "Arena" and shot is Polygon2D: # Projectile is Polygon2D
 			stats.life -= shot.power # Bug porque o shield tá entrando aqui
 		else: # SweepShot is Sprite2D
-			if shot.name != "Shield" and shot.origin == "Player":
+			if shot.name != "Shield" and shot.get_parent().name == "Arena":
 				stats.life -= shot.props.power
 		is_stunned = true
 		color = Color.WHITE
@@ -74,7 +74,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			direction = -direction * 60000
 		else:
 			direction = -direction * stats.knockback_force
-		if shot is Polygon2D and shot.name != "Shield" && not shot.pierce && shot.origin == "Player":
+		if shot is Polygon2D and shot.name != "Shield" && not shot.pierce && shot.get_parent().name == "Arena":
 			area.get_parent().queue_free()
 		$Timer.start()
 
