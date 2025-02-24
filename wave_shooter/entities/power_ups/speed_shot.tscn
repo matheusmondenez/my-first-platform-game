@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ilsi7hnnfclg"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/power_ups/speed_shot.gd" id="1_lm2cf"]
+[ext_resource type="Resource" uid="uid://cwrhn1gag2oye" path="res://wave_shooter/resoures/power_ups/speed_shot_power_up.tres" id="2_525fo"]
+
+[node name="SpeedShot" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = -10.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 12)
+size_flags_horizontal = 4
+text = "X2"
+script = ExtResource("1_lm2cf")
+props = ExtResource("2_525fo")

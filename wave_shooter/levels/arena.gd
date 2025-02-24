@@ -55,7 +55,8 @@ func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up = PowerUpManager.get_random()
 	var power_up_spawn = POWER_UP_TSCN.instantiate()
-	power_up_spawn.power = power_up.instantiate()
+	power_up_spawn.power = power_up
+	power_up_spawn.color = power_up.resource.tint
 	power_up_spawn.global_position = power_up_position
 	power_up_spawn.scale = Vector2(2, 2)
 	add_child(power_up_spawn)

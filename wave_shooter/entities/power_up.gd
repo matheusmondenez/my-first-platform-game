@@ -19,8 +19,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		if get_meta("spawn_type") == "life":
 			Global.player.lifes += 1
-		elif power.props is BasePowerUp:
-			PowerUpManager.activate(power, 2)
+		elif power.resource is BasePowerUp:
+			PowerUpManager.activate(power.scene, power.resource.duration)
 			#Global.player.add_child(power)
 		queue_free()
 
