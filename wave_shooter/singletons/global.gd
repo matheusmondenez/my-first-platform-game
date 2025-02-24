@@ -3,7 +3,6 @@ extends Node
 var parent_node_creation = null
 var camera = null
 var player = null
-var life: int = 3
 var points: int = 0
 var high_score: int = 0
 var current_wave: int = 1

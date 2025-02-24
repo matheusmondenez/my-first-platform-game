@@ -16,9 +16,9 @@ func _ready() -> void:
 	cleared.connect(wave_cleared)
 
 func _process(delta: float) -> void:
-	if Global.points >= 20 and not emmited:
-		emit_signal("cleared")
-		emmited = true
+	#if Global.points >= 20 and not emmited:
+		#emit_signal("cleared")
+		#emmited = true
 	pass
 
 func _unhandled_key_input(event: InputEvent) -> void:

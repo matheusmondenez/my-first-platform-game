@@ -18,7 +18,8 @@ signal life_increased
 			emit_signal("life_decreased")
 		elif lifes > previous_lifes:
 			emit_signal("life_increased")
-
+var level: int = 1
+var xp: int = 0
 var direction: Vector2 = Vector2.ZERO
 var speed: int = 250
 var dash_speed: int = speed * 50
