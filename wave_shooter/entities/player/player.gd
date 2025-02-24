@@ -52,8 +52,8 @@ func _on_timer_timeout() -> void:
 	is_loaded = true
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy"):
-		var enemy = area.get_parent()
+	if area.is_in_group("enemy") or area.get_parent().get_meta("origin") == "enemy_shot":
+		var enemy = area.get_parent() # Pode ser um inimigo ou um tiro de inimigo
 		enemy.queue_free()
 		take_damage(1, enemy.direction)
 		if lifes <= 0:

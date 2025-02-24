@@ -26,8 +26,6 @@ func _process(delta: float) -> void:
 		can_shoot = false
 		await get_tree().create_timer(2).timeout
 		shoot()
-		shoot()
-		shoot()
 		can_shoot = true
 	if stats.life <= 0 and Global.parent_node_creation:
 		die()
@@ -44,8 +42,8 @@ func chase_player(delta) -> void:
 func shoot() -> void:
 	var projectile = PROJECTILE_TSCN.instantiate()
 	projectile.target = Global.player.global_position
-	projectile.origin = "Enemy"
 	projectile.direction = global_position.direction_to(Global.player.global_position)
+	projectile.set_meta("origin", "enemy_shot")
 	add_child(projectile)
 	
 func die() -> void:
