@@ -8,6 +8,8 @@ var max_size = 10
 var hspread = 400
 var cull = 0.5
 
+var path
+
 func _ready():
 	randomize()
 	make_rooms()
@@ -21,15 +23,25 @@ func make_rooms():
 		r.make_room(pos, Vector2(w, h) * tile_size)
 		$Rooms.add_child(r)
 	await  get_tree().create_timer(1.1).timeout
+	var room_positions = []
 	for room in $Rooms.get_children():
 		if randf() < cull:
 			room.queue_free()
 		else:
 			room.freeze = true
+			room_positions.append(room.position)
+	await get_tree().process_frame
+	path = find_minimum_spanning_tree(room_positions)
 
 func _draw():
 	for room in $Rooms.get_children():
 		draw_rect(Rect2(room.position - room.size, room.size * 2), Color(32, 228, 0), false)
+	if path:
+		for p in path.get_point_ids():
+			for c in path.get_point_connections(p):
+				var pp = path.get_point_position(p)
+				var cp = path.get_point_position(c)
+				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(1, 1, 0), 15, true)
 
 func _process(delta: float):
 	queue_redraw()
@@ -39,3 +51,23 @@ func _input(event: InputEvent):
 		for n in $Rooms.get_children():
 			n.queue_free()
 		make_rooms()
+
+func find_minimum_spanning_tree(nodes):
+	var path = AStar2D.new()
+	path.add_point(path.get_available_point_id(), nodes.pop_front())
+	while nodes:
+		var min_dist = INF
+		var min_p = null
+		var p = null
+		for point_id in path.get_point_ids():
+			var p1 = path.get_point_position(point_id)
+			for p2 in nodes:
+				if p1.distance_to(p2) < min_dist:
+					min_dist = p1.distance_to(p2)
+					min_p = p2
+					p = p1
+		var n = path.get_available_point_id()
+		path.add_point(n, min_p)
+		path.connect_points(path.get_closest_point(p), n)
+		nodes.erase(min_p)
+	return path
