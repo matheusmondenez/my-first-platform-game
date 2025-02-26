@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c38m1ggjb4qwi"]
+[gd_scene load_steps=5 format=3 uid="uid://c38m1ggjb4qwi"]
 
 [ext_resource type="Script" path="res://wave_shooter/procedural_teste.gd" id="1_aj6bs"]
+[ext_resource type="Texture2D" uid="uid://c0e03talehwv5" path="res://wave_shooter/assets/tileset_test/tileset.png" id="2_tycqy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qd3i"]
+texture = ExtResource("2_tycqy")
+13:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iwb0r"]
+sources/1 = SubResource("TileSetAtlasSource_2qd3i")
 
 [node name="ProceduralTeste" type="Node2D"]
 script = ExtResource("1_aj6bs")
@@ -9,3 +17,7 @@ script = ExtResource("1_aj6bs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.1, 0.1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+show_behind_parent = true
+tile_set = SubResource("TileSet_iwb0r")
