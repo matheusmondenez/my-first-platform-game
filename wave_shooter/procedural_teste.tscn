@@ -9,6 +9,7 @@ texture = ExtResource("2_tycqy")
 3:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_iwb0r"]
+terrain_set_0/mode = 0
 sources/1 = SubResource("TileSetAtlasSource_2qd3i")
 
 [node name="ProceduralTeste" type="Node2D"]
