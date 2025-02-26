@@ -3,7 +3,7 @@ extends Node2D
 @onready var Map: TileMapLayer = $TileMapLayer
 
 var Room = preload("res://wave_shooter/teste.tscn")
-var tile_size = 32
+var tile_size = 16
 var num_rooms = 50
 var min_size = 4
 var max_size = 10
@@ -46,6 +46,13 @@ func make_map():
 	for x in range(topleft.x, bottomright.x):
 		for y in range(topleft.y, bottomright.y):
 			Map.set_cell(Vector2i(x, y), 1, Vector2i(13, 3), 0)
+	for room in $Rooms.get_children():
+		var s = (room.size/tile_size).floor()
+		var pos = Map.local_to_map(room.position)
+		var ul = (room.position/tile_size).floor() - s # upper left
+		for x in range(2, s.x * 2 - 1):
+			for y in range(2, s.y * 2 - 1):
+				Map.set_cell(Vector2i(ul.x + x, ul.y + y), 1, Vector2i(3, 1), 0)
 
 func _draw():
 	for room in $Rooms.get_children():

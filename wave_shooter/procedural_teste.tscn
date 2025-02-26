@@ -6,6 +6,7 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2qd3i"]
 texture = ExtResource("2_tycqy")
 13:3/0 = 0
+3:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_iwb0r"]
 sources/1 = SubResource("TileSetAtlasSource_2qd3i")
@@ -16,7 +17,7 @@ script = ExtResource("1_aj6bs")
 [node name="Rooms" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.1, 0.1)
+zoom = Vector2(0.4, 0.4)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 show_behind_parent = true
