@@ -6,4 +6,4 @@
 script = ExtResource("1_epjw4")
 name = "speed_shot"
 tint = Color(0.019357, 0.592284, 0.902562, 1)
-duration = 5.0
+duration = 20.0

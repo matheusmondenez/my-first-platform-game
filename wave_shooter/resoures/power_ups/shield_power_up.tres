@@ -8,4 +8,4 @@ script = ExtResource("1_g64l5")
 name = "shield"
 tint = Color(0, 0.741176, 0.392157, 1)
 icon = ExtResource("1_rx1wx")
-duration = 2.0
+duration = 20.0

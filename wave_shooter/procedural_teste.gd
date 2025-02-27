@@ -86,7 +86,6 @@ func carve_path(pos1, pos2):
 		await get_tree().process_frame
 		Map.set_cell(Vector2i(x, x_y.y), 1, Vector2i(3, 1))
 		Map.set_cell(Vector2i(x, x_y.y + y_diff), 1, Vector2i(3, 1)) # Aumenta a largura do corredor
-	await get_tree().create_timer(2).timeout
 	for y in range(pos1.y, pos2.y, y_diff):
 		await get_tree().process_frame
 		Map.set_cell(Vector2i(y_x.x, y), 1, Vector2i(3, 1))

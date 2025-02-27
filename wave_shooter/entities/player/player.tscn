@@ -1,15 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://55q8dyag7rwi"]
+[gd_scene load_steps=9 format=3 uid="uid://55q8dyag7rwi"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/player/player.gd" id="1_lb8tn"]
 [ext_resource type="Texture2D" uid="uid://e4n6v37oasge" path="res://wave_shooter/assets/ui/light.png" id="2_sejr8"]
 [ext_resource type="PackedScene" uid="uid://w7tys8q5tlwc" path="res://wave_shooter/fx/trail.tscn" id="3_nie46"]
 [ext_resource type="PackedScene" uid="uid://cjdg35cmqwkjj" path="res://wave_shooter/entities/player/muzzle.tscn" id="4_atk27"]
+[ext_resource type="Shader" path="res://wave_shooter/shaders/glitch.gdshader" id="5_iwlhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i6sj"]
 size = Vector2(50, 50)
 
 [sub_resource type="Gradient" id="Gradient_bgrt0"]
 colors = PackedColorArray(0.290196, 0.372549, 0.866667, 0, 0.290196, 0.372549, 0.866667, 0.501961)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8heqw"]
+resource_local_to_scene = true
+shader = ExtResource("5_iwlhq")
+shader_parameter/shake_power = 0.1
+shader_parameter/shake_rate = 1.0
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="Player" type="Polygon2D"]
 light_mask = 0
@@ -50,6 +60,16 @@ texture = ExtResource("2_sejr8")
 
 [node name="Muzzle" parent="." instance=ExtResource("4_atk27")]
 rotation = -1.57066
+
+[node name="Glitch" type="ColorRect" parent="."]
+visible = false
+light_mask = 0
+material = SubResource("ShaderMaterial_8heqw")
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = 32.0
+color = Color(1, 1, 1, 0)
 
 [connection signal="area_entered" from="Area" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

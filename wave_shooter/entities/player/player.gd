@@ -62,7 +62,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func move(delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
-	#global_position = Vector2(clamp(global_position.x, 25, 1895), clamp(global_position.y, 25, 1055))
+	global_position = Vector2(clamp(global_position.x, 25, 1895), clamp(global_position.y, 25, 1055))
 	global_position += speed * direction * delta
 
 func dash(delta) -> void:
@@ -89,6 +89,10 @@ func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
 	var screen_damage = Global.instance_node(SCREEN_DAMAGE_TSCN, Vector2(576, 324), Global.camera)
 	screen_damage.modulate = Color("4a5fdd")
 	lifes -= damage
+	# Glitch effect
+	$Glitch.visible = true
+	await get_tree().create_timer(0.2).timeout
+	$Glitch.visible = false
 
 func knockback(direction: Vector2, force: float) -> void:
 	direction = direction.normalized() * force
