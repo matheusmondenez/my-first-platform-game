@@ -10,6 +10,7 @@ const WAVES: Dictionary = {
 			preload("res://wave_shooter/entities/enemies/default/default_enemy.tscn"),
 			preload("res://wave_shooter/entities/enemies/speedy/speedy_enemy.tscn"),
 			preload("res://wave_shooter/entities/enemies/tank/tank_enemy.tscn"),
+			preload("res://wave_shooter/entities/enemies/rotating/rotating_enemy.tscn"),
 		],
 		"power_ups_to_spawn": 1,
 		"power_ups": [

@@ -19,7 +19,9 @@ func _process(delta: float) -> void:
 		else:
 			look_at(target)
 		unique_direction = false
-	global_position += move.rotated(rotation - angle) * speed * delta
+		global_position += move.rotated(rotation - angle) * speed * delta
+	else:
+		global_position += transform.x * speed * delta
 
 func _on_shoot_screen_exited() -> void:
 	queue_free()
