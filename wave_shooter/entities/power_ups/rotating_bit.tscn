@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://q3btvfkg53h"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/power_ups/rotating_bit.gd" id="1_oo33m"]
+
+[node name="RotatingBit" type="Polygon2D"]
+polygon = PackedVector2Array(-7, -53, 9, -53, 9, -69, -7, -69)
+script = ExtResource("1_oo33m")
