@@ -1,6 +1,7 @@
 extends Polygon2D
 
 @export var speed: int = 100
+var pierce = true
 
 func _process(delta: float) -> void:
 	var rotation = rotation_degrees + speed * delta

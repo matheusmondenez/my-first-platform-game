@@ -1,7 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://q3btvfkg53h"]
+[gd_scene load_steps=3 format=3 uid="uid://q3btvfkg53h"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/power_ups/rotating_bit.gd" id="1_oo33m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nr7ux"]
+size = Vector2(16, 16)
+
 [node name="RotatingBit" type="Polygon2D"]
-polygon = PackedVector2Array(-7, -53, 9, -53, 9, -69, -7, -69)
+position = Vector2(-1, 0)
+polygon = PackedVector2Array(-7, -64, 9, -64, 9, -80, -7, -80)
 script = ExtResource("1_oo33m")
+
+[node name="Area" type="Area2D" parent="." groups=["damage"]]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+position = Vector2(1, -72)
+shape = SubResource("RectangleShape2D_nr7ux")
