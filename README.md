@@ -1,4 +1,4 @@
-# Neon Square Shooter
+# Neon Square Shooter 🟦🟪🟨🟩
 
 A fast-paced top-down shooter with roguelike and survivor elements, inspired by Vampire Survivors, Enter the Gungeon, and Brotato. Get ready for a cyber-neon world of chaos, upgrades, and relentless action!
 
