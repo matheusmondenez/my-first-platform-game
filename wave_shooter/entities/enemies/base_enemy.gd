@@ -6,12 +6,7 @@ const PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projec
 @export_category("Stats")
 @export var stats: BaseEnemyStats
 
-#@export var hp: int = 3
-#@export var speed: int = 75
-#@export var knockback: int = 6
-
 var direction: Vector2 = Vector2.ZERO
-var is_stunned: bool = false
 var can_shoot: bool = true
 
 #region lifecicle
@@ -25,7 +20,7 @@ func _process(delta: float) -> void:
 	if can_shoot:
 		can_shoot = false
 		await get_tree().create_timer(2).timeout
-		shoot()
+		#shoot()
 		can_shoot = true
 	if stats.life <= 0 and Global.parent_node_creation:
 		die()
@@ -33,10 +28,8 @@ func _process(delta: float) -> void:
 #endregion
 
 func chase_player(delta) -> void:
-	if Global.player and not is_stunned:
+	if Global.player:
 		direction = global_position.direction_to(Global.player.global_position)
-	elif is_stunned:
-		direction = lerp(direction, Vector2.ZERO, 0.3)
 	global_position += direction * stats.speed * delta # Verifiar a necessidade de normalizar o vetor de direction
 
 func shoot() -> void:
@@ -46,43 +39,30 @@ func shoot() -> void:
 	projectile.set_meta("origin", "enemy_shot")
 	add_child(projectile)
 
-func take_damage() -> void:
-	pass
+func take_damage(damage) -> void:
+	stats.life -= damage
+	knockback()
 
 func knockback() -> void:
-	pass
+	#direction = lerp(direction, Vector2.ZERO, 0.3)
+	direction = -direction.normalized() * 6
+	create_tween().tween_property(self, "global_position", global_position + 6 * direction, 0.3)
 
 func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
 	var blood = Global.instance_node(BLOOD_TSCN, global_position, Global.parent_node_creation)
 	blood.color = stats.tint
-	blood.rotation = direction.angle()
+	blood.rotation = fmod(direction.angle() - deg_to_rad(180), 360)
 	queue_free()
 	Global.points += 10
 	Global.enemies_count += 1
 
 #region signals
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("damage") and not is_stunned:
+	if area.is_in_group("damage"):
 		var shot = area.get_parent()
-		if shot.name != "Shield" and shot.get_parent().name == "Arena" and shot is Polygon2D: # Projectile is Polygon2D
-			stats.life -= shot.power # Bug porque o shield tá entrando aqui
-		else: # SweepShot is Sprite2D
-			if shot.name != "Shield" and shot.get_parent().name == "Arena":
-				stats.life -= shot.props.power
-		is_stunned = true
+		take_damage(shot.power)
 		color = Color.WHITE
-		if area.name == "Shield":
-			print("ESCUDADA")
-			direction = -direction * 60000
-		else:
-			direction = -direction * stats.knockback_force
-		if shot is Polygon2D and shot.name != "Shield" && not shot.pierce && shot.get_parent().name == "Arena":
-			area.get_parent().queue_free()
-		$Timer.start()
-
-func _on_timer_timeout() -> void:
-	is_stunned = false
-	color = stats.tint
+		area.get_parent().queue_free()
 #endregion
