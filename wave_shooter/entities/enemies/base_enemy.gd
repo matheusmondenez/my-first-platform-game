@@ -45,7 +45,13 @@ func shoot() -> void:
 	projectile.direction = global_position.direction_to(Global.player.global_position)
 	projectile.set_meta("origin", "enemy_shot")
 	add_child(projectile)
-	
+
+func take_damage() -> void:
+	pass
+
+func knockback() -> void:
+	pass
+
 func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
