@@ -48,7 +48,7 @@ func take_damage(damage) -> void:
 
 func knockback() -> void:
 	#direction = lerp(direction, Vector2.ZERO, 0.3)
-	direction = -direction.normalized()# * 6
+	direction = -direction.normalized() * 6
 	create_tween().tween_property(self, "global_position", global_position + 6 * direction, 0.1)
 
 func die() -> void:
