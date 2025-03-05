@@ -22,8 +22,6 @@ func _process(delta: float) -> void:
 		await get_tree().create_timer(2).timeout
 		#shoot()
 		can_shoot = true
-	if stats.life <= 0 and Global.parent_node_creation:
-		die()
 #endregion
 #endregion
 
@@ -40,20 +38,25 @@ func shoot() -> void:
 	add_child(projectile)
 
 func take_damage(damage) -> void:
+	color = Color("fff")
 	stats.life -= damage
 	knockback()
+	if stats.life <= 0:
+		die()
+	await get_tree().create_timer(0.1).timeout
+	color = Color(stats.tint)
 
 func knockback() -> void:
 	#direction = lerp(direction, Vector2.ZERO, 0.3)
-	direction = -direction.normalized() * 6
-	create_tween().tween_property(self, "global_position", global_position + 6 * direction, 0.3)
+	direction = -direction.normalized()# * 6
+	create_tween().tween_property(self, "global_position", global_position + 6 * direction, 0.1)
 
 func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
 	var blood = Global.instance_node(BLOOD_TSCN, global_position, Global.parent_node_creation)
 	blood.color = stats.tint
-	blood.rotation = fmod(direction.angle() - deg_to_rad(180), 360)
+	blood.rotation = direction.angle()
 	queue_free()
 	Global.points += 10
 	Global.enemies_count += 1
@@ -63,6 +66,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage"):
 		var shot = area.get_parent()
 		take_damage(shot.power)
-		color = Color.WHITE
 		area.get_parent().queue_free()
 #endregion
