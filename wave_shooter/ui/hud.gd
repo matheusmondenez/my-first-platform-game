@@ -9,6 +9,7 @@ const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tsc
 
 @onready var points: Label = $Score/PointsContainer/Points
 @onready var high_score: Label = $Score/PointsContainer/HighScore
+@onready var level: Label = $Score/PointsContainer/Level
 @onready var auto_shot_icon: TextureRect = $Score/PointsContainer/AutoShotToggle
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _process(delta: float) -> void:
 	points.text = str("%03d" % Global.points)
 	if Global.points > Global.high_score:
 		Global.high_score = Global.points
+	level.text = str("Level ", Global.level)
 	auto_shot_icon.visible = Configs.game_configs.auto_shot
 
 func _on_points_area_entered(area: Area2D) -> void:

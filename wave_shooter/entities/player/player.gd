@@ -117,7 +117,7 @@ func handle_spotlight(delta) -> void:
 func handle_level() -> void:
 	print("LEVEL: ", Global.level)
 	print("XP: ", Global.xp)
-	if Global.xp > Global.LEVELS[Global.level]["max_xp"]:
+	if Global.level < 5 and Global.xp > Global.LEVELS[Global.level]["max_xp"]:
 		Global.level += 1
 
 func die() -> void:
