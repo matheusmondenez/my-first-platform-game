@@ -13,7 +13,8 @@ const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
 func _ready() -> void:
 	Global.parent_node_creation = self
 	SkillManager.clear_all_cooldowns()
-	cleared.connect(wave_cleared)
+	#cleared.connect(wave_cleared)
+	Global.player.level_up.connect(wave_cleared)
 
 func _process(delta: float) -> void:
 	#if Global.points >= 20 and not emmited:

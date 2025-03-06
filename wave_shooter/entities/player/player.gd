@@ -9,6 +9,7 @@ var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_dama
 
 signal life_decreased
 signal life_increased
+signal level_up
 
 @export var lifes: int = 3:
 	set(value):
@@ -115,10 +116,9 @@ func handle_spotlight(delta) -> void:
 		spotlight.position = spotlight.position.lerp(edge_position, 10 * delta)
 
 func handle_level() -> void:
-	print("LEVEL: ", Global.level)
-	print("XP: ", Global.xp)
 	if Global.level < 5 and Global.xp > Global.LEVELS[Global.level]["max_xp"]:
 		Global.level += 1
+		emit_signal("level_up")
 
 func die() -> void:
 	$Area.monitoring = false

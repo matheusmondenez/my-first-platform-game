@@ -15,7 +15,7 @@ const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tsc
 func _ready() -> void:
 	init_hud_lifes()
 	init_hud_skills()
-	#SkillManager.skill_assigned.connect(update_skill_icon)
+	SkillManager.skill_assigned.connect(update_skill_icon)
 	high_score.text = str("%03d" % Global.high_score)
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIVES_UPDATE.DECREASE))
 	Global.player.life_increased.connect(update_hud_lifes.bind(LIVES_UPDATE.INCREASE))
@@ -82,6 +82,7 @@ func init_hud_skills() -> void:
 			icon.skill = SkillManager.assigned[i]["resource"]
 		icon.position = marker.position
 		icon.scale = Vector2(2, 2)
+		marker.queue_free()
 		$Skills/Markers.add_child(icon)
 		i += 1
 
@@ -108,13 +109,7 @@ func remove_hud_life() -> void:
 	explosion.scale_amount_max = 17.5
 	explosion.modulate = Color("c92e67")
 
-#func update_skill_icon(key: int, skill: PackedScene) -> void:
-	#print("ICON SKILL: ", key, skill)
-	#if key == 0:
-		#icon_1.label = "!"
-	#if key == 1:
-		#icon_2.label = "!"
-	#if key == 2:
-		#icon_3.label = "!"
-	#if key == 3:
-		#icon_4.label = "!"
+func update_skill_icon(key: int, skill: Dictionary) -> void:
+	#print("UPDATE SKILL: ", key, skill)
+	var icon = $Skills/Markers.get_child(key)
+	icon.skill = skill["resource"]

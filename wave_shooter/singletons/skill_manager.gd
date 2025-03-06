@@ -1,6 +1,6 @@
 extends Node
 
-#signal skill_assigned(key: int, skill: PackedScene)
+signal skill_assigned(key: int, skill: Dictionary)
 
 var skills: Array[Dictionary] = [
 	{
@@ -20,7 +20,7 @@ var available: Array[Dictionary] = skills
 var assigned: Array[Dictionary] = [{}, {}, {}, {}]
 
 func assign(skill: Dictionary, key: int) -> void:
-	#emit_signal("skill_assigned", key, skill)
+	emit_signal("skill_assigned", key, skill)
 	if assigned[key].is_empty():
 		assigned.pop_at(key)
 		assigned.insert(key, skill)

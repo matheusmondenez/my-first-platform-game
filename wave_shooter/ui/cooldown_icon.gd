@@ -3,7 +3,10 @@ extends ColorRect
 @onready var teste: Label = $Teste
 @onready var animation: AnimationPlayer = $Animation
 
-var skill: BaseSkill = null
+var skill: BaseSkill = null:
+	set(value):
+		skill = value
+		teste.text = skill.name
 
 func _ready() -> void:
 	if not skill:
