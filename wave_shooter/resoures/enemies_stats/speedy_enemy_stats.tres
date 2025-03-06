@@ -8,4 +8,5 @@ script = ExtResource("1_osk8s")
 tint = Color(0.631373, 0.4, 0, 1)
 life = 1
 speed = 150
-knockback_force = 6
+weight = 5
+given_xp = 2

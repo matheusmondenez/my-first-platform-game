@@ -8,4 +8,5 @@ script = ExtResource("1_mit3t")
 tint = Color(0.449449, 0.323838, 1, 1)
 life = 10
 speed = 50
-knockback_force = 6
+weight = 15
+given_xp = 3

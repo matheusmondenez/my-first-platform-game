@@ -11,7 +11,6 @@ var can_shoot: bool = true
 
 #region lifecicle
 func _ready() -> void:
-	stats = stats.duplicate(true) # Não precisa disso se marar o Resource > Local to Scene
 	color = stats.tint
 
 #region _process
@@ -60,6 +59,7 @@ func die() -> void:
 	queue_free()
 	Global.points += 10
 	Global.enemies_count += 1
+	Global.xp += stats.given_xp
 
 #region signals
 func _on_area_2d_area_entered(area: Area2D) -> void:

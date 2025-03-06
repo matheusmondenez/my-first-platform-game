@@ -8,4 +8,5 @@ script = ExtResource("1_6ucgq")
 tint = Color(0.788235, 0.180392, 0.403922, 1)
 life = 3
 speed = 75
-knockback_force = 6
+weight = 5
+given_xp = 1

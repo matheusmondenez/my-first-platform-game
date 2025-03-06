@@ -3,6 +3,7 @@ extends Node
 enum LANGUAGES { PT, EN }
 
 const VERSION: String = "0.0.2"
+const DEBUG_MODE: bool = true
 const WAVES: Dictionary = {
 	1: {
 		"enemies_to_spawn": 10,

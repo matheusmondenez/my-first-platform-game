@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdge81isdmgwf"]
+[gd_scene load_steps=5 format=3 uid="uid://bdge81isdmgwf"]
 
 [ext_resource type="Script" path="res://wave_shooter/ui/count_down.gd" id="1_kht6a"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="1_kqtjv"]
+[ext_resource type="Shader" path="res://wave_shooter/shaders/darkened_gaussian_blur.gdshader" id="2_0s5i4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6d05n"]
+shader = ExtResource("2_0s5i4")
+shader_parameter/strength = 3.3
+shader_parameter/mix_percentage = 0.3
 
 [node name="CountDown" type="Control"]
 process_mode = 3
@@ -15,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_kht6a")
 
 [node name="Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_6d05n")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

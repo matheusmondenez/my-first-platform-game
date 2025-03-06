@@ -35,6 +35,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not is_dead:
 		handle_spotlight(delta)
+		handle_level()
 		move(delta)
 	if Global.parent_node_creation and is_loaded and not is_dead:
 		if not Configs.game_configs.auto_shot and Input.is_action_pressed("shoot"):
@@ -112,6 +113,12 @@ func handle_spotlight(delta) -> void:
 		var max_component = max(abs(mouse_local.x), abs(mouse_local.y))
 		edge_position = mouse_local * (clamp_range / max_component)
 		spotlight.position = spotlight.position.lerp(edge_position, 10 * delta)
+
+func handle_level() -> void:
+	print("LEVEL: ", Global.level)
+	print("XP: ", Global.xp)
+	if Global.xp > Global.LEVELS[Global.level]["max_xp"]:
+		Global.level += 1
 
 func die() -> void:
 	$Area.monitoring = false
