@@ -7,10 +7,14 @@ var EXPLOSION_TSCN: PackedScene = preload("res://wave_shooter/fx/explosion.tscn"
 var SCREEN_DAMAGE_TSCN: PackedScene = preload("res://wave_shooter/ui/screen_damage.tscn")
 #endregion
 
+#region signals
 signal life_decreased
 signal life_increased
 signal level_up
+#endregion
 
+#region variables
+#region exports
 @export var lifes: int = 3:
 	set(value):
 		var previous_lifes = lifes
@@ -19,6 +23,7 @@ signal level_up
 			emit_signal("life_decreased")
 		elif lifes > previous_lifes:
 			emit_signal("life_increased")
+#endregion
 
 var shots: int = 5
 var is_loading: bool = false
@@ -30,6 +35,7 @@ var direction: Vector2 = Vector2.ZERO
 var speed: int = 250
 var dash_speed: int = speed * 50
 #var power_ups: Array = []
+#endregion
 
 #region life_cicle
 func _ready() -> void:
@@ -63,6 +69,7 @@ func _exit_tree() -> void:
 	Global.player = null
 #endregion
 
+#region triggers
 func _on_shot_interval_timeout() -> void:
 	can_shot = true
 
@@ -77,6 +84,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		take_damage(1, enemy.direction)
 		if lifes <= 0:
 			die()
+#endregion
 
 func move(delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
@@ -86,9 +94,9 @@ func move(delta) -> void:
 	move_and_slide()
 
 func dash(delta) -> void:
-	$Area.monitoring = false
+	$Hurtbox.monitoring = false
 	$Trail.visible = true
-	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1).finished.connect(func(): $Area.monitoring = true)
+	create_tween().tween_property(self, "global_position", global_position + dash_speed * direction * delta, 0.1).finished.connect(func(): $Hurtbox.monitoring = true)
 	await get_tree().create_timer(0.5).timeout
 	$Trail.visible = false
 
@@ -144,8 +152,8 @@ func handle_level() -> void:
 		emit_signal("level_up")
 
 func die() -> void:
-	$Area.monitoring = false
-	$Area.monitorable = false
+	$Hurtbox.monitoring = false
+	$Hurtbox.monitorable = false
 	is_dead = true
 	visible = false
 	var explosion = Global.instance_node(EXPLOSION_TSCN, global_position, Global.parent_node_creation)

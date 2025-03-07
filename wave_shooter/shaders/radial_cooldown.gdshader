@@ -18,7 +18,7 @@ bool in_cooldown(vec2 uv, float progress) {
     float angle = atan(centered_uv.y, centered_uv.x) / (2.0 * 3.14159265359) + 0.5;
 
     // Shift by 0.125 (45° / 360°)
-	angle = mod(angle - 0.125, 1.0);
+	angle = mod(angle - 0.25, 1.0);
 
     // Check if the point is within the cooldown arc
     return (angle <= progress);
@@ -34,7 +34,7 @@ void fragment() {
         COLOR = tex_color;
     } else {
         // If not within the cooldown, check the transparency toggle
-        if (true) {
+        if (true && tex_color.a != 0.0) {
             // Set the color to the texture color with adjusted alpha
             COLOR = vec4(tex_color.rgb, transparency_alpha);
         } else {

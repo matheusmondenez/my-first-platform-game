@@ -41,9 +41,9 @@ texture = ExtResource("2_s6g6v")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_82fus")
 
-[node name="Area" type="Area2D" parent="." groups=["player"]]
+[node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
 
-[node name="Shape" type="CollisionShape2D" parent="Area"]
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
 visible = false
 shape = SubResource("RectangleShape2D_8i6sj")
 
@@ -86,6 +86,6 @@ one_shot = true
 [node name="ShotLoader" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_entered" from="Area" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="ShotInterval" to="." method="_on_shot_interval_timeout"]
 [connection signal="timeout" from="ShotLoader" to="." method="_on_shot_loader_timeout"]

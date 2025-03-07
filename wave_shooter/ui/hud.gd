@@ -81,7 +81,6 @@ func init_hud_skills() -> void:
 		if not SkillManager.assigned.is_empty() && SkillManager.assigned[i]:
 			icon.skill = SkillManager.assigned[i]["resource"]
 		icon.position = marker.position
-		icon.scale = Vector2(2, 2)
 		marker.queue_free()
 		$Skills/Markers.add_child(icon)
 		i += 1
@@ -110,6 +109,5 @@ func remove_hud_life() -> void:
 	explosion.modulate = Color("c92e67")
 
 func update_skill_icon(key: int, skill: Dictionary) -> void:
-	#print("UPDATE SKILL: ", key, skill)
 	var icon = $Skills/Markers.get_child(key)
 	icon.skill = skill["resource"]
