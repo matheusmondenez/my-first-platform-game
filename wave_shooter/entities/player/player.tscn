@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://55q8dyag7rwi"]
+[gd_scene load_steps=11 format=3 uid="uid://55q8dyag7rwi"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/player/player.gd" id="1_lb8tn"]
+[ext_resource type="Texture2D" uid="uid://4kxjn2bwdkrn" path="res://wave_shooter/assets/shapes/square-10x10.svg" id="2_s6g6v"]
 [ext_resource type="Texture2D" uid="uid://e4n6v37oasge" path="res://wave_shooter/assets/ui/light.png" id="2_sejr8"]
 [ext_resource type="PackedScene" uid="uid://w7tys8q5tlwc" path="res://wave_shooter/fx/trail.tscn" id="3_nie46"]
 [ext_resource type="PackedScene" uid="uid://cjdg35cmqwkjj" path="res://wave_shooter/entities/player/muzzle.tscn" id="4_atk27"]
 [ext_resource type="Shader" path="res://wave_shooter/shaders/glitch.gdshader" id="5_iwlhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82fus"]
+size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i6sj"]
 size = Vector2(50, 50)
@@ -21,23 +25,27 @@ shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
-[node name="Player" type="Polygon2D"]
+[node name="Player" type="CharacterBody2D"]
 light_mask = 0
-color = Color(0.290256, 0.370965, 0.867435, 1)
-polygon = PackedVector2Array(-25, -25, -25, 25, 25, 25, 25, -25)
+motion_mode = 1
 script = ExtResource("1_lb8tn")
 metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
 metadata/_edit_vertical_guides_ = [25.0, -25.0]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+light_mask = 0
+position = Vector2(4.76837e-07, 4.76837e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("2_s6g6v")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_82fus")
 
 [node name="Area" type="Area2D" parent="." groups=["player"]]
 
 [node name="Shape" type="CollisionShape2D" parent="Area"]
 visible = false
 shape = SubResource("RectangleShape2D_8i6sj")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [node name="Trail" parent="." instance=ExtResource("3_nie46")]
 visible = false
@@ -71,5 +79,13 @@ offset_right = 40.0
 offset_bottom = 32.0
 color = Color(1, 1, 1, 0)
 
+[node name="ShotInterval" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ShotLoader" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="Area" to="." method="_on_area_2d_area_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShotInterval" to="." method="_on_shot_interval_timeout"]
+[connection signal="timeout" from="ShotLoader" to="." method="_on_shot_loader_timeout"]

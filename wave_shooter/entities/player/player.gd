@@ -1,4 +1,4 @@
-extends Polygon2D
+extends CharacterBody2D
 
 #region preload_scenes
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
@@ -19,17 +19,21 @@ signal level_up
 			emit_signal("life_decreased")
 		elif lifes > previous_lifes:
 			emit_signal("life_increased")
+
+var shots: int = 5
+var is_loading: bool = false
+var can_shot: bool = true
+var is_dead: bool = false
 var level: int = 1
 var xp: int = 0
 var direction: Vector2 = Vector2.ZERO
 var speed: int = 250
 var dash_speed: int = speed * 50
-var is_loaded: bool = true
-var is_dead: bool = false
 #var power_ups: Array = []
 
 #region life_cicle
 func _ready() -> void:
+	$Sprite.modulate = Color("4a5fdd")
 	Global.player = self
 
 #region _process
@@ -37,22 +41,34 @@ func _process(delta: float) -> void:
 	if not is_dead:
 		handle_spotlight(delta)
 		handle_level()
-		move(delta)
-	if Global.parent_node_creation and is_loaded and not is_dead:
+	if Global.parent_node_creation and can_shot and not is_loading and not is_dead:
 		if not Configs.game_configs.auto_shot and Input.is_action_pressed("shoot"):
-			shoot()
+			if shots > 0:
+				shoot()
+			else:
+				reload()
 		elif Configs.game_configs.auto_shot:
-			shoot()
+			if shots > 0:
+				shoot()
+			else:
+				reload()
 	if Input.is_action_just_pressed("dash"):
 		dash(delta)
+
+func _physics_process(delta: float) -> void:
+	move(delta)
 #endregion
 
 func _exit_tree() -> void:
 	Global.player = null
 #endregion
 
-func _on_timer_timeout() -> void:
-	is_loaded = true
+func _on_shot_interval_timeout() -> void:
+	can_shot = true
+
+func _on_shot_loader_timeout() -> void:
+	shots = 5
+	is_loading = false
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.get_parent().get_meta("origin") == "enemy_shot":
@@ -65,7 +81,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func move(delta) -> void:
 	direction = Input.get_vector("left", "right", "up", "down")
 	global_position = Vector2(clamp(global_position.x, 25, 1895), clamp(global_position.y, 25, 1055))
-	global_position += speed * direction * delta
+	#global_position += speed * direction * delta
+	velocity = direction * speed
+	move_and_slide()
 
 func dash(delta) -> void:
 	$Area.monitoring = false
@@ -77,13 +95,18 @@ func dash(delta) -> void:
 func shoot() -> void:
 	var projectile = PROJECTILE_TSCN # PROJECTILE_TSCN # PIERCE_SHOT_TSCN
 	Global.instance_node(projectile, global_position, Global.parent_node_creation)
+	shots -= 1
 	#if power_ups.has("triple_shot"):
 		#var left_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
 		#left_shot.angle = 345
 		#var right_shot = Global.instance_node(shot, global_position, Global.parent_node_creation)
 		#right_shot.angle = -345
-	is_loaded = false
-	$Timer.start()
+	can_shot = false
+	$ShotInterval.start()
+
+func reload() -> void:
+	is_loading = true
+	$ShotLoader.start()
 
 func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
 	knockback(knokback, 5) # Implementar a força de acordo com a speed e/ou peso do inimigo
