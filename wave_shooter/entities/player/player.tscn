@@ -33,15 +33,18 @@ metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
 metadata/_edit_vertical_guides_ = [25.0, -25.0]
 
 [node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.290196, 0.372549, 0.866667, 1)
 light_mask = 0
 position = Vector2(4.76837e-07, 4.76837e-07)
 scale = Vector2(5, 5)
 texture = ExtResource("2_s6g6v")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_82fus")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
+visible = false
 
 [node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
 visible = false

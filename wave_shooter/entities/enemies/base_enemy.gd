@@ -1,6 +1,7 @@
 class_name BaseEnemy extends Polygon2D
 
 const BLOOD_TSCN: PackedScene = preload("res://wave_shooter/fx/blood.tscn")
+const XP_GEM_TSCN: PackedScene = preload("res://wave_shooter/entities/xp_gem.tscn")
 const PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
 
 @export_category("Stats")
@@ -53,13 +54,13 @@ func knockback() -> void:
 func die() -> void:
 	if Global.camera:
 		Global.camera.shake_screen(50, 0.1)
+	Global.instance_node(XP_GEM_TSCN, global_position, Global.parent_node_creation)
 	var blood = Global.instance_node(BLOOD_TSCN, global_position, Global.parent_node_creation)
 	blood.color = stats.tint
 	blood.rotation = direction.angle()
-	queue_free()
 	Global.points += 10
 	Global.enemies_count += 1
-	Global.xp += stats.given_xp
+	queue_free()
 
 #region signals
 func _on_area_2d_area_entered(area: Area2D) -> void:
