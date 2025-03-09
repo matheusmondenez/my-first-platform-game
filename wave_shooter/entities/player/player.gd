@@ -28,6 +28,7 @@ signal level_up
 var shots: int = 5
 var is_loading: bool = false
 var can_shot: bool = true
+var can_dash: bool = false
 var is_dead: bool = false
 var level: int = 1
 var xp: int = 0
@@ -58,7 +59,7 @@ func _process(delta: float) -> void:
 				shoot()
 			else:
 				reload()
-	if Input.is_action_just_pressed("dash"):
+	if can_dash and Input.is_action_just_pressed("dash"):
 		dash(delta)
 
 func _physics_process(delta: float) -> void:
@@ -76,6 +77,9 @@ func _on_shot_interval_timeout() -> void:
 func _on_shot_loader_timeout() -> void:
 	shots = 5
 	is_loading = false
+	add_child(load("res://wave_shooter/talents/speed_shot.tscn").instantiate().apply())
+	add_child(load("res://wave_shooter/talents/speed_movement.tscn").instantiate().apply())
+	add_child(load("res://wave_shooter/talents/dash.tscn").instantiate().apply())
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.get_parent().get_meta("origin") == "enemy_shot":

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cq8ejf5s8ps4h"]
+
+[ext_resource type="Script" path="res://wave_shooter/talents/speed_movement.gd" id="1_lr8yd"]
+
+[node name="SpeedMovement" type="Node"]
+script = ExtResource("1_lr8yd")

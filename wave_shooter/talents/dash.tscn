@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ha0xbstf753"]
+
+[ext_resource type="Script" path="res://wave_shooter/talents/dash.gd" id="1_lp2kc"]
+
+[node name="Dash" type="Node"]
+script = ExtResource("1_lp2kc")
