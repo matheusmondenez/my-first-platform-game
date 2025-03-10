@@ -20,8 +20,10 @@ texture = ExtResource("1_kmipt")
 script = ExtResource("1_jvi6k")
 props = SubResource("Resource_s46g4")
 
-[node name="Area" type="Area2D" parent="." groups=["damage"]]
+[node name="Area" type="Area2D" parent="." groups=["skill"]]
+collision_layer = 16
+collision_mask = 2
 
-[node name="Collision" type="CollisionShape2D" parent="Area" groups=["damage"]]
+[node name="Collision" type="CollisionShape2D" parent="Area"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_48qoc")

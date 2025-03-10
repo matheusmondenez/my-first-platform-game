@@ -24,7 +24,9 @@ props = SubResource("Resource_5nogx")
 points = PackedVector2Array(0, 0, 1664, 0)
 default_color = Color(1.73271e-06, 0.552337, 0.718667, 1)
 
-[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
+[node name="Area2D" type="Area2D" parent="." groups=["skill"]]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("SegmentShape2D_ayjid")

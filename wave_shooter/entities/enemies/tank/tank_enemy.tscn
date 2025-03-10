@@ -4,5 +4,4 @@
 [ext_resource type="Resource" uid="uid://dxmwx432fx4jx" path="res://wave_shooter/resoures/enemies_stats/tank_enemy_stats.tres" id="2_q22um"]
 
 [node name="TankEnemy" instance=ExtResource("1_ulw2a")]
-color = Color(0.45098, 0.32549, 1, 1)
 stats = ExtResource("2_q22um")
