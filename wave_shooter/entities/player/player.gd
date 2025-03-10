@@ -77,9 +77,9 @@ func _on_shot_interval_timeout() -> void:
 func _on_shot_loader_timeout() -> void:
 	shots = 5
 	is_loading = false
-	add_child(load("res://wave_shooter/talents/speed_shot.tscn").instantiate().apply())
-	add_child(load("res://wave_shooter/talents/speed_movement.tscn").instantiate().apply())
-	add_child(load("res://wave_shooter/talents/dash.tscn").instantiate().apply())
+	#add_child(load("res://wave_shooter/talents/speed_shot.tscn").instantiate().apply())
+	#add_child(load("res://wave_shooter/talents/speed_movement.tscn").instantiate().apply())
+	#add_child(load("res://wave_shooter/talents/dash.tscn").instantiate().apply())
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.get_parent().get_meta("origin") == "enemy_shot":
@@ -185,3 +185,8 @@ func use_skill(key: int) -> void:
 			Global.parent_node_creation.add_child(skill)
 			await get_tree().create_timer(skill_props.cooldown).timeout
 			skill_props.is_cooling = false
+
+func _on_collector_area_entered(area: Area2D) -> void:
+	if area.is_in_group("collectible"):
+		print("XP")
+		area.get_parent().speed = 10
