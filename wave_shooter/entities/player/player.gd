@@ -81,11 +81,9 @@ func _on_shot_loader_timeout() -> void:
 	#add_child(load("res://wave_shooter/talents/speed_movement.tscn").instantiate().apply())
 	#add_child(load("res://wave_shooter/talents/dash.tscn").instantiate().apply())
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") or area.get_parent().get_meta("origin") == "enemy_shot":
-		var enemy = area.get_parent() # Pode ser um inimigo ou um tiro de inimigo
-		enemy.queue_free()
-		take_damage(1, enemy.direction)
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		take_damage(1, body.direction)
 		if lifes <= 0:
 			die()
 #endregion
@@ -121,7 +119,7 @@ func reload() -> void:
 	$ShotLoader.start()
 
 func take_damage(damage: int, knokback: Vector2 = Vector2.ZERO) -> void:
-	knockback(knokback, 5) # Implementar a força de acordo com a speed e/ou peso do inimigo
+	knockback(knokback, 10) # Implementar a força de acordo com a speed e/ou peso do inimigo
 	Global.camera.shake_screen(100, 0.2)
 	var screen_damage = Global.instance_node(SCREEN_DAMAGE_TSCN, Vector2(576, 324), Global.camera)
 	screen_damage.modulate = Color("4a5fdd")
@@ -188,5 +186,4 @@ func use_skill(key: int) -> void:
 
 func _on_collector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("collectible"):
-		print("XP")
-		area.get_parent().speed = 10
+		area.get_parent().pull()

@@ -121,6 +121,7 @@ skill_4={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Enemy"
 2d_physics/layer_3="Collectible"
+2d_physics/layer_4="Projectile"
 
 [physics]
 

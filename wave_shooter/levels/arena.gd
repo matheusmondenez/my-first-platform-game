@@ -1,25 +1,18 @@
 extends Node2D
 
-signal cleared # Melhorar essa lógica
-var emmited := false
-
-const IMPLOSION_TSCN = preload("res://wave_shooter/fx/implosion.tscn")
-const LIFE_TSCN = preload("res://wave_shooter/entities/life.tscn")
-const POWER_UP_TSCN = preload("res://wave_shooter/entities/power_up.tscn")
-const WAVE_CLEARED_TSCN = preload("res://wave_shooter/ui/wave_cleared.tscn")
+const Implosion = preload("res://wave_shooter/fx/implosion.tscn")
+const Life = preload("res://wave_shooter/entities/life.tscn")
+const PowerUp = preload("res://wave_shooter/entities/power_up.tscn")
+const WaveCleared = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
 @onready var auto_shot_icon: TextureRect = $UI/HUD/Score/PointsContainer/AutoShotToggle
 
 func _ready() -> void:
 	Global.parent_node_creation = self
-	SkillManager.clear_all_cooldowns()
-	#cleared.connect(wave_cleared)
+	SkillManager.clear_all_cooldowns() # Tem que manter os cooldowns mas o novo vir cheio pra poder usar
 	Global.player.level_up.connect(wave_cleared)
 
 func _process(delta: float) -> void:
-	#if Global.points >= 20 and not emmited:
-		#emit_signal("cleared")
-		#emmited = true
 	pass
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -30,7 +23,7 @@ func _exit_tree() -> void:
 	Global.parent_node_creation = null
 
 func wave_cleared() -> void:
-	var wave_cleared = WAVE_CLEARED_TSCN.instantiate()
+	var wave_cleared = WaveCleared.instantiate()
 	wave_cleared.position = Vector2(1920/2, 1080/2) # Rever solução
 	add_child(wave_cleared)
 
@@ -40,7 +33,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 		enemy_position = Vector2(randi_range(-160, 670), randi_range(-90, 390))
 	var enemy_index = round(randi_range(0, Configs.WAVES[1].enemies.size() - 1))
 	# spawn effect
-	var implosion = IMPLOSION_TSCN.instantiate()
+	var implosion = Implosion.instantiate()
 	implosion.global_position = enemy_position
 	add_child(implosion)
 	await get_tree().create_timer(1).timeout
@@ -55,7 +48,7 @@ func _on_dificulty_timer_timeout() -> void:
 func _on_power_up_spawn_timer_timeout() -> void:
 	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
 	var power_up = PowerUpManager.get_random()
-	var power_up_spawn = POWER_UP_TSCN.instantiate()
+	var power_up_spawn = PowerUp.instantiate()
 	power_up_spawn.power = power_up
 	power_up_spawn.color = power_up.resource.tint
 	power_up_spawn.global_position = power_up_position
@@ -66,8 +59,8 @@ func _on_life_spawn_timer_timeout() -> void:
 	if Global.player.lifes == 10:
 		return
 	var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	#var life = Global.instance_node(POWER_UP_TSCN, life_position, self)
-	var life = POWER_UP_TSCN.instantiate()
+	#var life = Global.instance_node(PowerUp, life_position, self)
+	var life = PowerUp.instantiate()
 	life.global_position = life_position
 	life.scale = Vector2(2, 2)
 	life.color = Color("ad0057")

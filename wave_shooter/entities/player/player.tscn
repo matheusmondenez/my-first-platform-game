@@ -44,20 +44,19 @@ scale = Vector2(5, 5)
 texture = ExtResource("2_s6g6v")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 light_mask = 0
 shape = SubResource("RectangleShape2D_82fus")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["player"]]
-visible = false
 collision_layer = 0
-collision_mask = 0
+collision_mask = 2
 
 [node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
 light_mask = 0
 shape = SubResource("RectangleShape2D_8i6sj")
 
 [node name="Collector" type="Area2D" parent="."]
+visible = false
 light_mask = 0
 collision_layer = 0
 collision_mask = 4
@@ -105,7 +104,7 @@ one_shot = true
 [node name="ShotLoader" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Collector" to="." method="_on_collector_area_entered"]
 [connection signal="timeout" from="ShotInterval" to="." method="_on_shot_interval_timeout"]
 [connection signal="timeout" from="ShotLoader" to="." method="_on_shot_loader_timeout"]

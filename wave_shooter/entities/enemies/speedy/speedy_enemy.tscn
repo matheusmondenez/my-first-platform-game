@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de0m0hivxmisn"]
 
-[ext_resource type="PackedScene" uid="uid://ebylq8dxub7n" path="res://wave_shooter/entities/enemies/default/default_enemy.tscn" id="1_2bfhe"]
+[ext_resource type="PackedScene" uid="uid://ebylq8dxub7n" path="res://wave_shooter/entities/enemies/default/enemy.tscn" id="1_2bfhe"]
 [ext_resource type="Resource" uid="uid://75q5caep8jwx" path="res://wave_shooter/resoures/enemies_stats/speedy_enemy_stats.tres" id="2_t1c6m"]
 
 [node name="SpeedyEnemy" instance=ExtResource("1_2bfhe")]
