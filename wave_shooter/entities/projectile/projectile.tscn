@@ -11,14 +11,14 @@ z_index = -1
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 script = ExtResource("1_r1f7e")
 
-[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
+[node name="Area" type="Area2D" parent="." groups=["damage"]]
 show_behind_parent = true
 light_mask = 0
 visibility_layer = 0
 collision_layer = 8
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="Shape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("RectangleShape2D_1nd5l")
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]

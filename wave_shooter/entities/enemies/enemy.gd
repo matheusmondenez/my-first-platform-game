@@ -67,7 +67,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("damage"):
 		var shot = area.get_parent()
 		take_damage(shot.power)
-		area.get_parent().queue_free()
+		if not shot.pierce:
+			area.get_parent().queue_free()
 	if area.is_in_group("skill"):
 		var skill = area.get_parent()
 		take_damage(skill.props.power)
