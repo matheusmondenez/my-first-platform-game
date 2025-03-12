@@ -208,7 +208,8 @@ func teste(delta) -> void:
 					var direction_to_player = (global_position - orb.global_position).normalized()
 					orb.global_position = global_position - direction_to_player * 100
 				#Teste
-				var pierce_shot = PIERCE_SHOT_TSCN.instantiate()
-				pierce_shot.pierce = false
-				pierce_shot.target = body.global_position
-				orb.add_child(pierce_shot)
+				if $PixelOrb/ShotArea.get_overlapping_bodies().has(body):
+					var pierce_shot = PIERCE_SHOT_TSCN.instantiate()
+					pierce_shot.pierce = false
+					pierce_shot.target = body.global_position
+					orb.add_child(pierce_shot)
