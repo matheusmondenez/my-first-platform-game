@@ -7,12 +7,15 @@ var angle: int = 0
 var power: int = 1
 var pierce: bool = true
 
+var target: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
 	if unique_direction:
-		look_at(get_global_mouse_position())
+		#look_at(get_global_mouse_position())
+		look_at(target)
 		unique_direction = false
 	global_position += move.rotated(rotation - angle) * speed * delta
 

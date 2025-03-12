@@ -6,8 +6,10 @@ var Room = preload("res://wave_shooter/teste.tscn")
 var font = preload("res://wave_shooter/assets/fonts/MonomaniacOne-Regular.ttf")
 var tile_size = 16
 var num_rooms = 50
-var min_size = 4
-var max_size = 10
+#var min_size = 4
+#var max_size = 10
+var min_size = 40
+var max_size = 100
 var hspread = 400
 var cull = 0.5
 
@@ -126,6 +128,8 @@ func _input(event: InputEvent):
 	if event.is_action_pressed("pause"):
 		player = Player.instantiate()
 		add_child(player)
+		$Camera2D.enabled = false
+		player.add_child(Camera2D.new())
 		player.position = start_room.position
 		play_mode = true
 

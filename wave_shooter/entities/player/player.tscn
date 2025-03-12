@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://55q8dyag7rwi"]
+[gd_scene load_steps=14 format=3 uid="uid://55q8dyag7rwi"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/player/player.gd" id="1_lb8tn"]
 [ext_resource type="Texture2D" uid="uid://4kxjn2bwdkrn" path="res://wave_shooter/assets/shapes/square-10x10.svg" id="2_s6g6v"]
@@ -28,9 +28,15 @@ shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fyr0c"]
+radius = 384.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_go6hn"]
+radius = 192.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 light_mask = 0
-collision_mask = 6
+collision_mask = 38
 motion_mode = 1
 script = ExtResource("1_lb8tn")
 metadata/_edit_horizontal_guides_ = [-25.0, 25.0]
@@ -103,6 +109,23 @@ one_shot = true
 
 [node name="ShotLoader" type="Timer" parent="."]
 one_shot = true
+
+[node name="PixelOrb" type="Sprite2D" parent="."]
+
+[node name="Polygon" type="Polygon2D" parent="PixelOrb"]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="DetectionArea" type="Area2D" parent="PixelOrb"]
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="PixelOrb/DetectionArea"]
+shape = SubResource("CircleShape2D_fyr0c")
+
+[node name="ShotArea" type="Area2D" parent="PixelOrb"]
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="PixelOrb/ShotArea"]
+shape = SubResource("CircleShape2D_go6hn")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="area_entered" from="Collector" to="." method="_on_collector_area_entered"]

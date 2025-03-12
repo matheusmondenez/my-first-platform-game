@@ -16,7 +16,7 @@ show_behind_parent = true
 light_mask = 0
 visibility_layer = 0
 collision_layer = 8
-collision_mask = 2
+collision_mask = 34
 
 [node name="Shape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("RectangleShape2D_1nd5l")

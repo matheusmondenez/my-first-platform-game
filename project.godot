@@ -123,6 +123,7 @@ skill_4={
 2d_physics/layer_3="Collectible"
 2d_physics/layer_4="Projectile"
 2d_physics/layer_5="Skill"
+2d_physics/layer_6="Wall"
 
 [physics]
 
