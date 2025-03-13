@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci5e5gpyf3a2n"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/power_ups/pixel_pulse.gd" id="1_o80jy"]
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="2_yp5se"]
+
+[sub_resource type="Resource" id="Resource_om6t3"]
+script = ExtResource("2_yp5se")
+name = "PixelPulse"
+type = ""
+power = 3
+cooldown = 0.0
+is_cooling = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wxod1"]
+radius = 160.2
+
+[node name="PixelPulse" type="CPUParticles2D"]
+show_behind_parent = true
+amount = 150
+emission_shape = 1
+emission_sphere_radius = 128.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+linear_accel_min = 50.0
+linear_accel_max = 100.0
+radial_accel_min = 50.0
+radial_accel_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+script = ExtResource("1_o80jy")
+props = SubResource("Resource_om6t3")
+
+[node name="Area" type="Area2D" parent="." groups=["skill"]]
+collision_layer = 16
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_wxod1")
+
+[node name="Interval" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Interval" to="." method="_on_interval_timeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]

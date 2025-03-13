@@ -37,6 +37,13 @@ var skills: Array[Dictionary] = [
 			"type": "power_up",
 		},
 	},
+	{
+		"scene": preload("res://wave_shooter/entities/power_ups/pixel_pulse.tscn"),
+		"resource": {
+			"name": "Pixel Pulse",
+			"type": "power_up",
+		},
+	},
 ]
 var available: Array[Dictionary] = skills
 var assigned: Array[Dictionary] = [{}, {}, {}, {}]
