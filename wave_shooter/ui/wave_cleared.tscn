@@ -62,6 +62,11 @@ text = "Skill 2"
 layout_mode = 2
 text = "Skill 3"
 
+[node name="ButtonSkill4" type="Button" parent="GeneralContainer/SkillsContainer"]
+layout_mode = 2
+text = "Skill 4"
+
 [connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill1" to="." method="_on_button_skill_1_pressed"]
 [connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill2" to="." method="_on_button_skill_2_pressed"]
 [connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill3" to="." method="_on_button_skill_3_pressed"]
+[connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill4" to="." method="_on_button_skill_4_pressed"]

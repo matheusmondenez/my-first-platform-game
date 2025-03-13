@@ -15,6 +15,28 @@ var skills: Array[Dictionary] = [
 		"scene": preload("res://wave_shooter/entities/skills/laser_beam.tscn"),
 		"resource": preload("res://wave_shooter/resoures/skills/laser_beam_skill.tres"),
 	},
+	#TESTE
+	{
+		"scene": preload("res://wave_shooter/entities/power_ups/pixel_orb.tscn"),
+		"resource": {
+			"name": "Pixel Orb",
+			"type": "power_up",
+		},
+	},
+	{
+		"scene": preload("res://wave_shooter/entities/power_ups/slash.tscn"),
+		"resource": {
+			"name": "Slash",
+			"type": "power_up",
+		},
+	},
+	{
+		"scene": preload("res://wave_shooter/entities/power_ups/rotating_bit.tscn"),
+		"resource": {
+			"name": "Rotating Bit",
+			"type": "power_up",
+		},
+	},
 ]
 var available: Array[Dictionary] = skills
 var assigned: Array[Dictionary] = [{}, {}, {}, {}]
@@ -26,7 +48,7 @@ func assign(skill: Dictionary, key: int) -> void:
 		assigned.insert(key, skill)
 		available.erase(skill)
 
-func get_random(quantity: int = 3) -> Array[Dictionary]:
+func get_random(quantity: int = 4) -> Array[Dictionary]:
 	if available.size() < quantity:
 		quantity = available.size()
 	var randoms: Array[Dictionary] = []
