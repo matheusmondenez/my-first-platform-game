@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c38m1ggjb4qwi"]
+[gd_scene load_steps=5 format=3 uid="uid://wpgd75b23is"]
 
 [ext_resource type="Script" path="res://wave_shooter/procedural_teste.gd" id="1_aj6bs"]
 [ext_resource type="Texture2D" uid="uid://c0e03talehwv5" path="res://wave_shooter/assets/tileset_test/tileset.png" id="2_tycqy"]

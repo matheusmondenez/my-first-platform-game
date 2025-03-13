@@ -64,7 +64,6 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-	teste(delta)
 #endregion
 
 func _exit_tree() -> void:
@@ -188,28 +187,3 @@ func use_skill(key: int) -> void:
 func _on_collector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("collectible"):
 		area.get_parent().pull()
-
-func teste(delta) -> void:
-	var bodies = $PixelOrb/DetectionArea.get_overlapping_bodies()
-	var distances: Array = []
-	for body in bodies:
-		if body.is_in_group("enemy"):
-			var distance = body.global_position.distance_to(global_position)
-			distances.append(distance)
-	for body in bodies:
-		if body.is_in_group("enemy"):
-			var distance = body.global_position.distance_to(global_position)
-			if distance == distances.min():
-				#Teste
-				var orb: Sprite2D = $PixelOrb
-				orb.global_position = orb.global_position.move_toward(body.global_position, 10)
-				var distance_to_player = orb.global_position.distance_to(global_position)
-				if distance_to_player > 100:
-					var direction_to_player = (global_position - orb.global_position).normalized()
-					orb.global_position = global_position - direction_to_player * 100
-				#Teste
-				if $PixelOrb/ShotArea.get_overlapping_bodies().has(body):
-					var pierce_shot = PIERCE_SHOT_TSCN.instantiate()
-					pierce_shot.pierce = false
-					pierce_shot.target = body.global_position
-					orb.add_child(pierce_shot)

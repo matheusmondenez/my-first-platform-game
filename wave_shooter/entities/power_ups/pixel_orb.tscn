@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0buq51mui5yt"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/power_ups/pixel_orb.gd" id="1_worje"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fyr0c"]
+radius = 384.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_go6hn"]
+radius = 192.0
+
+[node name="PixelOrb" type="Sprite2D"]
+script = ExtResource("1_worje")
+
+[node name="Polygon" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_fyr0c")
+
+[node name="ShotArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="ShotArea"]
+shape = SubResource("CircleShape2D_go6hn")
+
+[node name="ShotInterval" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ShotInterval" to="." method="_on_shot_interval_timeout"]
