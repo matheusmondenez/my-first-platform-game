@@ -24,7 +24,6 @@ func sort_skills(quantity: int = 4) -> Array[Dictionary]:
 
 func _on_button_skill_1_pressed() -> void:
 	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[0]["resource"]["name"]):
-		print("Power Up!!!")
 		Global.player.add_child(sorted_skills[0]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[0], 0)
@@ -34,7 +33,6 @@ func _on_button_skill_1_pressed() -> void:
 
 func _on_button_skill_2_pressed() -> void:
 	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[1]["resource"]["name"]):
-		print("Power Up!!!")
 		Global.player.add_child(sorted_skills[1]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[1], 1)
@@ -44,7 +42,6 @@ func _on_button_skill_2_pressed() -> void:
 
 func _on_button_skill_3_pressed() -> void:
 	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[2]["resource"]["name"]):
-		print("Power Up!!!")
 		Global.player.add_child(sorted_skills[2]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[2], 2)
@@ -54,7 +51,6 @@ func _on_button_skill_3_pressed() -> void:
 
 func _on_button_skill_4_pressed() -> void:
 	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[3]["resource"]["name"]):
-		print("Power Up!!!")
 		Global.player.add_child(sorted_skills[3]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[3], 3)

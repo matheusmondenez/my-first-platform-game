@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+var preparing: bool = false
+var counter: int = 0
+var coordinates: Array[Vector2] = []
+
 #region preload_scenes
 var PROJECTILE_TSCN: PackedScene = preload("res://wave_shooter/entities/projectile/projectile.tscn")
 var PIERCE_SHOT_TSCN: PackedScene = preload("res://wave_shooter/entities/player/pierce_shot.tscn")
@@ -163,6 +167,19 @@ func die() -> void:
 	await Global.slow_time(0.2, 3)
 	get_tree().reload_current_scene()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("dash"):
+		preparing = true
+	if event.is_action_released("dash"):
+		preparing = false
+		if counter == 3:
+			teste()
+	if preparing and event is InputEventMouseButton:
+		var mouse_event := event as InputEventMouseButton
+		if mouse_event.pressed and mouse_event.button_index == MOUSE_BUTTON_RIGHT:
+			counter += 1
+			coordinates.append(get_global_mouse_position())
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("skill_1"):
 		use_skill(0)
@@ -187,3 +204,16 @@ func use_skill(key: int) -> void:
 func _on_collector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("collectible"):
 		area.get_parent().pull()
+
+func teste():
+	await get_tree().create_timer(1).timeout
+	$Trail.visible = true
+	create_tween().tween_property(self, "global_position", coordinates[0], 0.2)
+	await get_tree().create_timer(0.3).timeout
+	create_tween().tween_property(self, "global_position", coordinates[1], 0.2)
+	await get_tree().create_timer(0.3).timeout
+	create_tween().tween_property(self, "global_position", coordinates[2], 0.2)
+	await get_tree().create_timer(0.3).timeout
+	$Trail.visible = false
+	counter = 0
+	coordinates.clear()
