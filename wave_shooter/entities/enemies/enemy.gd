@@ -70,6 +70,10 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		if not shot.pierce:
 			area.get_parent().queue_free()
 	if area.is_in_group("skill"):
+		print("SKILL")
 		var skill = area.get_parent()
-		take_damage(skill.props.power)
+		if skill is CharacterBody2D: # Provisório
+			take_damage(10)
+		else:
+			take_damage(skill.props.power)
 #endregion

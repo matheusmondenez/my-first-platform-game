@@ -170,8 +170,10 @@ func die() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("dash"):
 		preparing = true
+		Engine.time_scale = 0.2
 	if event.is_action_released("dash"):
 		preparing = false
+		Engine.time_scale = 1
 		if counter == 3:
 			teste()
 	if preparing and event is InputEventMouseButton:
@@ -206,8 +208,9 @@ func _on_collector_area_entered(area: Area2D) -> void:
 		area.get_parent().pull()
 
 func teste():
-	await get_tree().create_timer(1).timeout
 	$Trail.visible = true
+	$Hurtbox.monitoring = false
+	$Hitbox.monitorable = true
 	create_tween().tween_property(self, "global_position", coordinates[0], 0.2)
 	await get_tree().create_timer(0.3).timeout
 	create_tween().tween_property(self, "global_position", coordinates[1], 0.2)
@@ -215,5 +218,7 @@ func teste():
 	create_tween().tween_property(self, "global_position", coordinates[2], 0.2)
 	await get_tree().create_timer(0.3).timeout
 	$Trail.visible = false
+	$Hurtbox.monitoring = true
+	$Hitbox.monitorable = false
 	counter = 0
 	coordinates.clear()
