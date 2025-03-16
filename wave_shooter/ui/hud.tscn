@@ -215,6 +215,13 @@ position = Vector2(976, 1018)
 [node name="SkillMarker4" type="Marker2D" parent="Skills/Markers"]
 position = Vector2(1012, 1018)
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 1040.0
+offset_right = 1920.0
+offset_bottom = 1050.0
+show_percentage = false
+
 [connection signal="area_entered" from="Score/Area" to="." method="_on_points_area_entered"]
 [connection signal="area_exited" from="Score/Area" to="." method="_on_points_area_exited"]
 [connection signal="area_entered" from="Life/Area" to="." method="_on_life_area_entered"]
