@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2mg66kgdu6lq"]
+[gd_scene load_steps=9 format=3 uid="uid://2mg66kgdu6lq"]
 
 [ext_resource type="Script" path="res://wave_shooter/ui/hud.gd" id="1_1ajeg"]
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="2_fj867"]
@@ -12,6 +12,12 @@ size = Vector2(104, 31)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tll2s"]
 size = Vector2(144, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uhhw"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vctas"]
+bg_color = Color(0.290196, 0.372549, 0.866667, 1)
 
 [node name="HUD" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)
@@ -217,9 +223,11 @@ position = Vector2(1012, 1018)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_top = 1040.0
+offset_top = 1064.0
 offset_right = 1920.0
-offset_bottom = 1045.0
+offset_bottom = 1069.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5uhhw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vctas")
 show_percentage = false
 
 [connection signal="area_entered" from="Score/Area" to="." method="_on_points_area_entered"]

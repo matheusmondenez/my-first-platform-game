@@ -45,24 +45,24 @@ func _on_dificulty_timer_timeout() -> void:
 	if $EnemySpawnTimer.wait_time > 0.5:
 		$DificultyTimer.wait_time -= 0.10
 
-func _on_power_up_spawn_timer_timeout() -> void:
-	var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	var power_up = PowerUpManager.get_random()
-	var power_up_spawn = PowerUp.instantiate()
-	power_up_spawn.power = power_up
-	power_up_spawn.color = power_up.resource.tint
-	power_up_spawn.global_position = power_up_position
-	power_up_spawn.scale = Vector2(2, 2)
-	add_child(power_up_spawn)
+#func _on_power_up_spawn_timer_timeout() -> void:
+	#var power_up_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
+	#var power_up = PowerUpManager.get_random()
+	#var power_up_spawn = PowerUp.instantiate()
+	#power_up_spawn.power = power_up
+	#power_up_spawn.color = power_up.resource.tint
+	#power_up_spawn.global_position = power_up_position
+	#power_up_spawn.scale = Vector2(2, 2)
+	#add_child(power_up_spawn)
 
-func _on_life_spawn_timer_timeout() -> void:
-	if Global.player.lifes == 10:
-		return
-	var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
-	#var life = Global.instance_node(PowerUp, life_position, self)
-	var life = PowerUp.instantiate()
-	life.global_position = life_position
-	life.scale = Vector2(2, 2)
-	life.color = Color("ad0057")
-	life.set_meta("spawn_type", "life")
-	add_child(life)
+#func _on_life_spawn_timer_timeout() -> void:
+	#if Global.player.lifes == 10:
+		#return
+	#var life_position = Vector2(randi_range(0, 1152), randi_range(0, 648))
+	##var life = Global.instance_node(PowerUp, life_position, self)
+	#var life = PowerUp.instantiate()
+	#life.global_position = life_position
+	#life.scale = Vector2(2, 2)
+	#life.color = Color("ad0057")
+	#life.set_meta("spawn_type", "life")
+	#add_child(life)
