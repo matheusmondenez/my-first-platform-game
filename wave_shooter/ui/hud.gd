@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 	level.text = str("Level ", Global.level)
 	auto_shot_icon.visible = Configs.game_configs.auto_shot
 	# Teste
+	$ProgressBar.min_value = 0 if Global.level == 1 else Global.LEVELS[Global.level - 1]["max_xp"]
 	$ProgressBar.max_value = Global.LEVELS[Global.level]["max_xp"]
 	$ProgressBar.value = Global.xp
 
