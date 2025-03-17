@@ -15,7 +15,6 @@ const SKILL_ICON: PackedScene = preload("res://wave_shooter/ui/cooldown_icon.tsc
 func _ready() -> void:
 	init_hud_lifes()
 	init_hud_skills()
-	init_xp_progress()
 	SkillManager.skill_assigned.connect(update_skill_icon)
 	high_score.text = str("%03d" % Global.high_score)
 	Global.player.life_decreased.connect(update_hud_lifes.bind(LIVES_UPDATE.DECREASE))
@@ -30,10 +29,6 @@ func _process(delta: float) -> void:
 		Global.high_score = Global.points
 	level.text = str("Level ", Global.level)
 	auto_shot_icon.visible = Configs.game_configs.auto_shot
-	# Teste
-	$ProgressBar.min_value = 0 if Global.level == 1 else Global.LEVELS[Global.level - 1]["max_xp"]
-	$ProgressBar.max_value = Global.LEVELS[Global.level]["max_xp"]
-	$ProgressBar.value = Global.xp
 
 func _on_points_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy") or area.is_in_group("player"):
@@ -116,8 +111,3 @@ func remove_hud_life() -> void:
 func update_skill_icon(key: int, skill: Dictionary) -> void:
 	var icon = $Skills/Markers.get_child(key)
 	icon.skill = skill["resource"]
-
-func init_xp_progress() -> void:
-	var progress_bar = $ProgressBar
-	progress_bar.max_value = Global.LEVELS[Global.level]["max_xp"]
-	progress_bar.value = Global.xp

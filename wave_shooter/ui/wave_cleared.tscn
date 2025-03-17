@@ -42,7 +42,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_m7xem")
 theme_override_font_sizes/font_size = 72
-text = "Wave Cleared"
+text = "Level Up!"
 
 [node name="SkillsContainer" type="HBoxContainer" parent="GeneralContainer"]
 layout_mode = 2
