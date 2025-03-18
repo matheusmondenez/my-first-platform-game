@@ -19,41 +19,40 @@ func display_cards() -> void:
 	await Global.slow_time(0.2, 3)
 	get_tree().paused = true
 
-func sort_skills(quantity: int = 4) -> Array[Dictionary]:
-	return SkillManager.get_random(quantity)
+func sort_skills(quantity: int = 2) -> Array[Dictionary]:
+	var skills = SkillManager.get_random(quantity)
+	var passives = SkillManager.get_random_passives(quantity)
+	skills.append_array(passives)
+	return skills
 
 func _on_button_skill_1_pressed() -> void:
-	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[0]["resource"]["name"]):
+	if sorted_skills[0]["resource"]["type"] == "Passive":
 		Global.player.add_child(sorted_skills[0]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[0], 0)
-	#get_tree().reload_current_scene()
 	get_tree().paused = false
 	queue_free()
 
 func _on_button_skill_2_pressed() -> void:
-	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[1]["resource"]["name"]):
+	if sorted_skills[1]["resource"]["type"] == "Passive":
 		Global.player.add_child(sorted_skills[1]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[1], 1)
-	#get_tree().reload_current_scene()
 	get_tree().paused = false
 	queue_free()
 
 func _on_button_skill_3_pressed() -> void:
-	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[2]["resource"]["name"]):
+	if sorted_skills[2]["resource"]["type"] == "Passive":
 		Global.player.add_child(sorted_skills[2]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[2], 2)
-	#get_tree().reload_current_scene()
 	get_tree().paused = false
 	queue_free()
 
 func _on_button_skill_4_pressed() -> void:
-	if ["Pixel Orb", "Slash", "Rotating Bit", "Pixel Pulse"].has(sorted_skills[3]["resource"]["name"]):
+	if sorted_skills[3]["resource"]["type"] == "Passive":
 		Global.player.add_child(sorted_skills[3]["scene"].instantiate())
 	else:
 		SkillManager.assign(sorted_skills[3], 3)
-	#get_tree().reload_current_scene()
 	get_tree().paused = false
 	queue_free()

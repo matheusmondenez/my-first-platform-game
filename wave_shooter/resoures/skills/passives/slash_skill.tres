@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseSkill" load_steps=2 format=3 uid="uid://gbtsc5k3dnd5"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="1_qrctb"]
+
+[resource]
+script = ExtResource("1_qrctb")
+name = "Slash"
+type = "Passive"
+power = 1
+cooldown = 5.0
+is_cooling = false

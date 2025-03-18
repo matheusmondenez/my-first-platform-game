@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseSkill" load_steps=2 format=3 uid="uid://bto53m3vovwfq"]
+
+[ext_resource type="Script" path="res://wave_shooter/resoures/skills/base_skill.gd" id="1_67ojr"]
+
+[resource]
+script = ExtResource("1_67ojr")
+name = "Pixel Pulse"
+type = "Passive"
+power = 1
+cooldown = 5.0
+is_cooling = false
