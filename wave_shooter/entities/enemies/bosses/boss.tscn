@@ -1,0 +1,182 @@
+[gd_scene load_steps=13 format=3 uid="uid://b55pjv77g2e81"]
+
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/boss.gd" id="1_11c10"]
+[ext_resource type="Shader" path="res://wave_shooter/shaders/circle_pixels.gdshader" id="1_dp8ge"]
+[ext_resource type="Texture2D" uid="uid://cttpwaxwi3d21" path="res://wave_shooter/assets/icons/skull.png" id="2_32fqk"]
+[ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/entities/player/player.tscn" id="4_2yhra"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceipx"]
+shader = ExtResource("1_dp8ge")
+shader_parameter/amount_x = 40.0
+shader_parameter/amount_y = 40.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka1du"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv2xa"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvo17"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d7uew"]
+radius = 352.0
+
+[sub_resource type="Animation" id="Animation_7s6vp"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-96, 96), Vector2(-96, 86), Vector2(-96, 106), Vector2(-96, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(96, 96), Vector2(96, 86), Vector2(96, 106), Vector2(96, 96)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"prepare_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_oln5g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-96, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvgwo"]
+_data = {
+"RESET": SubResource("Animation_oln5g"),
+"idle": SubResource("Animation_7s6vp")
+}
+
+[node name="Boss" type="CharacterBody2D"]
+position = Vector2(1024, 512)
+collision_layer = 2
+collision_mask = 35
+motion_mode = 1
+script = ExtResource("1_11c10")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Body"]
+color = Color(0.748914, 0.364675, 0, 1)
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[node name="TextureRect" type="TextureRect" parent="Body"]
+material = SubResource("ShaderMaterial_ceipx")
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_32fqk")
+
+[node name="LeftEye" type="Marker2D" parent="Body"]
+position = Vector2(-19, 2)
+
+[node name="RightEye" type="Marker2D" parent="Body"]
+position = Vector2(19, 2)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ka1du")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 24
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_cv2xa")
+
+[node name="LeftHand" type="Sprite2D" parent="."]
+position = Vector2(-96, 96)
+
+[node name="Polygon2D" type="Polygon2D" parent="LeftHand"]
+position = Vector2(32, -32)
+color = Color(0.611484, 0.292931, 0, 1)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="Hitbox" type="Area2D" parent="LeftHand"]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="LeftHand/Hitbox"]
+position = Vector2(32, -32)
+shape = SubResource("RectangleShape2D_lvo17")
+
+[node name="RightHand" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+
+[node name="Polygon2D" type="Polygon2D" parent="RightHand"]
+position = Vector2(-32, -32)
+color = Color(0.611765, 0.294118, 0, 1)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[node name="Hitbox" type="Area2D" parent="RightHand"]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="RightHand/Hitbox"]
+position = Vector2(-32, -32)
+shape = SubResource("RectangleShape2D_lvo17")
+
+[node name="PunchRange" type="Area2D" parent="."]
+visible = false
+
+[node name="Shape" type="CollisionShape2D" parent="PunchRange"]
+shape = SubResource("CircleShape2D_d7uew")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tvgwo")
+}
+autoplay = "idle"
+
+[node name="Player" parent="." instance=ExtResource("4_2yhra")]
+position = Vector2(192, 240)
