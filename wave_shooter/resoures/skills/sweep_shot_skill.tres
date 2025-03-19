@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("1_lop5k")
-name = "Sweep Shot"
 icon = ExtResource("1_v0dig")
+name = "Sweep Shot"
+description = "A long description for test..."
 type = "Attack"
 power = 3
 cooldown = 3.0

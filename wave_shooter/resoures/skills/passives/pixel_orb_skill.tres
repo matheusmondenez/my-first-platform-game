@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_wyw1k")
 name = "Pixel Orb"
+description = "A long description for test..."
 type = "Passive"
 power = 1
 cooldown = 5.0

@@ -5,8 +5,9 @@
 
 [resource]
 script = ExtResource("1_rl44b")
-name = "Beam Shot"
 icon = ExtResource("1_rr6gv")
+name = "Beam Shot"
+description = "A long description for test..."
 type = "Attack"
 power = 5
 cooldown = 10.0

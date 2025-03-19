@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_67ojr")
 name = "Pixel Pulse"
+description = "A long description for test..."
 type = "Passive"
 power = 1
 cooldown = 5.0
