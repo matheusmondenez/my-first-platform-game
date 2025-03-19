@@ -1,32 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://exjmv67o7cgu"]
+[gd_scene load_steps=3 format=3 uid="uid://bu3ghqgv68ubq"]
 
-[ext_resource type="Texture2D" uid="uid://do6a22l36kxvu" path="res://wave_shooter/assets/ui/card (1).png" id="1_ddf36"]
+[ext_resource type="Texture2D" uid="uid://clo8m86lf2b05" path="res://wave_shooter/assets/icons/auto.svg" id="1_2auc8"]
 [ext_resource type="Script" path="res://wave_shooter/ui/skill_card.gd" id="2_oj0ip"]
 
-[node name="SkillCard" type="TextureButton"]
+[node name="SkillCard" type="Control"]
+process_mode = 3
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -130.0
-offset_top = -120.0
-offset_right = -1032.0
-offset_bottom = -518.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(130, 120)
-texture_normal = ExtResource("1_ddf36")
-stretch_mode = 0
 script = ExtResource("2_oj0ip")
 
-[node name="Label" type="Label" parent="."]
+[node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 109.0
-offset_right = 181.0
-offset_bottom = 141.0
-pivot_offset = Vector2(53, 19)
-text = "Skill"
+offset_right = 256.0
+offset_bottom = 384.0
+
+[node name="Panel" type="Panel" parent="Button"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 384.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Button/Panel"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 384.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Title" type="Label" parent="Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Power"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[node name="Icon" type="TextureRect" parent="Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_2auc8")
+stretch_mode = 5
+
+[node name="Description" type="Label" parent="Button/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "A very long description of the skill or power up, etc..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]

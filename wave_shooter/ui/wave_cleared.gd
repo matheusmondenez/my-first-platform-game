@@ -16,6 +16,9 @@ func display_cards() -> void:
 	button_skill_2.text = sorted_skills[1]["resource"].name if sorted_skills.size() > 1 else "Empty"
 	button_skill_3.text = sorted_skills[2]["resource"].name if sorted_skills.size() > 2 else "Empty"
 	button_skill_4.text = sorted_skills[3]["resource"].name if sorted_skills.size() > 3 else "Empty"
+	# TESTE
+	$GeneralContainer/SkillsContainer/SkillCard.skill = sorted_skills[3]
+	# TESTE
 	await Global.slow_time(0.2, 3)
 	get_tree().paused = true
 

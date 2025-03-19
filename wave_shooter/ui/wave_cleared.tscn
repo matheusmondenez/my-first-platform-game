@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbh5mtb05i2e"]
+[gd_scene load_steps=4 format=3 uid="uid://ctbh5mtb05i2e"]
 
 [ext_resource type="FontFile" uid="uid://b2vaekuu7epix" path="res://wave_shooter/assets/fonts/Audiowide-Regular.ttf" id="1_m7xem"]
 [ext_resource type="Script" path="res://wave_shooter/ui/wave_cleared.gd" id="1_msbla"]
+[ext_resource type="PackedScene" uid="uid://bu3ghqgv68ubq" path="res://wave_shooter/ui/skill_card.tscn" id="3_njm1m"]
 
 [node name="WaveCleared" type="Control"]
 process_mode = 3
@@ -65,6 +66,9 @@ text = "Skill 3"
 [node name="ButtonSkill4" type="Button" parent="GeneralContainer/SkillsContainer"]
 layout_mode = 2
 text = "Skill 4"
+
+[node name="SkillCard" parent="GeneralContainer/SkillsContainer" instance=ExtResource("3_njm1m")]
+layout_mode = 2
 
 [connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill1" to="." method="_on_button_skill_1_pressed"]
 [connection signal="pressed" from="GeneralContainer/SkillsContainer/ButtonSkill2" to="." method="_on_button_skill_2_pressed"]
