@@ -6,6 +6,8 @@ const PowerUp = preload("res://wave_shooter/entities/power_up.tscn")
 const WaveCleared = preload("res://wave_shooter/ui/wave_cleared.tscn")
 
 @onready var auto_shot_icon: TextureRect = $UI/HUD/Score/PointsContainer/AutoShotToggle
+@onready var timer_label: Label = $TimerLabel
+@onready var timer: Timer = $Timer
 
 func _ready() -> void:
 	Global.parent_node_creation = self
@@ -13,7 +15,7 @@ func _ready() -> void:
 	Global.player.level_up.connect(wave_cleared)
 
 func _process(delta: float) -> void:
-	pass
+	timer_label.text = str(abs(timer.get_time_left() - timer.wait_time))
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_auto_shot"):

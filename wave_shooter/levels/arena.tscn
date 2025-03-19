@@ -295,7 +295,6 @@ tile_set = SubResource("TileSet_q3fg0")
 position = Vector2(960, 540)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
 [node name="DificultyTimer" type="Timer" parent="."]
@@ -311,6 +310,7 @@ autostart = true
 [node name="UI" type="Node2D" parent="."]
 
 [node name="CountDown" parent="UI" instance=ExtResource("2_575tc")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -335,6 +335,18 @@ position = Vector2(960, 540)
 script = ExtResource("5_nfxav")
 
 [node name="Timer" type="Timer" parent="Camera"]
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 944.0
+offset_top = 16.0
+offset_right = 983.0
+offset_bottom = 39.0
+text = "Time"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1200.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="DificultyTimer" to="." method="_on_dificulty_timer_timeout"]
