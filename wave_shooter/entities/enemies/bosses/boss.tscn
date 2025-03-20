@@ -1,9 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b55pjv77g2e81"]
+[gd_scene load_steps=19 format=3 uid="uid://b55pjv77g2e81"]
 
 [ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/boss.gd" id="1_11c10"]
 [ext_resource type="Shader" path="res://wave_shooter/shaders/circle_pixels.gdshader" id="1_dp8ge"]
 [ext_resource type="Texture2D" uid="uid://cttpwaxwi3d21" path="res://wave_shooter/assets/icons/skull.png" id="2_32fqk"]
-[ext_resource type="PackedScene" uid="uid://55q8dyag7rwi" path="res://wave_shooter/entities/player/player.tscn" id="4_2yhra"]
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/state_machine.gd" id="4_ua508"]
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/idle.gd" id="5_s4mpe"]
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/chase.gd" id="6_at372"]
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/attack.gd" id="7_bo678"]
+[ext_resource type="Script" path="res://wave_shooter/entities/enemies/bosses/dash.gd" id="8_oq43k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ceipx"]
 shader = ExtResource("1_dp8ge")
@@ -20,10 +24,10 @@ size = Vector2(128, 128)
 size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d7uew"]
-radius = 352.0
+radius = 136.235
 
-[sub_resource type="Animation" id="Animation_7s6vp"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_ghpnu"]
+resource_name = "walking"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -32,7 +36,7 @@ tracks/0/path = NodePath("LeftHand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-96, 96), Vector2(-96, 86), Vector2(-96, 106), Vector2(-96, 96)]
@@ -44,27 +48,13 @@ tracks/1/path = NodePath("RightHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 1),
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(96, 96), Vector2(96, 86), Vector2(96, 106), Vector2(96, 96)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"prepare_attack"
-}]
+"values": [Vector2(96, 96), Vector2(96, 106), Vector2(96, 86), Vector2(96, 96)]
 }
 
-[sub_resource type="Animation" id="Animation_oln5g"]
+[sub_resource type="Animation" id="Animation_jkrlh"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -91,10 +81,68 @@ tracks/1/keys = {
 "values": [Vector2(96, 96)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvgwo"]
+[sub_resource type="Animation" id="Animation_qojy1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-96, 96), Vector2(-96, 86), Vector2(-106, 86), Vector2(-96, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(96, 96), Vector2(96, 86), Vector2(106, 86), Vector2(96, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_586y1"]
+resource_name = "attacking"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-96, 96), Vector2(-96, -100), Vector2(-96, 96)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(96, 96), Vector2(96, -100), Vector2(96, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlobx"]
 _data = {
-"RESET": SubResource("Animation_oln5g"),
-"idle": SubResource("Animation_7s6vp")
+"RESET": SubResource("Animation_jkrlh"),
+"attacking": SubResource("Animation_586y1"),
+"idle": SubResource("Animation_qojy1"),
+"walking": SubResource("Animation_ghpnu")
 }
 
 [node name="Boss" type="CharacterBody2D"]
@@ -172,11 +220,41 @@ visible = false
 [node name="Shape" type="CollisionShape2D" parent="PunchRange"]
 shape = SubResource("CircleShape2D_d7uew")
 
+[node name="PresentationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_tvgwo")
+"": SubResource("AnimationLibrary_hlobx")
 }
-autoplay = "idle"
 
-[node name="Player" parent="." instance=ExtResource("4_2yhra")]
-position = Vector2(192, 240)
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -104.0
+offset_right = 24.0
+offset_bottom = -72.0
+pivot_offset = Vector2(24, 16)
+text = "Debug"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("4_ua508")
+
+[node name="Idle" type="Node2D" parent="StateMachine"]
+script = ExtResource("5_s4mpe")
+
+[node name="Chase" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_at372")
+
+[node name="Attack" type="Node2D" parent="StateMachine"]
+script = ExtResource("7_bo678")
+
+[node name="Dash" type="Node2D" parent="StateMachine"]
+script = ExtResource("8_oq43k")
+
+[connection signal="body_entered" from="PunchRange" to="StateMachine/Chase" method="_on_punch_range_body_entered"]
+[connection signal="body_exited" from="PunchRange" to="StateMachine/Attack" method="_on_punch_range_body_exited"]
+[connection signal="timeout" from="PresentationTimer" to="StateMachine/Idle" method="_on_presentation_timer_timeout"]
