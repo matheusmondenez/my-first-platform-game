@@ -2,7 +2,9 @@ extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+var idle := true
 var can_attack := false
+var can_dash := false
 var init_chase := false
 var direction := Vector2.ZERO
 
@@ -16,18 +18,3 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	velocity = direction.normalized() * 40
 	move_and_collide(velocity * delta)
-
-func chase_player() -> void:
-	pass
-
-func prepare_attack() -> void:
-	pass
-
-func punch() -> void:
-	pass
-
-func shoot() -> void:
-	pass
-
-func dash() -> void:
-	pass
